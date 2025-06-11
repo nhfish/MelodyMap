@@ -71,3 +71,20 @@ Concept + direction: Nathan Fisher
 AI agent support: OpenAI Codex / GPT-4o
 
 UX inspiration: top-tier kids apps, music discovery tools, and polished streaming platforms
+
+## Project Structure
+
+```
+MelodyMap/
+├── MelodyMapApp.swift
+├── Assets.xcassets/
+├── Info.plist
+├── Resources/
+├── Models/
+├── Networking/
+├── Views/
+├── ViewModels/
+├── Services/
+├── Extensions/
+├── Tests/
+```
