@@ -30,7 +30,7 @@ iOS first
 Android planned
 
 Tech Stack
-Frontend: Unity (leveraging familiarity + potential for rapid cross-platform builds)
+Frontend: Swift + SwiftUI for a native iOS experience
 
 CMS (initial): Google Sheets
 
@@ -48,7 +48,7 @@ Fast, joyful interactions for busy caregivers
 Minimalist UX — designed for quick lookups, not deep browsing
 
 Development Goals
-Build MVP using Google Sheets as CMS and Unity as the app shell
+Build MVP using Google Sheets as CMS with a native SwiftUI app
 
 Refine UX with visual timeline and instant search
 
