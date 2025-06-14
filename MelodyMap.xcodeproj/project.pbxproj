@@ -1,0 +1,584 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BFD6747F2DFD2C4300225927 /* MelodyMapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6747E2DFD2C4300225927 /* MelodyMapApp.swift */; };
+		BFD674812DFD2C4300225927 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD674802DFD2C4300225927 /* ContentView.swift */; };
+		BFD674832DFD2C4500225927 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD674822DFD2C4500225927 /* Assets.xcassets */; };
+		BFD674862DFD2C4500225927 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD674852DFD2C4500225927 /* Preview Assets.xcassets */; };
+		BFD674902DFD2C4600225927 /* MelodyMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6748F2DFD2C4600225927 /* MelodyMapTests.swift */; };
+		BFD6749A2DFD2C4600225927 /* MelodyMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD674992DFD2C4600225927 /* MelodyMapUITests.swift */; };
+		BFD6749C2DFD2C4600225927 /* MelodyMapUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6749B2DFD2C4600225927 /* MelodyMapUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BFD6748C2DFD2C4600225927 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFD674732DFD2C4300225927 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFD6747A2DFD2C4300225927;
+			remoteInfo = MelodyMap;
+		};
+		BFD674962DFD2C4600225927 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFD674732DFD2C4300225927 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BFD6747A2DFD2C4300225927;
+			remoteInfo = MelodyMap;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BFD6747B2DFD2C4300225927 /* MelodyMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MelodyMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFD6747E2DFD2C4300225927 /* MelodyMapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapApp.swift; sourceTree = "<group>"; };
+		BFD674802DFD2C4300225927 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BFD674822DFD2C4500225927 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BFD674852DFD2C4500225927 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BFD6748B2DFD2C4600225927 /* MelodyMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MelodyMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFD6748F2DFD2C4600225927 /* MelodyMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapTests.swift; sourceTree = "<group>"; };
+		BFD674952DFD2C4600225927 /* MelodyMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MelodyMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFD674992DFD2C4600225927 /* MelodyMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapUITests.swift; sourceTree = "<group>"; };
+		BFD6749B2DFD2C4600225927 /* MelodyMapUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BFD674782DFD2C4300225927 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFD674882DFD2C4600225927 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFD674922DFD2C4600225927 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BFD674722DFD2C4300225927 = {
+			isa = PBXGroup;
+			children = (
+				BFD6747D2DFD2C4300225927 /* MelodyMap */,
+				BFD6748E2DFD2C4600225927 /* MelodyMapTests */,
+				BFD674982DFD2C4600225927 /* MelodyMapUITests */,
+				BFD6747C2DFD2C4300225927 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BFD6747C2DFD2C4300225927 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BFD6747B2DFD2C4300225927 /* MelodyMap.app */,
+				BFD6748B2DFD2C4600225927 /* MelodyMapTests.xctest */,
+				BFD674952DFD2C4600225927 /* MelodyMapUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BFD6747D2DFD2C4300225927 /* MelodyMap */ = {
+			isa = PBXGroup;
+			children = (
+				BFD6747E2DFD2C4300225927 /* MelodyMapApp.swift */,
+				BFD674802DFD2C4300225927 /* ContentView.swift */,
+				BFD674822DFD2C4500225927 /* Assets.xcassets */,
+				BFD674842DFD2C4500225927 /* Preview Content */,
+			);
+			path = MelodyMap;
+			sourceTree = "<group>";
+		};
+		BFD674842DFD2C4500225927 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BFD674852DFD2C4500225927 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BFD6748E2DFD2C4600225927 /* MelodyMapTests */ = {
+			isa = PBXGroup;
+			children = (
+				BFD6748F2DFD2C4600225927 /* MelodyMapTests.swift */,
+			);
+			path = MelodyMapTests;
+			sourceTree = "<group>";
+		};
+		BFD674982DFD2C4600225927 /* MelodyMapUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BFD674992DFD2C4600225927 /* MelodyMapUITests.swift */,
+				BFD6749B2DFD2C4600225927 /* MelodyMapUITestsLaunchTests.swift */,
+			);
+			path = MelodyMapUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BFD6747A2DFD2C4300225927 /* MelodyMap */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFD6749F2DFD2C4600225927 /* Build configuration list for PBXNativeTarget "MelodyMap" */;
+			buildPhases = (
+				BFD674772DFD2C4300225927 /* Sources */,
+				BFD674782DFD2C4300225927 /* Frameworks */,
+				BFD674792DFD2C4300225927 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MelodyMap;
+			productName = MelodyMap;
+			productReference = BFD6747B2DFD2C4300225927 /* MelodyMap.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BFD6748A2DFD2C4600225927 /* MelodyMapTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFD674A22DFD2C4600225927 /* Build configuration list for PBXNativeTarget "MelodyMapTests" */;
+			buildPhases = (
+				BFD674872DFD2C4600225927 /* Sources */,
+				BFD674882DFD2C4600225927 /* Frameworks */,
+				BFD674892DFD2C4600225927 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BFD6748D2DFD2C4600225927 /* PBXTargetDependency */,
+			);
+			name = MelodyMapTests;
+			productName = MelodyMapTests;
+			productReference = BFD6748B2DFD2C4600225927 /* MelodyMapTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BFD674942DFD2C4600225927 /* MelodyMapUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BFD674A52DFD2C4600225927 /* Build configuration list for PBXNativeTarget "MelodyMapUITests" */;
+			buildPhases = (
+				BFD674912DFD2C4600225927 /* Sources */,
+				BFD674922DFD2C4600225927 /* Frameworks */,
+				BFD674932DFD2C4600225927 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BFD674972DFD2C4600225927 /* PBXTargetDependency */,
+			);
+			name = MelodyMapUITests;
+			productName = MelodyMapUITests;
+			productReference = BFD674952DFD2C4600225927 /* MelodyMapUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFD674732DFD2C4300225927 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					BFD6747A2DFD2C4300225927 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					BFD6748A2DFD2C4600225927 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = BFD6747A2DFD2C4300225927;
+					};
+					BFD674942DFD2C4600225927 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = BFD6747A2DFD2C4300225927;
+					};
+				};
+			};
+			buildConfigurationList = BFD674762DFD2C4300225927 /* Build configuration list for PBXProject "MelodyMap" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BFD674722DFD2C4300225927;
+			productRefGroup = BFD6747C2DFD2C4300225927 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BFD6747A2DFD2C4300225927 /* MelodyMap */,
+				BFD6748A2DFD2C4600225927 /* MelodyMapTests */,
+				BFD674942DFD2C4600225927 /* MelodyMapUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BFD674792DFD2C4300225927 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFD674862DFD2C4500225927 /* Preview Assets.xcassets in Resources */,
+				BFD674832DFD2C4500225927 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFD674892DFD2C4600225927 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFD674932DFD2C4600225927 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BFD674772DFD2C4300225927 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFD674812DFD2C4300225927 /* ContentView.swift in Sources */,
+				BFD6747F2DFD2C4300225927 /* MelodyMapApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFD674872DFD2C4600225927 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFD674902DFD2C4600225927 /* MelodyMapTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFD674912DFD2C4600225927 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFD6749A2DFD2C4600225927 /* MelodyMapUITests.swift in Sources */,
+				BFD6749C2DFD2C4600225927 /* MelodyMapUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BFD6748D2DFD2C4600225927 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFD6747A2DFD2C4300225927 /* MelodyMap */;
+			targetProxy = BFD6748C2DFD2C4600225927 /* PBXContainerItemProxy */;
+		};
+		BFD674972DFD2C4600225927 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BFD6747A2DFD2C4300225927 /* MelodyMap */;
+			targetProxy = BFD674962DFD2C4600225927 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BFD6749D2DFD2C4600225927 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BFD6749E2DFD2C4600225927 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BFD674A02DFD2C4600225927 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MelodyMap/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Fishman-Studios.MelodyMap";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BFD674A12DFD2C4600225927 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MelodyMap/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Fishman-Studios.MelodyMap";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BFD674A32DFD2C4600225927 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Fishman-Studios.MelodyMapTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MelodyMap.app/MelodyMap";
+			};
+			name = Debug;
+		};
+		BFD674A42DFD2C4600225927 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Fishman-Studios.MelodyMapTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MelodyMap.app/MelodyMap";
+			};
+			name = Release;
+		};
+		BFD674A62DFD2C4600225927 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Fishman-Studios.MelodyMapUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MelodyMap;
+			};
+			name = Debug;
+		};
+		BFD674A72DFD2C4600225927 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Fishman-Studios.MelodyMapUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MelodyMap;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BFD674762DFD2C4300225927 /* Build configuration list for PBXProject "MelodyMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFD6749D2DFD2C4600225927 /* Debug */,
+				BFD6749E2DFD2C4600225927 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFD6749F2DFD2C4600225927 /* Build configuration list for PBXNativeTarget "MelodyMap" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFD674A02DFD2C4600225927 /* Debug */,
+				BFD674A12DFD2C4600225927 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFD674A22DFD2C4600225927 /* Build configuration list for PBXNativeTarget "MelodyMapTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFD674A32DFD2C4600225927 /* Debug */,
+				BFD674A42DFD2C4600225927 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BFD674A52DFD2C4600225927 /* Build configuration list for PBXNativeTarget "MelodyMapUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BFD674A62DFD2C4600225927 /* Debug */,
+				BFD674A72DFD2C4600225927 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFD674732DFD2C4300225927 /* Project object */;
+}
