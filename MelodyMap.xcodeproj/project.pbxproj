@@ -14,6 +14,24 @@
 		BFD674902DFD2C4600225927 /* MelodyMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6748F2DFD2C4600225927 /* MelodyMapTests.swift */; };
 		BFD6749A2DFD2C4600225927 /* MelodyMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD674992DFD2C4600225927 /* MelodyMapUITests.swift */; };
 		BFD6749C2DFD2C4600225927 /* MelodyMapUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6749B2DFD2C4600225927 /* MelodyMapUITestsLaunchTests.swift */; };
+		BFD99CF82DFDFD81000B54EE /* InAppPurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CDF2DFDFD81000B54EE /* InAppPurchaseService.swift */; };
+		BFD99CF92DFDFD81000B54EE /* AdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CE02DFDFD81000B54EE /* AdService.swift */; };
+		BFD99CFA2DFDFD81000B54EE /* DataSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CE12DFDFD81000B54EE /* DataSyncService.swift */; };
+		BFD99CFB2DFDFD81000B54EE /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = BFD99CE32DFDFD81000B54EE /* .gitkeep */; };
+		BFD99CFC2DFDFD81000B54EE /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CE52DFDFD81000B54EE /* Helpers.swift */; };
+		BFD99CFD2DFDFD81000B54EE /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CE72DFDFD81000B54EE /* Movie.swift */; };
+		BFD99CFE2DFDFD81000B54EE /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CE82DFDFD81000B54EE /* Song.swift */; };
+		BFD99CFF2DFDFD81000B54EE /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CE92DFDFD81000B54EE /* UserProfile.swift */; };
+		BFD99D002DFDFD81000B54EE /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CEB2DFDFD81000B54EE /* MainTabView.swift */; };
+		BFD99D012DFDFD81000B54EE /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CEC2DFDFD81000B54EE /* SearchView.swift */; };
+		BFD99D022DFDFD81000B54EE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CED2DFDFD81000B54EE /* ProfileView.swift */; };
+		BFD99D032DFDFD81000B54EE /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CEE2DFDFD81000B54EE /* TimelineView.swift */; };
+		BFD99D042DFDFD81000B54EE /* SongDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CEF2DFDFD81000B54EE /* SongDetailView.swift */; };
+		BFD99D052DFDFD81000B54EE /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CF12DFDFD81000B54EE /* TimelineViewModel.swift */; };
+		BFD99D062DFDFD81000B54EE /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CF22DFDFD81000B54EE /* UserProfileViewModel.swift */; };
+		BFD99D072DFDFD81000B54EE /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CF32DFDFD81000B54EE /* SearchViewModel.swift */; };
+		BFD99D082DFDFD82000B54EE /* GoogleSheetsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CF52DFDFD81000B54EE /* GoogleSheetsService.swift */; };
+		BFD99D092DFDFD82000B54EE /* MelodyMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CF72DFDFD81000B54EE /* MelodyMapTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +62,25 @@
 		BFD674952DFD2C4600225927 /* MelodyMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MelodyMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD674992DFD2C4600225927 /* MelodyMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapUITests.swift; sourceTree = "<group>"; };
 		BFD6749B2DFD2C4600225927 /* MelodyMapUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BFD99CCD2DFDF9E3000B54EE /* swift-package-manager-google-mobile-ads-12.6.0 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "swift-package-manager-google-mobile-ads-12.6.0"; path = "../swift-package-manager-google-mobile-ads-12.6.0"; sourceTree = "<group>"; };
+		BFD99CDF2DFDFD81000B54EE /* InAppPurchaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseService.swift; sourceTree = "<group>"; };
+		BFD99CE02DFDFD81000B54EE /* AdService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdService.swift; sourceTree = "<group>"; };
+		BFD99CE12DFDFD81000B54EE /* DataSyncService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSyncService.swift; sourceTree = "<group>"; };
+		BFD99CE32DFDFD81000B54EE /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		BFD99CE52DFDFD81000B54EE /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		BFD99CE72DFDFD81000B54EE /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		BFD99CE82DFDFD81000B54EE /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		BFD99CE92DFDFD81000B54EE /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		BFD99CEB2DFDFD81000B54EE /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		BFD99CEC2DFDFD81000B54EE /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		BFD99CED2DFDFD81000B54EE /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		BFD99CEE2DFDFD81000B54EE /* TimelineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
+		BFD99CEF2DFDFD81000B54EE /* SongDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDetailView.swift; sourceTree = "<group>"; };
+		BFD99CF12DFDFD81000B54EE /* TimelineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = "<group>"; };
+		BFD99CF22DFDFD81000B54EE /* UserProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
+		BFD99CF32DFDFD81000B54EE /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		BFD99CF52DFDFD81000B54EE /* GoogleSheetsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleSheetsService.swift; sourceTree = "<group>"; };
+		BFD99CF72DFDFD81000B54EE /* MelodyMapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MelodyMapTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +111,15 @@
 		BFD674722DFD2C4300225927 = {
 			isa = PBXGroup;
 			children = (
+				BFD99CE42DFDFD81000B54EE /* Extensions */,
+				BFD99CE62DFDFD81000B54EE /* Models */,
+				BFD99CF42DFDFD81000B54EE /* Networking */,
+				BFD99CE22DFDFD81000B54EE /* Resources */,
+				BFD99CDE2DFDFD81000B54EE /* Services */,
+				BFD99CF62DFDFD81000B54EE /* Tests */,
+				BFD99CF02DFDFD81000B54EE /* ViewModels */,
+				BFD99CEA2DFDFD81000B54EE /* Views */,
+				BFD99CCC2DFDF9E3000B54EE /* Packages */,
 				BFD6747D2DFD2C4300225927 /* MelodyMap */,
 				BFD6748E2DFD2C4600225927 /* MelodyMapTests */,
 				BFD674982DFD2C4600225927 /* MelodyMapUITests */,
@@ -125,6 +171,88 @@
 				BFD6749B2DFD2C4600225927 /* MelodyMapUITestsLaunchTests.swift */,
 			);
 			path = MelodyMapUITests;
+			sourceTree = "<group>";
+		};
+		BFD99CCC2DFDF9E3000B54EE /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				BFD99CCD2DFDF9E3000B54EE /* swift-package-manager-google-mobile-ads-12.6.0 */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		BFD99CDE2DFDFD81000B54EE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BFD99CDF2DFDFD81000B54EE /* InAppPurchaseService.swift */,
+				BFD99CE02DFDFD81000B54EE /* AdService.swift */,
+				BFD99CE12DFDFD81000B54EE /* DataSyncService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BFD99CE22DFDFD81000B54EE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BFD99CE32DFDFD81000B54EE /* .gitkeep */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BFD99CE42DFDFD81000B54EE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BFD99CE52DFDFD81000B54EE /* Helpers.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BFD99CE62DFDFD81000B54EE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BFD99CE72DFDFD81000B54EE /* Movie.swift */,
+				BFD99CE82DFDFD81000B54EE /* Song.swift */,
+				BFD99CE92DFDFD81000B54EE /* UserProfile.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BFD99CEA2DFDFD81000B54EE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BFD99CEB2DFDFD81000B54EE /* MainTabView.swift */,
+				BFD99CEC2DFDFD81000B54EE /* SearchView.swift */,
+				BFD99CED2DFDFD81000B54EE /* ProfileView.swift */,
+				BFD99CEE2DFDFD81000B54EE /* TimelineView.swift */,
+				BFD99CEF2DFDFD81000B54EE /* SongDetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BFD99CF02DFDFD81000B54EE /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BFD99CF12DFDFD81000B54EE /* TimelineViewModel.swift */,
+				BFD99CF22DFDFD81000B54EE /* UserProfileViewModel.swift */,
+				BFD99CF32DFDFD81000B54EE /* SearchViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BFD99CF42DFDFD81000B54EE /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BFD99CF52DFDFD81000B54EE /* GoogleSheetsService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		BFD99CF62DFDFD81000B54EE /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				BFD99CF72DFDFD81000B54EE /* MelodyMapTests.swift */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +359,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFD99CFB2DFDFD81000B54EE /* .gitkeep in Resources */,
 				BFD674862DFD2C4500225927 /* Preview Assets.xcassets in Resources */,
 				BFD674832DFD2C4500225927 /* Assets.xcassets in Resources */,
 			);
@@ -257,8 +386,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFD99D042DFDFD81000B54EE /* SongDetailView.swift in Sources */,
+				BFD99D062DFDFD81000B54EE /* UserProfileViewModel.swift in Sources */,
+				BFD99CFD2DFDFD81000B54EE /* Movie.swift in Sources */,
+				BFD99CFA2DFDFD81000B54EE /* DataSyncService.swift in Sources */,
+				BFD99CFC2DFDFD81000B54EE /* Helpers.swift in Sources */,
+				BFD99D052DFDFD81000B54EE /* TimelineViewModel.swift in Sources */,
+				BFD99CF92DFDFD81000B54EE /* AdService.swift in Sources */,
+				BFD99D022DFDFD81000B54EE /* ProfileView.swift in Sources */,
+				BFD99CFE2DFDFD81000B54EE /* Song.swift in Sources */,
+				BFD99CF82DFDFD81000B54EE /* InAppPurchaseService.swift in Sources */,
 				BFD674812DFD2C4300225927 /* ContentView.swift in Sources */,
 				BFD6747F2DFD2C4300225927 /* MelodyMapApp.swift in Sources */,
+				BFD99D082DFDFD82000B54EE /* GoogleSheetsService.swift in Sources */,
+				BFD99CFF2DFDFD81000B54EE /* UserProfile.swift in Sources */,
+				BFD99D002DFDFD81000B54EE /* MainTabView.swift in Sources */,
+				BFD99D072DFDFD81000B54EE /* SearchViewModel.swift in Sources */,
+				BFD99D012DFDFD81000B54EE /* SearchView.swift in Sources */,
+				BFD99D032DFDFD81000B54EE /* TimelineView.swift in Sources */,
+				BFD99D092DFDFD82000B54EE /* MelodyMapTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
