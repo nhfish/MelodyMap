@@ -31,7 +31,6 @@
 		BFD99D062DFDFD81000B54EE /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CF22DFDFD81000B54EE /* UserProfileViewModel.swift */; };
 		BFD99D072DFDFD81000B54EE /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CF32DFDFD81000B54EE /* SearchViewModel.swift */; };
 		BFD99D082DFDFD82000B54EE /* GoogleSheetsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CF52DFDFD81000B54EE /* GoogleSheetsService.swift */; };
-		BFD99D092DFDFD82000B54EE /* MelodyMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CF72DFDFD81000B54EE /* MelodyMapTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +79,6 @@
 		BFD99CF22DFDFD81000B54EE /* UserProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		BFD99CF32DFDFD81000B54EE /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		BFD99CF52DFDFD81000B54EE /* GoogleSheetsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleSheetsService.swift; sourceTree = "<group>"; };
-		BFD99CF72DFDFD81000B54EE /* MelodyMapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MelodyMapTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +114,6 @@
 				BFD99CF42DFDFD81000B54EE /* Networking */,
 				BFD99CE22DFDFD81000B54EE /* Resources */,
 				BFD99CDE2DFDFD81000B54EE /* Services */,
-				BFD99CF62DFDFD81000B54EE /* Tests */,
 				BFD99CF02DFDFD81000B54EE /* ViewModels */,
 				BFD99CEA2DFDFD81000B54EE /* Views */,
 				BFD99CCC2DFDF9E3000B54EE /* Packages */,
@@ -245,14 +242,6 @@
 				BFD99CF52DFDFD81000B54EE /* GoogleSheetsService.swift */,
 			);
 			path = Networking;
-			sourceTree = "<group>";
-		};
-		BFD99CF62DFDFD81000B54EE /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				BFD99CF72DFDFD81000B54EE /* MelodyMapTests.swift */,
-			);
-			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,7 +393,6 @@
 				BFD99D072DFDFD81000B54EE /* SearchViewModel.swift in Sources */,
 				BFD99D012DFDFD81000B54EE /* SearchView.swift in Sources */,
 				BFD99D032DFDFD81000B54EE /* TimelineView.swift in Sources */,
-				BFD99D092DFDFD82000B54EE /* MelodyMapTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
