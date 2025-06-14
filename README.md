@@ -1,4 +1,4 @@
-Melody Map
+# Melody Map
 Discover songs from your favorite kids' movies — fast.
 Melody Map is a simple, visual-first app that helps parents, grandparents, babysitters, and caregivers quickly find, play, and enjoy songs from animated and live-action movies.
 
@@ -88,3 +88,7 @@ MelodyMap/
 ├── Extensions/
 ├── Tests/
 ```
+
+## Documentation
+The full functional specification lives in [FUNCTIONAL_SPEC.md](FUNCTIONAL_SPEC.md).
+Architecture details are described in [DESIGN_DOC.md](DESIGN_DOC.md).
