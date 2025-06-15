@@ -23,11 +23,10 @@ extension String {
                 if lhs[i - 1] == rhs[j - 1] {
                     distances[i][j] = distances[i - 1][j - 1]
                 } else {
-                    distances[i][j] = min(
-                        distances[i - 1][j] + 1,
-                        distances[i][j - 1] + 1,
-                        distances[i - 1][j - 1] + 1
-                    )
+                    let deletion = distances[i - 1][j] + 1
+                    let insertion = distances[i][j - 1] + 1
+                    let substitution = distances[i - 1][j - 1] + 1
+                    distances[i][j] = Swift.min(deletion, Swift.min(insertion, substitution))
                 }
             }
         }
