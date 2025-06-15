@@ -9,6 +9,9 @@ final class UsageTrackerService: ObservableObject {
     private let dateKey = "UsageTrackerService.lastDate"
     private let remainingKey = "UsageTrackerService.remaining"
 
+    /// Public accessor for the daily quota limit.
+    var quota: Int { baseQuota }
+
     @Published private(set) var remaining: Int = 0
 
     private init() {
