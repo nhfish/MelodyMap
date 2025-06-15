@@ -9,6 +9,7 @@ struct MoviePageView: View {
     }
 
     @State private var selectedIndex: Int = 0
+    @State private var detailSong: Song?
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -103,6 +104,9 @@ struct MoviePageView: View {
                     Text("Characters: " + currentSong.singers.joined(separator: ", "))
                 }
 
+                .onTapGesture { detailSong = currentSong }
+
+
 
                 ScrollView {
                     VStack(alignment: .leading, spacing: 8) {
@@ -110,6 +114,7 @@ struct MoviePageView: View {
                             Text(song.title)
                                 .id(song.id)
                                 .padding(.vertical, 4)
+                                .onTapGesture { detailSong = song }
                         }
                     }
                     .padding(.horizontal)
@@ -118,6 +123,11 @@ struct MoviePageView: View {
                 Spacer()
             }
             .padding()
+            .sheet(item: $detailSong) { song in
+                NavigationView {
+                    SongDetailView(song: song)
+                }
+            }
         }
     }
 }
