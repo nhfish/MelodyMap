@@ -7,7 +7,7 @@ struct SearchView: View {
         NavigationView {
             VStack {
                 TextField("Search", text: $vm.query)
-                    .searchFieldStyle(.roundedBorder)
+                    .textFieldStyle(.roundedBorder)
                     .padding([.horizontal, .top])
                     .onChange(of: vm.query) { _ in vm.search() }
 
