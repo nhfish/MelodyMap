@@ -18,10 +18,11 @@ struct MoviePageView: View {
                         .foregroundColor(.gray)
                 }
             }
-            .frame(maxHeight: 300)
+            .frame(height: 200)
 
             Text(movie.title)
-                .font(.title)
+                .font(.title2)
+                .padding(.top, 8)
                 .multilineTextAlignment(.center)
             Spacer()
         }
