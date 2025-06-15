@@ -103,7 +103,9 @@ struct MoviePageView: View {
                     Text("\(movie.title) · \(movie.releaseYear)")
                     Text("Characters: " + currentSong.singers.joined(separator: ", "))
                 }
+
                 .onTapGesture { detailSong = currentSong }
+
 
 
                 ScrollView {
