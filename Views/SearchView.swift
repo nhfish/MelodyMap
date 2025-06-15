@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SearchView: View {
     @StateObject private var vm = SearchViewModel()
+    @EnvironmentObject private var usage: UsageTrackerService
 
     var body: some View {
         NavigationView {
@@ -25,11 +26,16 @@ struct SearchView: View {
             }
             .navigationTitle("Search")
         }
+        .overlay(alignment: .topTrailing) {
+            UsageMeterView()
+                .padding()
+        }
     }
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView()
+            .environmentObject(UsageTrackerService.shared)
     }
 }
