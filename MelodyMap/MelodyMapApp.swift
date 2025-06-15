@@ -11,7 +11,7 @@ import SwiftUI
 struct MelodyMapApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
         }
     }
 }

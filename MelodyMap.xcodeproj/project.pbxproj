@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		BFD6747F2DFD2C4300225927 /* MelodyMapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6747E2DFD2C4300225927 /* MelodyMapApp.swift */; };
-		BFD674812DFD2C4300225927 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD674802DFD2C4300225927 /* ContentView.swift */; };
 		BFD674832DFD2C4500225927 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD674822DFD2C4500225927 /* Assets.xcassets */; };
 		BFD674862DFD2C4500225927 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD674852DFD2C4500225927 /* Preview Assets.xcassets */; };
 		BFD674902DFD2C4600225927 /* MelodyMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6748F2DFD2C4600225927 /* MelodyMapTests.swift */; };
@@ -54,7 +53,6 @@
 /* Begin PBXFileReference section */
 		BFD6747B2DFD2C4300225927 /* MelodyMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MelodyMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD6747E2DFD2C4300225927 /* MelodyMapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapApp.swift; sourceTree = "<group>"; };
-		BFD674802DFD2C4300225927 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BFD674822DFD2C4500225927 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFD674852DFD2C4500225927 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BFD6748B2DFD2C4600225927 /* MelodyMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MelodyMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,7 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				BFD6747E2DFD2C4300225927 /* MelodyMapApp.swift */,
-				BFD674802DFD2C4300225927 /* ContentView.swift */,
 				BFD674822DFD2C4500225927 /* Assets.xcassets */,
 				BFD674842DFD2C4500225927 /* Preview Content */,
 			);
@@ -389,7 +386,6 @@
 				BFD99D022DFDFD81000B54EE /* ProfileView.swift in Sources */,
 				BFD99CFE2DFDFD81000B54EE /* Song.swift in Sources */,
 				BFD99CF82DFDFD81000B54EE /* InAppPurchaseService.swift in Sources */,
-				BFD674812DFD2C4300225927 /* ContentView.swift in Sources */,
 				BFD6747F2DFD2C4300225927 /* MelodyMapApp.swift in Sources */,
 				BFD99D082DFDFD82000B54EE /* GoogleSheetsService.swift in Sources */,
 				BFD99CFF2DFDFD81000B54EE /* UserProfile.swift in Sources */,
