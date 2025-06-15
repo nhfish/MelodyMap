@@ -4,12 +4,10 @@ struct TimelineView: View {
     @StateObject private var viewModel = TimelineViewModel()
 
     var body: some View {
-        List(viewModel.movies) { movie in
-            Text(movie.title)
-        }
-        .onAppear {
-            viewModel.load()
-        }
+        PageCurlView(movies: viewModel.movies)
+            .onAppear {
+                viewModel.load()
+            }
     }
 }
 
