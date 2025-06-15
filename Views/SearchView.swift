@@ -1,20 +1,31 @@
 import SwiftUI
 
 struct SearchView: View {
-    @StateObject private var viewModel = SearchViewModel()
+    @StateObject private var vm = SearchViewModel()
 
     var body: some View {
         NavigationView {
-            List(viewModel.results) { song in
-                NavigationLink(destination: SongDetailView(song: song)) {
-                    Text(song.title)
+            VStack {
+                TextField("Search", text: $vm.query)
+                    .searchFieldStyle(.roundedBorder)
+                    .padding([.horizontal, .top])
+                    .onChange(of: vm.query) { _ in vm.search() }
+
+                List(vm.results, id: \.song.id) { indexed in
+                    VStack(alignment: .leading) {
+                        Text(indexed.song.title)
+                            .bold()
+                        Text(indexed.movie.title)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    .onTapGesture {
+                        print(indexed.song.id)
+                        print(indexed.song.movieId)
+                    }
                 }
             }
             .navigationTitle("Search")
-            .searchable(text: $viewModel.query)
-            .onChange(of: viewModel.query) { _ in
-                viewModel.search()
-            }
         }
     }
 }

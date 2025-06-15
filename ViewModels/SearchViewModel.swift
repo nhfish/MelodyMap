@@ -2,7 +2,7 @@ import Foundation
 
 final class SearchViewModel: ObservableObject {
     @Published var query: String = ""
-    @Published var results: [Song] = []
+    @Published var results: [IndexedSong] = []
 
     private var indexedSongs: [IndexedSong] = []
 
@@ -29,7 +29,7 @@ final class SearchViewModel: ObservableObject {
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         guard !trimmed.isEmpty else { results = []; return }
 
-        let scored: [(Song, Int)] = indexedSongs.compactMap { indexed in
+        let scored: [(IndexedSong, Int)] = indexedSongs.compactMap { indexed in
             var best = 0
             for field in [indexed.songTitle, indexed.movieTitle] + indexed.keywords {
                 if field.contains(trimmed) {
@@ -42,7 +42,7 @@ final class SearchViewModel: ObservableObject {
                 }
                 if best == 100 { break }
             }
-            return best > 0 ? (indexed.song, best) : nil
+            return best > 0 ? (indexed, best) : nil
         }
 
         results = scored.sorted { $0.1 > $1.1 }.prefix(10).map { $0.0 }
