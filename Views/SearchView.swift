@@ -12,6 +12,9 @@ struct SearchView: View {
             }
             .navigationTitle("Search")
             .searchable(text: $viewModel.query)
+            .onChange(of: viewModel.query) { _ in
+                viewModel.search()
+            }
         }
     }
 }
