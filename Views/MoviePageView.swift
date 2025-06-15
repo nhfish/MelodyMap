@@ -8,6 +8,9 @@ struct MoviePageView: View {
         songs.filter { $0.movieId == movie.id }
     }
 
+    @State private var selectedIndex: Int = 0
+    @State private var detailSong: Song?
+
     var body: some View {
         ScrollViewReader { proxy in
             VStack(spacing: 16) {
@@ -27,39 +30,81 @@ struct MoviePageView: View {
                 .frame(height: 200)
 
                 GeometryReader { geo in
-                    ZStack(alignment: .topLeading) {
-                        Rectangle()
-                            .frame(height: 2)
-                            .foregroundColor(.secondary)
-                        ForEach(songsForMovie) { song in
-                            Circle()
-                                .frame(width: 12, height: 12)
-                                .position(x: geo.size.width * CGFloat(song.percent) / 100,
-                                          y: 1)
+                    ZStack {
+                        ZStack(alignment: .topLeading) {
+                            Rectangle()
+                                .frame(height: 2)
+                                .foregroundColor(.secondary)
+                            ForEach(Array(songsForMovie.enumerated()), id: \.element.id) { index, song in
+                                Circle()
+                                    .frame(width: 12, height: 12)
+                                    .position(x: geo.size.width * CGFloat(song.percent) / 100,
+                                              y: 1)
+                                    .onTapGesture {
+                                        selectedIndex = index
+                                        withAnimation {
+                                            proxy.scrollTo(song.id, anchor: .top)
+                                        }
+                                    }
+                            }
+                        }
+                        HStack {
+                            Button(action: {
+                                guard selectedIndex > 0 else { return }
+                                selectedIndex -= 1
+                                let song = songsForMovie[selectedIndex]
+                                withAnimation { proxy.scrollTo(song.id, anchor: .top) }
+                            }) {
+                                Image(systemName: "chevron.left")
+                                    .frame(width: 44, height: 44)
+                            }
+                            Spacer()
+                            Button(action: {
+                                guard selectedIndex + 1 < songsForMovie.count else { return }
+                                selectedIndex += 1
+                                let song = songsForMovie[selectedIndex]
+                                withAnimation { proxy.scrollTo(song.id, anchor: .top) }
+                            }) {
+                                Image(systemName: "chevron.right")
+                                    .frame(width: 44, height: 44)
+                            }
                         }
                     }
+                    .contentShape(Rectangle())
                     .gesture(
                         DragGesture()
                             .onEnded { value in
                                 let ratio = min(max(0, value.location.x / geo.size.width), 1)
-                                let nearest = songsForMovie.min {
-                                    abs(ratio - CGFloat($0.percent) / 100) <
-                                    abs(ratio - CGFloat($1.percent) / 100)
-                                }
-                                if let nearest = nearest {
-                                    withAnimation {
-                                        proxy.scrollTo(nearest.id, anchor: .top)
-                                    }
+                                let nearestIndex = songsForMovie.enumerated().min { lhs, rhs in
+                                    let l = abs(ratio - CGFloat(lhs.element.percent) / 100)
+                                    let r = abs(ratio - CGFloat(rhs.element.percent) / 100)
+                                    return l < r
+                                }?.offset ?? selectedIndex
+                                selectedIndex = nearestIndex
+                                let nearest = songsForMovie[nearestIndex]
+                                withAnimation {
+                                    proxy.scrollTo(nearest.id, anchor: .top)
                                 }
                             }
                     )
                 }
-                .frame(height: 12)
+                .frame(height: 44)
 
-                Text(movie.title)
-                    .font(.title2)
-                    .padding(.top, 8)
-                    .multilineTextAlignment(.center)
+                let currentSong = songsForMovie[selectedIndex]
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(currentSong.startTime + "  ·  \(currentSong.percent)%")
+                        .font(.caption)
+                    Divider()
+                    HStack {
+                        Text(currentSong.title)
+                            .bold()
+                        StarButton()
+                    }
+                    Text("\(movie.title) · \(movie.releaseYear)")
+                    Text("Characters: " + currentSong.singers.joined(separator: ", "))
+                }
+                .onTapGesture { detailSong = currentSong }
+
 
                 ScrollView {
                     VStack(alignment: .leading, spacing: 8) {
@@ -67,6 +112,7 @@ struct MoviePageView: View {
                             Text(song.title)
                                 .id(song.id)
                                 .padding(.vertical, 4)
+                                .onTapGesture { detailSong = song }
                         }
                     }
                     .padding(.horizontal)
@@ -75,6 +121,11 @@ struct MoviePageView: View {
                 Spacer()
             }
             .padding()
+            .sheet(item: $detailSong) { song in
+                NavigationView {
+                    SongDetailView(song: song)
+                }
+            }
         }
     }
 }
