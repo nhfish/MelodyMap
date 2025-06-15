@@ -1,15 +1,16 @@
 import Foundation
 
-struct Song: Identifiable {
-    let id = UUID()
-    var movieTitle: String
-    var title: String
-    var singers: [String]
-    var startTime: TimeInterval
-    var releaseYear: Int
-    var runtime: TimeInterval
-    var streamingLinks: [URL]
-    var purchaseLinks: [URL]
-    var keywords: [String]
-    var blurb: String
+struct Song: Identifiable, Codable {
+    let id: String
+    let movieId: String
+    let title: String
+    let percent: Int
+    let startTime: String
+    let singers: [String]
+    let releaseYear: Int
+    let movieRuntimeMinutes: Int
+    let streamingLinks: [String]
+    let purchaseLinks: [String]
+    let keywords: [String]
+    let blurb: String
 }
