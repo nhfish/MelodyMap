@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PageCurlView: UIViewControllerRepresentable {
     var movies: [Movie]
+    var songs: [Song]
 
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
@@ -41,7 +42,8 @@ struct PageCurlView: UIViewControllerRepresentable {
 
         func controller(for movie: Movie) -> UIViewController {
             if let cached = cache[movie.id] { return cached }
-            let vc = UIHostingController(rootView: MoviePageView(movie: movie))
+            let songsForMovie = parent.songs.filter { $0.movieId == movie.id }
+            let vc = UIHostingController(rootView: MoviePageView(movie: movie, songs: songsForMovie))
             cache[movie.id] = vc
             return vc
         }

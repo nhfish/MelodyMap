@@ -9,7 +9,7 @@ final class PageCurlViewTests: XCTestCase {
             Movie(id: "2", title: "Two", imageURL: "", releaseYear: 2001, sortOrder: 1),
             Movie(id: "3", title: "Three", imageURL: "", releaseYear: 2002, sortOrder: 2)
         ]
-        let view = PageCurlView(movies: movies)
+        let view = PageCurlView(movies: movies, songs: [])
         let coordinator = PageCurlView.Coordinator(parent: view)
         let controllers = movies.map { coordinator.controller(for: $0) }
         let uniqueIdentifiers = Set(controllers.map { ObjectIdentifier($0) })
