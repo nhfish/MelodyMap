@@ -1,6 +1,8 @@
 import Foundation
+import Combine
 
-final class AdService {
+@MainActor
+final class AdService: ObservableObject {
     static let shared = AdService()
 
     func loadAd() {
