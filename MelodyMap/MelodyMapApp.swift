@@ -10,9 +10,9 @@ import SwiftUI
 @main
 struct MelodyMapApp: App {
     // Single shared instances
-    @StateObject private var purchaseService = PurchaseService()
-    @StateObject private var usageService    = UsageTrackerService()
-    @StateObject private var adService       = AdService()
+    @StateObject private var purchaseService = InAppPurchaseService.shared
+    @StateObject private var usageService    = UsageTrackerService.shared
+    @StateObject private var adService       = AdService.shared
 
     var body: some Scene {
         WindowGroup {
