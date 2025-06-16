@@ -4,6 +4,7 @@ import GoogleMobileAds
 
 @MainActor
 final class AdService: NSObject, ObservableObject {
+    @MainActor
     static let shared = AdService()
 
     private let adUnitID = "ca-app-pub-3940256099942544/1712485313"
