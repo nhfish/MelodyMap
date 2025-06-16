@@ -7,7 +7,7 @@ let package = Package(
     name: "GMASPM",
     platforms: [.iOS(.v11)],
     products: [
-        .library(name: "GMASPM", targets: ["GoogleMobileAds"])
+        .library(name: "GoogleMobileAds", targets: ["GoogleMobileAds"])
     ],
    targets: [
    	.binaryTarget(

@@ -36,6 +36,8 @@
 		BFD99D112DFF4A90000B54EE /* UsageTrackerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D102DFF4A90000B54EE /* UsageTrackerService.swift */; };
 		BFD99D122DFE910E000B54EE /* PageCurlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D112DFE910E000B54EE /* PageCurlView.swift */; };
 		BFD99D142DFDFD81000B54EE /* IndexedSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D132DFDFD81000B54EE /* IndexedSong.swift */; };
+		BFD99D1C2E00CC0C000B54EE /* GoogleMobileAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD99D1B2E00CC0C000B54EE /* GoogleMobileAds.xcframework */; };
+		BFD99D1D2E00CC0C000B54EE /* GoogleMobileAds.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFD99D1B2E00CC0C000B54EE /* GoogleMobileAds.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C1D2FE12780743C4971575A0 /* MoviePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A366303D6046388571CA84 /* MoviePageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,20 @@
 			remoteInfo = MelodyMap;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BFD99D1E2E00CC0C000B54EE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BFD99D1D2E00CC0C000B54EE /* GoogleMobileAds.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		40A366303D6046388571CA84 /* MoviePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviePageView.swift; sourceTree = "<group>"; };
@@ -89,8 +105,10 @@
 		BFD99D0E2DFF49AD000B54EE /* UsageMeterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageMeterView.swift; sourceTree = "<group>"; };
 		BFD99D102DFF4A90000B54EE /* UsageTrackerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageTrackerService.swift; sourceTree = "<group>"; };
 		BFD99D112DFE910E000B54EE /* PageCurlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCurlView.swift; sourceTree = "<group>"; };
-		BFD99D122E00B434000B54EE /* GMASPM */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GMASPM; sourceTree = "<group>"; };
 		BFD99D132DFDFD81000B54EE /* IndexedSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexedSong.swift; sourceTree = "<group>"; };
+		BFD99D142E00BA35000B54EE /* GMASPM */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GMASPM; sourceTree = "<group>"; };
+		BFD99D1A2E00CB9C000B54EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BFD99D1B2E00CC0C000B54EE /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleMobileAds.xcframework; path = GMASPM/GoogleMobileAds.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFD99D1C2E00CC0C000B54EE /* GoogleMobileAds.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +152,7 @@
 				BFD6748E2DFD2C4600225927 /* MelodyMapTests */,
 				BFD674982DFD2C4600225927 /* MelodyMapUITests */,
 				BFD6747C2DFD2C4300225927 /* Products */,
+				BFD99D152E00BCB8000B54EE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -149,6 +169,7 @@
 		BFD6747D2DFD2C4300225927 /* MelodyMap */ = {
 			isa = PBXGroup;
 			children = (
+				BFD99D1A2E00CB9C000B54EE /* Info.plist */,
 				BFD6747E2DFD2C4300225927 /* MelodyMapApp.swift */,
 				BFD674822DFD2C4500225927 /* Assets.xcassets */,
 				BFD674842DFD2C4500225927 /* Preview Content */,
@@ -184,7 +205,7 @@
 		BFD99CCC2DFDF9E3000B54EE /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				BFD99D122E00B434000B54EE /* GMASPM */,
+				BFD99D142E00BA35000B54EE /* GMASPM */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -262,6 +283,14 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		BFD99D152E00BCB8000B54EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BFD99D1B2E00CC0C000B54EE /* GoogleMobileAds.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -272,12 +301,15 @@
 				BFD674772DFD2C4300225927 /* Sources */,
 				BFD674782DFD2C4300225927 /* Frameworks */,
 				BFD674792DFD2C4300225927 /* Resources */,
+				BFD99D1E2E00CC0C000B54EE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = MelodyMap;
+			packageProductDependencies = (
+			);
 			productName = MelodyMap;
 			productReference = BFD6747B2DFD2C4300225927 /* MelodyMap.app */;
 			productType = "com.apple.product-type.application";
@@ -580,6 +612,7 @@
 				DEVELOPMENT_TEAM = 9N3P2KVL9H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MelodyMap/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -609,6 +642,7 @@
 				DEVELOPMENT_TEAM = 9N3P2KVL9H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MelodyMap/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
