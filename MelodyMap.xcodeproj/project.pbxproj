@@ -67,7 +67,6 @@
 		BFD674952DFD2C4600225927 /* MelodyMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MelodyMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD674992DFD2C4600225927 /* MelodyMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapUITests.swift; sourceTree = "<group>"; };
 		BFD6749B2DFD2C4600225927 /* MelodyMapUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		BFD99CCD2DFDF9E3000B54EE /* swift-package-manager-google-mobile-ads-12.6.0 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "swift-package-manager-google-mobile-ads-12.6.0"; path = "../swift-package-manager-google-mobile-ads-12.6.0"; sourceTree = "<group>"; };
 		BFD99CDF2DFDFD81000B54EE /* InAppPurchaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseService.swift; sourceTree = "<group>"; };
 		BFD99CE02DFDFD81000B54EE /* AdService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdService.swift; sourceTree = "<group>"; };
 		BFD99CE12DFDFD81000B54EE /* DataSyncService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSyncService.swift; sourceTree = "<group>"; };
@@ -90,6 +89,7 @@
 		BFD99D0E2DFF49AD000B54EE /* UsageMeterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageMeterView.swift; sourceTree = "<group>"; };
 		BFD99D102DFF4A90000B54EE /* UsageTrackerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageTrackerService.swift; sourceTree = "<group>"; };
 		BFD99D112DFE910E000B54EE /* PageCurlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCurlView.swift; sourceTree = "<group>"; };
+		BFD99D122E00B434000B54EE /* GMASPM */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GMASPM; sourceTree = "<group>"; };
 		BFD99D132DFDFD81000B54EE /* IndexedSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexedSong.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -184,7 +184,7 @@
 		BFD99CCC2DFDF9E3000B54EE /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				BFD99CCD2DFDF9E3000B54EE /* swift-package-manager-google-mobile-ads-12.6.0 */,
+				BFD99D122E00B434000B54EE /* GMASPM */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
