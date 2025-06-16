@@ -11,7 +11,7 @@ final class AdService: NSObject, ObservableObject {
     private var rewardedAd: RewardedAd?
     private var rewardCompletion: ((Bool) -> Void)?
 
-    private init() {
+    private override init() {
         loadAd()
     }
 
