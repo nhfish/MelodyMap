@@ -1,6 +1,8 @@
 import Foundation
+import Combine
 
-final class InAppPurchaseService {
+@MainActor
+final class InAppPurchaseService: ObservableObject {
     static let shared = InAppPurchaseService()
 
     func purchaseMonthly() {
