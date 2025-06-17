@@ -36,8 +36,9 @@
 		BFD99D112DFF4A90000B54EE /* UsageTrackerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D102DFF4A90000B54EE /* UsageTrackerService.swift */; };
 		BFD99D122DFE910E000B54EE /* PageCurlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D112DFE910E000B54EE /* PageCurlView.swift */; };
 		BFD99D142DFDFD81000B54EE /* IndexedSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D132DFDFD81000B54EE /* IndexedSong.swift */; };
-		BFD99D1C2E00CC0C000B54EE /* GoogleMobileAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD99D1B2E00CC0C000B54EE /* GoogleMobileAds.xcframework */; };
-		BFD99D1D2E00CC0C000B54EE /* GoogleMobileAds.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFD99D1B2E00CC0C000B54EE /* GoogleMobileAds.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		// BFD99D1C2E00CC0C000B54EE /* GoogleMobileAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD99D1B2E00CC0C000B54EE /* GoogleMobileAds.xcframework */; };  // Temporarily disabled
+		// BFD99D1D2E00CC0C000B54EE /* GoogleMobileAds.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFD99D1B2E00CC0C000B54EE /* GoogleMobileAds.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };  // Temporarily disabled
+		BFD99D1E2E00CC0D000B54EE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD99D1F2E00CC0D000B54EE /* StoreKit.framework */; };
 		C1D2FE12780743C4971575A0 /* MoviePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A366303D6046388571CA84 /* MoviePageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +66,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BFD99D1D2E00CC0C000B54EE /* GoogleMobileAds.xcframework in Embed Frameworks */,
+				// BFD99D1D2E00CC0C000B54EE /* GoogleMobileAds.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,6 +110,7 @@
 		BFD99D142E00BA35000B54EE /* GMASPM */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GMASPM; sourceTree = "<group>"; };
 		BFD99D1A2E00CB9C000B54EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BFD99D1B2E00CC0C000B54EE /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleMobileAds.xcframework; path = GMASPM/GoogleMobileAds.xcframework; sourceTree = "<group>"; };
+		BFD99D1F2E00CC0D000B54EE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StoreKit.framework; sourceTree = SDK; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +118,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFD99D1C2E00CC0C000B54EE /* GoogleMobileAds.xcframework in Frameworks */,
+				// BFD99D1C2E00CC0C000B54EE /* GoogleMobileAds.xcframework in Frameworks */,
+				BFD99D1E2E00CC0D000B54EE /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +289,8 @@
 		BFD99D152E00BCB8000B54EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BFD99D1B2E00CC0C000B54EE /* GoogleMobileAds.xcframework */,
+				// BFD99D1B2E00CC0C000B54EE /* GoogleMobileAds.xcframework */,
+				BFD99D1F2E00CC0D000B54EE /* StoreKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
