@@ -11,7 +11,9 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 
 📋 **Manually Curated Content** — all songs are added and tagged by hand to ensure quality
 
-🎯 **Usage Tracking** — daily limits with extension options (currently using mock ad system)
+🎯 **Usage Tracking** — daily limits (10 views/day) with extension options via ads or premium subscription
+
+💎 **Premium Subscription** — unlock unlimited song views with monthly or yearly plans
 
 ## Current Development Status
 
@@ -20,8 +22,12 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 - Google Sheets integration via Apps Script
 - Search functionality with fuzzy matching
 - Timeline view with page transitions
-- Usage tracking system
+- Usage tracking system with daily quotas
+- Quota exceeded sheet UI component
 - Mock ad system for development testing
+- PurchaseService with compile-time StoreKit guard
+- PaywallView with subscription options
+- Quota checking integration in Timeline and Search views
 
 ### 🚧 **In Progress**
 - UI polish and refinement
@@ -29,21 +35,39 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 - Content management system
 
 ### 📋 **Planned**
-- Google Ads integration (temporarily disabled)
-- In-app purchase system
+- Google Ads integration (compile-time flag controlled)
+- StoreKit subscription implementation (compile-time flag controlled)
 - Advanced search features
 - Content expansion
 
 ## Technical Notes
 
+### Usage Quota System
+The app implements a daily usage quota system:
+- **Free tier:** 10 song views per day
+- **Ad rewards:** +2 views per watched ad
+- **Premium subscription:** Unlimited views
+- **Reset:** Quota resets at midnight local time
+
 ### Google Ads Integration
 Google Ads integration is temporarily disabled during development to focus on core functionality. The system uses a mock implementation that simulates successful ad views for testing purposes. This allows development to continue without SDK compatibility issues.
 
 **To re-enable Google Ads later:**
-1. Update to a compatible SDK version (v9.x series recommended for iOS 15.2)
-2. Uncomment the Google Mobile Ads implementation
-3. Re-add the framework to the project
-4. Test with actual ad units
+1. Go to Project Settings ▸ Build Settings ▸ Other Swift Flags
+2. Add `-D ADS_ENABLED`
+3. Update to a compatible SDK version (v9.x series recommended for iOS 15.2)
+4. Uncomment the Google Mobile Ads implementation
+5. Re-add the framework to the project
+6. Test with actual ad units
+
+### StoreKit Integration
+StoreKit integration is temporarily disabled during development. The system uses a mock implementation that shows "Purchases disabled" alerts for testing purposes.
+
+**To re-enable StoreKit later:**
+1. Go to Project Settings ▸ Build Settings ▸ Other Swift Flags
+2. Add `-D SUBS_ENABLED`
+3. Implement StoreKit 2 logic in PurchaseService
+4. Test with sandbox environment
 
 ### Build Requirements
 - iOS 15.2+
@@ -81,8 +105,11 @@ Google Ads integration is temporarily disabled during development to focus on co
 ✅ UX planning complete  
 ✅ Initial architecture chosen  
 ✅ Core functionality implemented  
+✅ Usage quota system implemented  
+✅ PaywallView and PurchaseService implemented  
 🚧 UI polish and refinement in progress  
-📋 Google Ads integration planned (temporarily disabled)  
+📋 Google Ads integration planned (compile-time flag controlled)  
+📋 StoreKit integration planned (compile-time flag controlled)  
 🗺️ Roadmap defined for automated future scaling  
 
 ## Project Structure
@@ -110,13 +137,18 @@ MelodyMap/
 │   ├── MoviePageView.swift
 │   ├── PageCurlView.swift
 │   ├── UsageMeterView.swift
-│   └── StarButton.swift
+│   ├── StarButton.swift
+│   ├── Components/
+│   │   └── QuotaExceededSheet.swift
+│   └── Paywall/
+│       └── PaywallView.swift
 ├── ViewModels/                 # View models
 │   ├── TimelineViewModel.swift
 │   ├── SearchViewModel.swift
 │   └── UserProfileViewModel.swift
 ├── Services/                   # Business logic services
-│   ├── AdService.swift         # (Currently disabled)
+│   ├── AdService.swift         # (Compile-time flag controlled)
+│   ├── PurchaseService.swift   # (Compile-time flag controlled)
 │   ├── UsageTrackerService.swift
 │   ├── DataSyncService.swift
 │   └── InAppPurchaseService.swift

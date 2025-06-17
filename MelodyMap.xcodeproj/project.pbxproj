@@ -14,6 +14,7 @@
 		BFD6749A2DFD2C4600225927 /* MelodyMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD674992DFD2C4600225927 /* MelodyMapUITests.swift */; };
 		BFD6749C2DFD2C4600225927 /* MelodyMapUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6749B2DFD2C4600225927 /* MelodyMapUITestsLaunchTests.swift */; };
 		BFD99CF82DFDFD81000B54EE /* InAppPurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CDF2DFDFD81000B54EE /* InAppPurchaseService.swift */; };
+		BFD99D162E00CC0E000B54EE /* PurchaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D172E00CC0E000B54EE /* PurchaseService.swift */; };
 		BFD99CF92DFDFD81000B54EE /* AdService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CE02DFDFD81000B54EE /* AdService.swift */; };
 		BFD99CFA2DFDFD81000B54EE /* DataSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CE12DFDFD81000B54EE /* DataSyncService.swift */; };
 		BFD99CFB2DFDFD81000B54EE /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = BFD99CE32DFDFD81000B54EE /* .gitkeep */; };
@@ -36,6 +37,8 @@
 		BFD99D112DFF4A90000B54EE /* UsageTrackerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D102DFF4A90000B54EE /* UsageTrackerService.swift */; };
 		BFD99D122DFE910E000B54EE /* PageCurlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D112DFE910E000B54EE /* PageCurlView.swift */; };
 		BFD99D142DFDFD81000B54EE /* IndexedSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D132DFDFD81000B54EE /* IndexedSong.swift */; };
+		BFD99D152DFF4B00000B54EE /* QuotaExceededSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D142DFF4B00000B54EE /* QuotaExceededSheet.swift */; };
+		BFD99D182E00CC0F000B54EE /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D192E00CC0F000B54EE /* PaywallView.swift */; };
 		// BFD99D1C2E00CC0C000B54EE /* GoogleMobileAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD99D1B2E00CC0C000B54EE /* GoogleMobileAds.xcframework */; };  // Temporarily disabled
 		// BFD99D1D2E00CC0C000B54EE /* GoogleMobileAds.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BFD99D1B2E00CC0C000B54EE /* GoogleMobileAds.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };  // Temporarily disabled
 		BFD99D1E2E00CC0D000B54EE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD99D1F2E00CC0D000B54EE /* StoreKit.framework */; };
@@ -85,6 +88,7 @@
 		BFD674992DFD2C4600225927 /* MelodyMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapUITests.swift; sourceTree = "<group>"; };
 		BFD6749B2DFD2C4600225927 /* MelodyMapUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BFD99CDF2DFDFD81000B54EE /* InAppPurchaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InAppPurchaseService.swift; sourceTree = "<group>"; };
+		BFD99D172E00CC0E000B54EE /* PurchaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseService.swift; sourceTree = "<group>"; };
 		BFD99CE02DFDFD81000B54EE /* AdService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdService.swift; sourceTree = "<group>"; };
 		BFD99CE12DFDFD81000B54EE /* DataSyncService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSyncService.swift; sourceTree = "<group>"; };
 		BFD99CE32DFDFD81000B54EE /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
@@ -107,10 +111,12 @@
 		BFD99D102DFF4A90000B54EE /* UsageTrackerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageTrackerService.swift; sourceTree = "<group>"; };
 		BFD99D112DFE910E000B54EE /* PageCurlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageCurlView.swift; sourceTree = "<group>"; };
 		BFD99D132DFDFD81000B54EE /* IndexedSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexedSong.swift; sourceTree = "<group>"; };
-		BFD99D142E00BA35000B54EE /* GMASPM */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GMASPM; sourceTree = "<group>"; };
+		BFD99D142DFF4B00000B54EE /* QuotaExceededSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Components/QuotaExceededSheet.swift; sourceTree = "<group>"; };
+		BFD99D192E00CC0F000B54EE /* PaywallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paywall/PaywallView.swift; sourceTree = "<group>"; };
 		BFD99D1A2E00CB9C000B54EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BFD99D1B2E00CC0C000B54EE /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = GoogleMobileAds.xcframework; path = GMASPM/GoogleMobileAds.xcframework; sourceTree = "<group>"; };
 		BFD99D1F2E00CC0D000B54EE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = StoreKit.framework; sourceTree = SDK; };
+		BFD99D142E00BA35000B54EE /* GMASPM */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GMASPM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +224,7 @@
 			children = (
 				BFD99D102DFF4A90000B54EE /* UsageTrackerService.swift */,
 				BFD99CDF2DFDFD81000B54EE /* InAppPurchaseService.swift */,
+				BFD99D172E00CC0E000B54EE /* PurchaseService.swift */,
 				BFD99CE02DFDFD81000B54EE /* AdService.swift */,
 				BFD99CE12DFDFD81000B54EE /* DataSyncService.swift */,
 			);
@@ -263,6 +270,8 @@
 				BFD99CEF2DFDFD81000B54EE /* SongDetailView.swift */,
 				BFD99D112DFE910E000B54EE /* PageCurlView.swift */,
 				40A366303D6046388571CA84 /* MoviePageView.swift */,
+				BFD99D142DFF4B00000B54EE /* QuotaExceededSheet.swift */,
+				BFD99D192E00CC0F000B54EE /* PaywallView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -445,14 +454,17 @@
 				BFD99D142DFDFD81000B54EE /* IndexedSong.swift in Sources */,
 				BFD99D112DFF4A90000B54EE /* UsageTrackerService.swift in Sources */,
 				BFD99CF82DFDFD81000B54EE /* InAppPurchaseService.swift in Sources */,
+				BFD99D162E00CC0E000B54EE /* PurchaseService.swift in Sources */,
 				BFD6747F2DFD2C4300225927 /* MelodyMapApp.swift in Sources */,
 				BFD99D082DFDFD82000B54EE /* GoogleSheetsService.swift in Sources */,
-				BFD99CFF2DFDFD81000B54EE /* UserProfile.swift in Sources */,
+				BFD99D152DFF4B00000B54EE /* QuotaExceededSheet.swift in Sources */,
+				BFD99D182E00CC0F000B54EE /* PaywallView.swift in Sources */,
 				BFD99D002DFDFD81000B54EE /* MainTabView.swift in Sources */,
-				BFD99D072DFDFD81000B54EE /* SearchViewModel.swift in Sources */,
 				BFD99D012DFDFD81000B54EE /* SearchView.swift in Sources */,
 				BFD99D032DFDFD81000B54EE /* TimelineView.swift in Sources */,
+				BFD99D072DFDFD81000B54EE /* SearchViewModel.swift in Sources */,
 				BFD99D0D2DFF466A000B54EE /* StarButton.swift in Sources */,
+				BFD99CFF2DFDFD81000B54EE /* UserProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

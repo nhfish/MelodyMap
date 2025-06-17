@@ -14,24 +14,38 @@ The codebase uses a lightweight service and ViewModel structure. Core services a
 - **SearchViewModel** – builds an in-memory search index and returns grouped results.
 - **SongDetailViewModel** – manages expansion state and favorites.
 - **UsageTrackerService** – tracks daily song views and resets the quota.
-- **AdService** – preloads and presents rewarded ads. *(Currently disabled for development)*
-- **PurchaseService** – handles StoreKit 2 flows and publishes `isSubscriber`.
+- **AdService** – preloads and presents rewarded ads. *(Uses compile-time flag ADS_ENABLED)*
+- **PurchaseService** – handles StoreKit 2 flows and publishes `isSubscriber`. *(Uses compile-time flag SUBS_ENABLED)*
 
 ### Views
 - **TimelineView** – a `UIPageViewController` showing movie pages with snap points for songs.
 - **SearchView** – global search with fuzzy/phonetic matching.
 - **SongDetailView** – collapsible panel with streaming and purchase links.
 - **ProfileView** – shows usage stats and subscription status.
+- **QuotaExceededSheet** – modal sheet for when daily limits are reached.
+- **PaywallView** – subscription upgrade interface with monthly/yearly options.
 
 ## Data Flow
 1. `APIService` downloads song and movie JSON from Apps Script, authenticated by a hidden token.
 2. Data is written to `Library/Caches` for offline access.
 3. ViewModels observe the cached data and update SwiftUI views.
 
-## Usage Limits and Ads
-Daily free usage is limited and can be extended by watching rewarded ads. `UsageTrackerService` coordinates quota with `AdService`. Subscribers bypass ads and limits.
+## Usage Limits and Monetization
+Daily free usage is limited to 10 song views per day. Users can extend their quota by:
+- Watching rewarded ads (+2 views per ad)
+- Upgrading to premium subscription (unlimited views)
 
-**Note:** Google Ads integration is temporarily disabled during development to focus on core functionality. The ad system uses a mock implementation that simulates successful ad views for testing purposes.
+**Quota System:**
+- `UsageTrackerService` tracks daily consumption
+- Quota resets at midnight local time
+- Quota exceeded sheet appears when limit is reached
+- Ad rewards and subscription status are managed by respective services
+
+**Note:** Both Google Ads and StoreKit integration use compile-time flags that can be toggled in Project Settings ▸ Build Settings ▸ Other Swift Flags:
+- `ADS_ENABLED` - Controls Google Mobile Ads integration
+- `SUBS_ENABLED` - Controls StoreKit subscription functionality
+
+When disabled, the systems use mock implementations for development and testing.
 
 ## Technical Implementation Status
 
@@ -41,8 +55,12 @@ Daily free usage is limited and can be extended by watching rewarded ads. `Usage
 - Google Sheets integration via Apps Script
 - Search functionality with fuzzy matching
 - Timeline view with page transitions
-- Usage tracking system
+- Usage tracking system with daily quotas
+- Quota exceeded sheet UI component
 - Mock ad system for development
+- PurchaseService with compile-time StoreKit guard
+- PaywallView with subscription options
+- Quota checking integration in Timeline and Search views
 
 ### 🚧 In Progress
 - Core UI polish and refinement
@@ -50,8 +68,8 @@ Daily free usage is limited and can be extended by watching rewarded ads. `Usage
 - Content management system
 
 ### 📋 Planned
-- Google Ads integration (temporarily disabled)
-- In-app purchase system
+- Google Ads integration (compile-time flag controlled)
+- StoreKit subscription implementation (compile-time flag controlled)
 - Advanced search features
 - Content expansion
 
@@ -61,23 +79,39 @@ All interactions use page-curl by default. When iOS Reduce Motion is enabled, tr
 ## Development Notes
 
 ### Google Ads Integration
-The Google Ads SDK integration has been temporarily disabled due to compatibility issues with iOS 15.2 and the current Xcode version. The system uses a mock implementation that:
-- Simulates successful ad views for development
-- Maintains the same API interface for easy re-enablement
-- Logs ad-related actions instead of presenting actual ads
+The Google Ads SDK integration uses a compile-time flag `ADS_ENABLED` for easy toggling:
 
-To re-enable Google Ads:
-1. Update to a compatible SDK version (v9.x series recommended for iOS 15.2)
-2. Uncomment the Google Mobile Ads imports and implementation
-3. Re-add the framework to the project
+**To enable Google Ads:**
+1. Go to Project Settings ▸ Build Settings ▸ Other Swift Flags
+2. Add `-D ADS_ENABLED`
+3. Ensure Google Mobile Ads framework is added to the project
 4. Test with actual ad units
+
+**To disable Google Ads (current state):**
+1. Remove `-D ADS_ENABLED` from Other Swift Flags
+2. The system will use mock implementation
+3. No Google Ads framework required
+
+### StoreKit Integration
+The StoreKit integration uses a compile-time flag `SUBS_ENABLED` for easy toggling:
+
+**To enable StoreKit subscriptions:**
+1. Go to Project Settings ▸ Build Settings ▸ Other Swift Flags
+2. Add `-D SUBS_ENABLED`
+3. Implement StoreKit 2 logic in PurchaseService
+4. Test with sandbox environment
+
+**To disable StoreKit (current state):**
+1. Remove `-D SUBS_ENABLED` from Other Swift Flags
+2. The system will use mock implementation
+3. PaywallView shows "Purchases disabled" alert
 
 ### Build Configuration
 - iOS Deployment Target: 15.2
 - SwiftUI-based architecture
 - StoreKit framework included for future in-app purchases
-- Clean build system without Google Ads dependencies
+- Clean build system with optional Google Ads dependencies
 
 ## Future Work
-Remote-config keys will allow tuning quota and pricing without app updates. Additional features such as mini-audio previews and non-song markers are planned. Google Ads integration will be re-enabled once core functionality is polished and a compatible SDK version is identified.
+Remote-config keys will allow tuning quota and pricing without app updates. Additional features such as mini-audio previews and non-song markers are planned. Both Google Ads and StoreKit integration can be easily enabled via their respective compile-time flags once core functionality is polished.
 

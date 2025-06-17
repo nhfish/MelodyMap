@@ -12,14 +12,46 @@ struct SearchView: View {
                     .padding([.horizontal, .top])
                     .onChange(of: vm.query) { _ in vm.search() }
 
-                List(vm.results, id: \.song.id) { indexed in
-                    NavigationLink(destination: SongDetailView(song: indexed.song)) {
-                        VStack(alignment: .leading) {
-                            Text(indexed.song.title)
-                                .bold()
-                            Text(indexed.movie.title)
-                                .font(.caption)
-                                .foregroundColor(.secondary)
+                if vm.indexedSongs.isEmpty {
+                    // Loading state
+                    VStack {
+                        ProgressView()
+                            .padding()
+                        Text("Loading songs...")
+                            .foregroundColor(.secondary)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else if vm.results.isEmpty && !vm.query.isEmpty {
+                    // No results state
+                    VStack {
+                        Image(systemName: "magnifyingglass")
+                            .font(.system(size: 40))
+                            .foregroundColor(.secondary)
+                            .padding()
+                        Text("No songs found")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                        Text("Try searching for a different song or movie")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    // Results list
+                    List(vm.results, id: \.song.id) { indexed in
+                        Button(action: {
+                            vm.presentSongDetail(for: indexed.song)
+                        }) {
+                            VStack(alignment: .leading) {
+                                Text(indexed.song.title)
+                                    .bold()
+                                    .foregroundColor(.primary)
+                                Text(indexed.movie.title)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
                         }
                     }
                 }
@@ -29,6 +61,17 @@ struct SearchView: View {
         .overlay(alignment: .topTrailing) {
             UsageMeterView()
                 .padding()
+        }
+        .sheet(item: $vm.selectedSong) { song in
+            NavigationView {
+                SongDetailView(song: song)
+            }
+        }
+        .sheet(isPresented: $vm.showingQuotaSheet) {
+            QuotaExceededSheet(
+                onWatchAd: { vm.watchAd() },
+                onUpgrade: { /* TODO: Implement paywall */ }
+            )
         }
     }
 }

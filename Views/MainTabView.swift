@@ -1,9 +1,12 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @StateObject private var timelineVM = TimelineViewModel()
+    @State private var showPaywall = false
+    
     var body: some View {
         TabView {
-            TimelineView()
+            TimelineView(viewModel: timelineVM)
                 .tabItem {
                     Label("Timeline", systemImage: "film")
                 }
@@ -15,6 +18,12 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Profile", systemImage: "person")
                 }
+        }
+        .sheet(isPresented: $timelineVM.showingQuotaSheet) {
+            QuotaExceededSheet(
+                onWatchAd: { timelineVM.watchAd() },
+                onUpgrade: { showPaywall = true }
+            )
         }
     }
 }

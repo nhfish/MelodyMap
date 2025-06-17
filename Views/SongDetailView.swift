@@ -9,7 +9,9 @@ struct SongDetailView: View {
                 .font(.title)
             Text("From \(song.movieId)")
                 .font(.subheadline)
-            Text(song.blurb)
+            if let blurb = song.blurb {
+                Text(blurb)
+            }
             Spacer()
         }
         .padding()

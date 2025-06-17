@@ -3,13 +3,13 @@ import SwiftUI
 struct MoviePageView: View {
     let movie: Movie
     let songs: [Song]
+    let onSongSelected: (Song) -> Void
 
     private var songsForMovie: [Song] {
         songs.filter { $0.movieId == movie.id }
     }
 
     @State private var selectedIndex: Int = 0
-    @State private var detailSong: Song?
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -38,7 +38,7 @@ struct MoviePageView: View {
                             ForEach(Array(songsForMovie.enumerated()), id: \.element.id) { index, song in
                                 Circle()
                                     .frame(width: 12, height: 12)
-                                    .position(x: geo.size.width * CGFloat(song.percent) / 100,
+                                    .position(x: geo.size.width * CGFloat(song.percent ?? 0) / 100,
                                               y: 1)
                                     .onTapGesture {
                                         selectedIndex = index
@@ -76,8 +76,8 @@ struct MoviePageView: View {
                             .onEnded { value in
                                 let ratio = min(max(0, value.location.x / geo.size.width), 1)
                                 let nearestIndex = songsForMovie.enumerated().min { lhs, rhs in
-                                    let l = abs(ratio - CGFloat(lhs.element.percent) / 100)
-                                    let r = abs(ratio - CGFloat(rhs.element.percent) / 100)
+                                    let l = abs(ratio - CGFloat(lhs.element.percent ?? 0) / 100)
+                                    let r = abs(ratio - CGFloat(rhs.element.percent ?? 0) / 100)
                                     return l < r
                                 }?.offset ?? selectedIndex
                                 selectedIndex = nearestIndex
@@ -92,7 +92,7 @@ struct MoviePageView: View {
 
                 let currentSong = songsForMovie[selectedIndex]
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(currentSong.startTime + "  ·  \(currentSong.percent)%")
+                    Text((currentSong.startTime ?? "00:00:00") + "  ·  \(currentSong.percent ?? 0)%")
                         .font(.caption)
                     Divider()
                     HStack {
@@ -103,10 +103,9 @@ struct MoviePageView: View {
                     Text("\(movie.title) · \(movie.releaseYear)")
                     Text("Characters: " + currentSong.singers.joined(separator: ", "))
                 }
-
-                .onTapGesture { detailSong = currentSong }
-
-
+                .onTapGesture { 
+                    onSongSelected(currentSong)
+                }
 
                 ScrollView {
                     VStack(alignment: .leading, spacing: 8) {
@@ -114,7 +113,9 @@ struct MoviePageView: View {
                             Text(song.title)
                                 .id(song.id)
                                 .padding(.vertical, 4)
-                                .onTapGesture { detailSong = song }
+                                .onTapGesture { 
+                                    onSongSelected(song)
+                                }
                         }
                     }
                     .padding(.horizontal)
@@ -123,11 +124,6 @@ struct MoviePageView: View {
                 Spacer()
             }
             .padding()
-            .sheet(item: $detailSong) { song in
-                NavigationView {
-                    SongDetailView(song: song)
-                }
-            }
         }
     }
 }
@@ -137,8 +133,11 @@ struct MoviePageView_Previews: PreviewProvider {
         MoviePageView(
             movie: Movie(id: "1", title: "Sample Movie", imageURL: "https://example.com/poster.jpg", releaseYear: 2024, sortOrder: 1),
             songs: [
-                Song(id: "song1", movieId: "1", title: "First", percent: 10, startTime: "00:01:00", singers: [], releaseYear: 2024, movieRuntimeMinutes: 90, streamingLinks: [], purchaseLinks: [], keywords: [], blurb: "")
-            ]
+                Song(id: "song1", movieId: "1", title: "First", percent: 10, startTime: "00:01:00", singers: [], releaseYear: 2024, movieRuntimeMinutes: 90, streamingLinks: [], purchaseLinks: [], keywords: [], blurb: "Sample blurb")
+            ],
+            onSongSelected: { song in
+                print("Song selected: \(song.title)")
+            }
         )
     }
 }
