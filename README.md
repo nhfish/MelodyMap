@@ -102,21 +102,21 @@ StoreKit integration is temporarily disabled during development. The system uses
 4. Prepare for scale: migrate to full database + automated ingest pipeline when appropriate
 
 ## Project Status
-✅ UX planning complete  
-✅ Initial architecture chosen  
-✅ Core functionality implemented  
-✅ Usage quota system implemented  
-✅ PaywallView and PurchaseService implemented  
-🚧 UI polish and refinement in progress  
-📋 Google Ads integration planned (compile-time flag controlled)  
-📋 StoreKit integration planned (compile-time flag controlled)  
-🗺️ Roadmap defined for automated future scaling  
+✅ Splash screen now stays up until both minimum time and data load are complete
+✅ AppState coordinates splash/data readiness
+✅ MainTabView is deprecated; navigation is now in MelodyMapApp.swift
+✅ SearchViewModel exposes a static loadForAppState for splash gating
+✅ UsageTrackerService is injected at the root
+✅ Only SearchView is the home screen, with overlays for upgrade/profile
+✅ Profile and paywall overlays use new closure-based dismissal
+✅ iOS 15 compatibility (NavigationView); ready for NavigationStack on iOS 16+
+🚧 UI polish and refinement in progress
 
 ## Project Structure
 
 ```
 MelodyMap/
-├── MelodyMapApp.swift          # App entry point
+├── MelodyMapApp.swift          # App entry point, navigation, splash gating
 ├── Assets.xcassets/            # App icons and images
 ├── Info.plist                  # App configuration
 ├── Resources/                  # Static resources
@@ -126,30 +126,31 @@ MelodyMap/
 │   ├── UserProfile.swift
 │   └── IndexedSong.swift
 ├── Networking/                 # API and data services
-│   ├── APIService.swift
+│   ├── APIService.swift        # Loads/caches movies and songs
 │   └── GoogleSheetsService.swift
 ├── Views/                      # SwiftUI views
-│   ├── MainTabView.swift
+│   ├── SplashView.swift        # Disney-style splash screen
+│   ├── SearchView.swift        # Home screen, search UI
+│   ├── ProfileView.swift       # Profile, with onClose closure
+│   ├── UpgradeButton.swift     # Upgrade/paywall button
+│   ├── DailyUsesCounterButton.swift # Profile/daily uses button
+│   ├── Paywall/PaywallView.swift    # Paywall, with onClose closure
 │   ├── TimelineView.swift
-│   ├── SearchView.swift
-│   ├── ProfileView.swift
 │   ├── SongDetailView.swift
 │   ├── MoviePageView.swift
 │   ├── PageCurlView.swift
 │   ├── UsageMeterView.swift
 │   ├── StarButton.swift
-│   ├── Components/
-│   │   └── QuotaExceededSheet.swift
-│   └── Paywall/
-│       └── PaywallView.swift
+│   └── Components/
+│       └── QuotaExceededSheet.swift
 ├── ViewModels/                 # View models
 │   ├── TimelineViewModel.swift
-│   ├── SearchViewModel.swift
+│   ├── SearchViewModel.swift   # Search, exposes loadForAppState
 │   └── UserProfileViewModel.swift
 ├── Services/                   # Business logic services
 │   ├── AdService.swift         # (Compile-time flag controlled)
 │   ├── PurchaseService.swift   # (Compile-time flag controlled)
-│   ├── UsageTrackerService.swift
+│   ├── UsageTrackerService.swift # Usage quota, injected at root
 │   ├── DataSyncService.swift
 │   └── InAppPurchaseService.swift
 ├── Extensions/                 # Swift extensions
@@ -169,3 +170,10 @@ TBD — likely MIT or similar (to be finalized)
 - **Concept + direction:** Nathan Fisher
 - **AI agent support:** OpenAI Codex / GPT-4o
 - **UX inspiration:** top-tier kids apps, music discovery tools, and polished streaming platforms
+
+## Key Changes
+- Splash screen is now gated on both minimum time and data readiness (movies/songs loaded)
+- AppState manages splash/data readiness and navigation state
+- MainTabView is deprecated; all navigation is in MelodyMapApp.swift
+- Profile and paywall overlays use closure-based dismissal
+- iOS 15: uses NavigationView; ready to migrate to NavigationStack for iOS 16+

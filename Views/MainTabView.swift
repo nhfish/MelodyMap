@@ -1,3 +1,4 @@
+// DEPRECATED: MainTabView is no longer used. See MelodyMapApp.swift for new navigation.
 import SwiftUI
 
 struct MainTabView: View {
@@ -13,7 +14,7 @@ struct MainTabView: View {
                     Label("Timeline", systemImage: "film")
                 }
                 .tag(0)
-            SearchView(selectedTab: $selectedTab)
+            SearchView()
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
@@ -23,18 +24,6 @@ struct MainTabView: View {
                     Label("Profile", systemImage: "person")
                 }
                 .tag(2)
-        }
-        .sheet(isPresented: $timelineVM.showingQuotaSheet) {
-            QuotaExceededSheet(
-                onWatchAd: { timelineVM.watchAd() },
-                onUpgrade: { showPaywall = true }
-            )
-        }
-        .sheet(isPresented: $searchVM.showingQuotaSheet) {
-            QuotaExceededSheet(
-                onWatchAd: { searchVM.watchAd() },
-                onUpgrade: { showPaywall = true }
-            )
         }
         .onChange(of: searchVM.selectedIndexedSong) { indexedSong in
             if let indexedSong = indexedSong {

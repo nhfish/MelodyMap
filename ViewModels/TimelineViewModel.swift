@@ -4,10 +4,21 @@ import Foundation
 final class TimelineViewModel: ObservableObject {
     @Published var movies: [Movie] = []
     @Published var songs: [Song] = []
-    @Published var showingQuotaSheet = false
     @Published var selectedSong: Song?
-    @Published var currentMovieIndex: Int = 0
-    @Published var preSelectedSong: Song?
+    @Published var currentMovieIndex: Int = 0 {
+        didSet {
+            print("🎬 TimelineViewModel currentMovieIndex changed to: \(currentMovieIndex)")
+        }
+    }
+    @Published var preSelectedSong: Song? {
+        didSet {
+            if let song = preSelectedSong {
+                print("🎵 TimelineViewModel preSelectedSong set to: \(song.title)")
+            } else {
+                print("🎵 TimelineViewModel preSelectedSong cleared")
+            }
+        }
+    }
     
     init() {
         load()
@@ -20,6 +31,7 @@ final class TimelineViewModel: ObservableObject {
                 let fetchedSongs = try await APIService.shared.fetchSongs()
                 movies = fetchedMovies.sorted { $0.sortOrder < $1.sortOrder }
                 songs = fetchedSongs
+                print("📚 TimelineViewModel loaded \(movies.count) movies and \(songs.count) songs")
             } catch {
                 print("Failed to load timeline data: \(error)")
             }
@@ -41,7 +53,9 @@ final class TimelineViewModel: ObservableObject {
         
         // Check if user can consume a view
         if !UsageTrackerService.shared.canConsume() {
-            showingQuotaSheet = true
+            print("❌ TimelineViewModel: No remaining uses, triggering watch ad reward")
+            // Directly trigger watch ad instead of showing quota sheet
+            watchAd()
         } else {
             // Consume the view and present song detail
             UsageTrackerService.shared.consumeView()
@@ -52,6 +66,10 @@ final class TimelineViewModel: ObservableObject {
     // MARK: - Phase 7-3 Stub
     func watchAd() {
         UsageTrackerService.shared.addRewarded(2)
-        showingQuotaSheet = false
+        
+        // If user was trying to view a song when they had no remaining uses,
+        // the song detail should already be set in selectedSong, so no additional action needed
+        // The view will handle presenting the song detail
+        print("✅ TimelineViewModel: Ad watched, song detail should be presented")
     }
 }

@@ -6,6 +6,15 @@ struct PageCurlView: UIViewControllerRepresentable {
     var currentMovieIndex: Int = 0
     var preSelectedSong: Song?
     var onSongSelected: (Song) -> Void
+    
+    // Public initializer
+    init(movies: [Movie], songs: [Song], currentMovieIndex: Int = 0, preSelectedSong: Song? = nil, onSongSelected: @escaping (Song) -> Void) {
+        self.movies = movies
+        self.songs = songs
+        self.currentMovieIndex = currentMovieIndex
+        self.preSelectedSong = preSelectedSong
+        self.onSongSelected = onSongSelected
+    }
 
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
@@ -27,6 +36,7 @@ struct PageCurlView: UIViewControllerRepresentable {
             let initialMovie = movies[initialIndex]
             let firstVC = context.coordinator.controller(for: initialMovie)
             controller.setViewControllers([firstVC], direction: .forward, animated: false)
+            context.coordinator.lastSetMovieIndex = initialIndex
         }
         return controller
     }
@@ -34,25 +44,31 @@ struct PageCurlView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIPageViewController, context: Context) {
         context.coordinator.parent = self
         
-        // Handle navigation to specific movie
-        if !movies.isEmpty && currentMovieIndex < movies.count {
+        print("🔄 PageCurlView updateUIViewController - movies: \(movies.count), currentMovieIndex: \(currentMovieIndex), lastSet: \(context.coordinator.lastSetMovieIndex)")
+        
+        // Handle navigation to specific movie only if it's different from the last set
+        if !movies.isEmpty && currentMovieIndex < movies.count && currentMovieIndex != context.coordinator.lastSetMovieIndex {
             let targetMovie = movies[currentMovieIndex]
             let targetVC = context.coordinator.controller(for: targetMovie)
             
-            // Only navigate if we're not already on the target movie
-            if let currentVC = uiViewController.viewControllers?.first,
-               context.coordinator.cache[targetMovie.id] !== currentVC {
-                uiViewController.setViewControllers([targetVC], direction: .forward, animated: true)
-            }
+            print("🎯 Target movie: \(targetMovie.title) at index \(currentMovieIndex)")
+            
+            // Set the view controller without animation to prevent automatic page curl
+            uiViewController.setViewControllers([targetVC], direction: .forward, animated: false)
+            context.coordinator.lastSetMovieIndex = currentMovieIndex
+            print("✅ Navigated to movie: \(targetMovie.title)")
         } else if uiViewController.viewControllers?.isEmpty ?? true, let first = movies.first {
             let firstVC = context.coordinator.controller(for: first)
             uiViewController.setViewControllers([firstVC], direction: .forward, animated: false)
+            context.coordinator.lastSetMovieIndex = 0
+            print("🔄 Set initial movie: \(first.title)")
         }
     }
 
     class Coordinator: NSObject, UIPageViewControllerDataSource {
         var parent: PageCurlView
         var cache: [String: UIViewController] = [:]
+        var lastSetMovieIndex: Int = -1
 
         init(parent: PageCurlView) {
             self.parent = parent

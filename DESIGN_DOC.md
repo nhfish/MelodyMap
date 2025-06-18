@@ -5,8 +5,13 @@ This document summarizes the high-level architecture and design decisions for Me
 ## Overview
 Melody Map is an iOS-first app built with Swift and SwiftUI. It helps parents and caregivers quickly locate Disney movie songs. The app focuses on a polished, storybook aesthetic with page-curl transitions and gentle sparkles. Content is sourced from a Google Sheet and cached locally for offline use.
 
-## Architecture
-The codebase uses a lightweight service and ViewModel structure. Core services are injected using SwiftUI's `.environmentObject`.
+## Architecture (Updated)
+- **AppState**: Manages splash/data readiness and navigation state. Splash screen is gated on both minimum time and data readiness (movies/songs loaded).
+- **MainTabView**: Deprecated. Navigation is now handled in MelodyMapApp.swift.
+- **SearchViewModel**: Exposes a static loadForAppState for splash gating.
+- **UsageTrackerService**: Injected at the root of the app.
+- **Views**: Only SearchView is the home screen, with overlays for upgrade/profile. Profile and paywall overlays use closure-based dismissal.
+- **Navigation**: Uses NavigationView for iOS 15 compatibility; ready to migrate to NavigationStack for iOS 16+.
 
 ### Services
 - **APIService** – fetches JSON from the Apps Script middleware and caches it locally.
@@ -25,10 +30,11 @@ The codebase uses a lightweight service and ViewModel structure. Core services a
 - **QuotaExceededSheet** – modal sheet for when daily limits are reached.
 - **PaywallView** – subscription upgrade interface with monthly/yearly options.
 
-## Data Flow
-1. `APIService` downloads song and movie JSON from Apps Script, authenticated by a hidden token.
-2. Data is written to `Library/Caches` for offline access.
-3. ViewModels observe the cached data and update SwiftUI views.
+## Data Flow (Updated)
+1. AppState calls SearchViewModel.loadForAppState to load movies and songs for splash gating.
+2. Splash screen remains until both minimum time and data readiness are met.
+3. UsageTrackerService is injected at the root for quota tracking.
+4. Profile and paywall overlays use closure-based dismissal.
 
 ## Usage Limits and Monetization
 Daily free usage is limited to 10 song views per day. Users can extend their quota by:
@@ -114,4 +120,11 @@ The StoreKit integration uses a compile-time flag `SUBS_ENABLED` for easy toggli
 
 ## Future Work
 Remote-config keys will allow tuning quota and pricing without app updates. Additional features such as mini-audio previews and non-song markers are planned. Both Google Ads and StoreKit integration can be easily enabled via their respective compile-time flags once core functionality is polished.
+
+## Key Changes
+- Splash screen is now gated on both minimum time and data readiness (movies/songs loaded)
+- AppState manages splash/data readiness and navigation state
+- MainTabView is deprecated; all navigation is in MelodyMapApp.swift
+- Profile and paywall overlays use closure-based dismissal
+- iOS 15: uses NavigationView; ready to migrate to NavigationStack for iOS 16+
 

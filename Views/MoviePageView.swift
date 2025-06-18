@@ -5,6 +5,7 @@ struct MoviePageView: View {
     let songs: [Song]
     let preSelectedSong: Song?
     let onSongSelected: (Song) -> Void
+    @EnvironmentObject private var usage: UsageTrackerService
 
     private var songsForMovie: [Song] {
         songs.filter { $0.movieId == movie.id }
@@ -54,23 +55,45 @@ struct MoviePageView: View {
                         HStack {
                             Button(action: {
                                 guard selectedIndex > 0 else { return }
+                                
+                                // Check if user can consume a view
+                                if !usage.canConsume() {
+                                    print("❌ MoviePageView: No remaining uses for left arrow navigation")
+                                    return
+                                }
+                                
+                                // Consume the view and navigate
+                                usage.consumeView()
                                 selectedIndex -= 1
                                 let song = songsForMovie[selectedIndex]
                                 withAnimation { proxy.scrollTo(song.id, anchor: .top) }
+                                print("✅ MoviePageView: Consumed view for left arrow navigation to '\(song.title)'")
                             }) {
                                 Image(systemName: "chevron.left")
                                     .frame(width: 44, height: 44)
                             }
+                            .disabled(selectedIndex <= 0 || !usage.canConsume())
                             Spacer()
                             Button(action: {
                                 guard selectedIndex + 1 < songsForMovie.count else { return }
+                                
+                                // Check if user can consume a view
+                                if !usage.canConsume() {
+                                    print("❌ MoviePageView: No remaining uses for right arrow navigation")
+                                    return
+                                }
+                                
+                                // Consume the view and navigate
+                                usage.consumeView()
                                 selectedIndex += 1
                                 let song = songsForMovie[selectedIndex]
                                 withAnimation { proxy.scrollTo(song.id, anchor: .top) }
+                                print("✅ MoviePageView: Consumed view for right arrow navigation to '\(song.title)'")
                             }) {
                                 Image(systemName: "chevron.right")
                                     .frame(width: 44, height: 44)
                             }
+                            .disabled(selectedIndex + 1 >= songsForMovie.count || !usage.canConsume())
                         }
                     }
                     .contentShape(Rectangle())
@@ -108,22 +131,6 @@ struct MoviePageView: View {
                 }
                 .onTapGesture { 
                     onSongSelected(currentSong)
-                }
-
-                ScrollView {
-                    VStack(alignment: .leading, spacing: 8) {
-                        ForEach(songsForMovie) { song in
-                            Text(song.title)
-                                .id(song.id)
-                                .padding(.vertical, 4)
-                                .background(song.id == preSelectedSong?.id ? Color.blue.opacity(0.2) : Color.clear)
-                                .cornerRadius(4)
-                                .onTapGesture { 
-                                    onSongSelected(song)
-                                }
-                        }
-                    }
-                    .padding(.horizontal)
                 }
 
                 Spacer()
@@ -171,5 +178,6 @@ struct MoviePageView_Previews: PreviewProvider {
                 print("Song selected: \(song.title)")
             }
         )
+        .environmentObject(UsageTrackerService.shared)
     }
 }
