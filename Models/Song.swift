@@ -1,6 +1,6 @@
 import Foundation
 
-struct Song: Identifiable, Codable {
+struct Song: Identifiable, Codable, Equatable {
     let id: String
     let movieId: String
     let title: String

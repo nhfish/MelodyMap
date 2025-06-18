@@ -7,7 +7,8 @@ final class SearchViewModel: ObservableObject {
     @Published var results: [IndexedSong] = []
     @Published var indexedSongs: [IndexedSong] = []
     @Published var showingQuotaSheet = false
-    @Published var selectedSong: Song?
+    @Published var navigateToTimeline = false
+    @Published var selectedIndexedSong: IndexedSong?
     
     init() {
         Task { await buildIndex() }
@@ -79,16 +80,16 @@ final class SearchViewModel: ObservableObject {
         }
     }
     
-    func presentSongDetail(for song: Song) {
-        selectedSong = song
+    func selectSongFromSearch(_ indexedSong: IndexedSong) {
+        selectedIndexedSong = indexedSong
         
         // Check if user can consume a view
         if !UsageTrackerService.shared.canConsume() {
             showingQuotaSheet = true
         } else {
-            // Consume the view and present song detail
+            // Consume the view and navigate to timeline
             UsageTrackerService.shared.consumeView()
-            // The view will handle presenting the song detail
+            navigateToTimeline = true
         }
     }
     

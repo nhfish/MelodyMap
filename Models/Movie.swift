@@ -1,6 +1,6 @@
 import Foundation
 
-struct Movie: Identifiable, Codable {
+struct Movie: Identifiable, Codable, Equatable {
     let id: String
     let title: String
     let imageURL: String

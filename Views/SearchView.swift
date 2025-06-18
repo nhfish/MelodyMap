@@ -3,6 +3,7 @@ import SwiftUI
 struct SearchView: View {
     @StateObject private var vm = SearchViewModel()
     @EnvironmentObject private var usage: UsageTrackerService
+    @Binding var selectedTab: Int
 
     var body: some View {
         NavigationView {
@@ -42,7 +43,7 @@ struct SearchView: View {
                     // Results list
                     List(vm.results, id: \.song.id) { indexed in
                         Button(action: {
-                            vm.presentSongDetail(for: indexed.song)
+                            vm.selectSongFromSearch(indexed)
                         }) {
                             VStack(alignment: .leading) {
                                 Text(indexed.song.title)
@@ -62,23 +63,24 @@ struct SearchView: View {
             UsageMeterView()
                 .padding()
         }
-        .sheet(item: $vm.selectedSong) { song in
-            NavigationView {
-                SongDetailView(song: song)
-            }
-        }
         .sheet(isPresented: $vm.showingQuotaSheet) {
             QuotaExceededSheet(
                 onWatchAd: { vm.watchAd() },
                 onUpgrade: { /* TODO: Implement paywall */ }
             )
         }
+        .onChange(of: vm.navigateToTimeline) { shouldNavigate in
+            if shouldNavigate {
+                selectedTab = 0 // Switch to timeline tab
+                vm.navigateToTimeline = false
+            }
+        }
     }
 }
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView()
+        SearchView(selectedTab: .constant(0))
             .environmentObject(UsageTrackerService.shared)
     }
 }

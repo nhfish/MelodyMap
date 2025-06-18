@@ -6,6 +6,12 @@ final class TimelineViewModel: ObservableObject {
     @Published var songs: [Song] = []
     @Published var showingQuotaSheet = false
     @Published var selectedSong: Song?
+    @Published var currentMovieIndex: Int = 0
+    @Published var preSelectedSong: Song?
+    
+    init() {
+        load()
+    }
 
     func load() {
         Task {
@@ -17,6 +23,16 @@ final class TimelineViewModel: ObservableObject {
             } catch {
                 print("Failed to load timeline data: \(error)")
             }
+        }
+    }
+    
+    func navigateToMovieWithSong(_ indexedSong: IndexedSong) {
+        // Find the movie index
+        if let movieIndex = movies.firstIndex(where: { $0.id == indexedSong.movie.id }) {
+            currentMovieIndex = movieIndex
+            preSelectedSong = indexedSong.song
+            print("🎬 Navigating to movie: \(indexedSong.movie.title) at index: \(movieIndex)")
+            print("🎵 Pre-selecting song: \(indexedSong.song.title)")
         }
     }
     

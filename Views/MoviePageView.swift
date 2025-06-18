@@ -3,6 +3,7 @@ import SwiftUI
 struct MoviePageView: View {
     let movie: Movie
     let songs: [Song]
+    let preSelectedSong: Song?
     let onSongSelected: (Song) -> Void
 
     private var songsForMovie: [Song] {
@@ -10,6 +11,7 @@ struct MoviePageView: View {
     }
 
     @State private var selectedIndex: Int = 0
+    @State private var hasHandledPreSelectedSong = false
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -38,6 +40,7 @@ struct MoviePageView: View {
                             ForEach(Array(songsForMovie.enumerated()), id: \.element.id) { index, song in
                                 Circle()
                                     .frame(width: 12, height: 12)
+                                    .foregroundColor(song.id == preSelectedSong?.id ? .blue : .primary)
                                     .position(x: geo.size.width * CGFloat(song.percent ?? 0) / 100,
                                               y: 1)
                                     .onTapGesture {
@@ -113,6 +116,8 @@ struct MoviePageView: View {
                             Text(song.title)
                                 .id(song.id)
                                 .padding(.vertical, 4)
+                                .background(song.id == preSelectedSong?.id ? Color.blue.opacity(0.2) : Color.clear)
+                                .cornerRadius(4)
                                 .onTapGesture { 
                                     onSongSelected(song)
                                 }
@@ -124,6 +129,32 @@ struct MoviePageView: View {
                 Spacer()
             }
             .padding()
+            .onAppear {
+                handlePreSelectedSong(proxy: proxy)
+            }
+            .onChange(of: preSelectedSong) { song in
+                if song != nil && !hasHandledPreSelectedSong {
+                    handlePreSelectedSong(proxy: proxy)
+                }
+            }
+        }
+    }
+    
+    private func handlePreSelectedSong(proxy: ScrollViewProxy) {
+        guard let preSelectedSong = preSelectedSong,
+              !hasHandledPreSelectedSong,
+              let songIndex = songsForMovie.firstIndex(where: { $0.id == preSelectedSong.id }) else {
+            return
+        }
+        
+        selectedIndex = songIndex
+        hasHandledPreSelectedSong = true
+        
+        // Scroll to the pre-selected song with a slight delay to ensure the view is ready
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            withAnimation(.easeInOut(duration: 0.5)) {
+                proxy.scrollTo(preSelectedSong.id, anchor: UnitPoint.top)
+            }
         }
     }
 }
@@ -135,6 +166,7 @@ struct MoviePageView_Previews: PreviewProvider {
             songs: [
                 Song(id: "song1", movieId: "1", title: "First", percent: 10, startTime: "00:01:00", singers: [], releaseYear: 2024, movieRuntimeMinutes: 90, streamingLinks: [], purchaseLinks: [], keywords: [], blurb: "Sample blurb")
             ],
+            preSelectedSong: nil,
             onSongSelected: { song in
                 print("Song selected: \(song.title)")
             }

@@ -3,6 +3,8 @@ import SwiftUI
 struct PageCurlView: UIViewControllerRepresentable {
     var movies: [Movie]
     var songs: [Song]
+    var currentMovieIndex: Int = 0
+    var preSelectedSong: Song?
     var onSongSelected: (Song) -> Void
 
     func makeCoordinator() -> Coordinator {
@@ -18,8 +20,12 @@ struct PageCurlView: UIViewControllerRepresentable {
         if let scrollView = controller.view.subviews.compactMap({ $0 as? UIScrollView }).first {
             scrollView.bounces = false
         }
-        if let first = movies.first {
-            let firstVC = context.coordinator.controller(for: first)
+        
+        // Set initial view controller based on currentMovieIndex
+        if !movies.isEmpty {
+            let initialIndex = min(currentMovieIndex, movies.count - 1)
+            let initialMovie = movies[initialIndex]
+            let firstVC = context.coordinator.controller(for: initialMovie)
             controller.setViewControllers([firstVC], direction: .forward, animated: false)
         }
         return controller
@@ -27,7 +33,18 @@ struct PageCurlView: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: UIPageViewController, context: Context) {
         context.coordinator.parent = self
-        if uiViewController.viewControllers?.isEmpty ?? true, let first = movies.first {
+        
+        // Handle navigation to specific movie
+        if !movies.isEmpty && currentMovieIndex < movies.count {
+            let targetMovie = movies[currentMovieIndex]
+            let targetVC = context.coordinator.controller(for: targetMovie)
+            
+            // Only navigate if we're not already on the target movie
+            if let currentVC = uiViewController.viewControllers?.first,
+               context.coordinator.cache[targetMovie.id] !== currentVC {
+                uiViewController.setViewControllers([targetVC], direction: .forward, animated: true)
+            }
+        } else if uiViewController.viewControllers?.isEmpty ?? true, let first = movies.first {
             let firstVC = context.coordinator.controller(for: first)
             uiViewController.setViewControllers([firstVC], direction: .forward, animated: false)
         }
@@ -35,7 +52,7 @@ struct PageCurlView: UIViewControllerRepresentable {
 
     class Coordinator: NSObject, UIPageViewControllerDataSource {
         var parent: PageCurlView
-        private var cache: [String: UIViewController] = [:]
+        var cache: [String: UIViewController] = [:]
 
         init(parent: PageCurlView) {
             self.parent = parent
@@ -44,7 +61,12 @@ struct PageCurlView: UIViewControllerRepresentable {
         func controller(for movie: Movie) -> UIViewController {
             if let cached = cache[movie.id] { return cached }
             let songsForMovie = parent.songs.filter { $0.movieId == movie.id }
-            let vc = UIHostingController(rootView: MoviePageView(movie: movie, songs: songsForMovie, onSongSelected: parent.onSongSelected))
+            let vc = UIHostingController(rootView: MoviePageView(
+                movie: movie, 
+                songs: songsForMovie, 
+                preSelectedSong: parent.preSelectedSong,
+                onSongSelected: parent.onSongSelected
+            ))
             cache[movie.id] = vc
             return vc
         }

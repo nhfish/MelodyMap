@@ -2,7 +2,7 @@ import Foundation
 
 /// A lightweight search index representation of a song.
 /// Strings are preprocessed to lowercase for faster comparisons.
-struct IndexedSong {
+struct IndexedSong: Equatable {
     let song: Song
     let movie: Movie
 

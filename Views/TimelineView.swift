@@ -5,9 +5,15 @@ struct TimelineView: View {
     @EnvironmentObject private var usage: UsageTrackerService
 
     var body: some View {
-        PageCurlView(movies: viewModel.movies, songs: viewModel.songs, onSongSelected: { song in
-            viewModel.presentSongDetail(for: song)
-        })
+        PageCurlView(
+            movies: viewModel.movies, 
+            songs: viewModel.songs, 
+            currentMovieIndex: viewModel.currentMovieIndex,
+            preSelectedSong: viewModel.preSelectedSong,
+            onSongSelected: { song in
+                viewModel.presentSongDetail(for: song)
+            }
+        )
         .onAppear {
             viewModel.load()
         }
@@ -18,6 +24,14 @@ struct TimelineView: View {
         .sheet(item: $viewModel.selectedSong) { song in
             NavigationView {
                 SongDetailView(song: song)
+            }
+        }
+        .onChange(of: viewModel.preSelectedSong) { song in
+            if song != nil {
+                // Clear the pre-selected song after it's been handled
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    viewModel.preSelectedSong = nil
+                }
             }
         }
     }
