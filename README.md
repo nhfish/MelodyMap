@@ -11,9 +11,11 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 
 📋 **Manually Curated Content** — all songs are added and tagged by hand to ensure quality
 
-🎯 **Usage Tracking** — daily limits (10 views/day) with extension options via ads or premium subscription
+🎯 **Usage Tracking** — daily limits (3 views/day) with extension options via ads or premium subscription
 
 💎 **Premium Subscription** — unlock unlimited song views with monthly or yearly plans
+
+✨ **Pixie Burst Animation** — magical transition effects when moving from splash to main app
 
 ## Current Development Status
 
@@ -22,12 +24,16 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 - Google Sheets integration via Apps Script
 - Search functionality with fuzzy matching
 - Timeline view with page transitions
-- Usage tracking system with daily quotas
+- Usage tracking system with daily quotas (3 views/day)
 - Quota exceeded sheet UI component
 - Mock ad system for development testing
 - PurchaseService with compile-time StoreKit guard
 - PaywallView with subscription options
 - Quota checking integration in Timeline and Search views
+- **New Navigation Architecture** — AppState-driven navigation with SearchView as home screen
+- **Pixie Burst Transition** — magical animation when transitioning from splash to main app
+- **Splash Screen Gating** — waits for both minimum time (2.5s) and data readiness
+- **Daily Uses Counter** — persistent tracking with proper initialization
 
 ### 🚧 **In Progress**
 - UI polish and refinement
@@ -44,10 +50,19 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 
 ### Usage Quota System
 The app implements a daily usage quota system:
-- **Free tier:** 10 song views per day
+- **Free tier:** 3 song views per day (updated from 10)
 - **Ad rewards:** +2 views per watched ad
 - **Premium subscription:** Unlimited views
 - **Reset:** Quota resets at midnight local time
+- **Persistence:** Uses UserDefaults with proper initialization
+
+### Navigation Architecture (Updated)
+The app now uses a centralized navigation system:
+- **AppState:** Manages splash/data readiness and navigation state
+- **SearchView:** Primary home screen with search functionality
+- **TimelineView:** Accessed via search results with smooth transitions
+- **Overlay System:** Profile and paywall appear as overlays with closure-based dismissal
+- **Pixie Burst:** Magical transition animation when moving from splash to main app
 
 ### Google Ads Integration
 Google Ads integration is temporarily disabled during development to focus on core functionality. The system uses a mock implementation that simulates successful ad views for testing purposes. This allows development to continue without SDK compatibility issues.
@@ -94,6 +109,7 @@ StoreKit integration is temporarily disabled during development. The system uses
 - Clean, visual-first timeline (inspired by polished streaming apps)
 - Fast, joyful interactions for busy caregivers
 - Minimalist UX — designed for quick lookups, not deep browsing
+- Magical transitions with pixie burst animations
 
 ## Development Goals
 1. Build MVP using Google Sheets as CMS with a native SwiftUI app
@@ -102,21 +118,21 @@ StoreKit integration is temporarily disabled during development. The system uses
 4. Prepare for scale: migrate to full database + automated ingest pipeline when appropriate
 
 ## Project Status
-✅ Splash screen now stays up until both minimum time and data load are complete
-✅ AppState coordinates splash/data readiness
-✅ MainTabView is deprecated; navigation is now in MelodyMapApp.swift
-✅ SearchViewModel exposes a static loadForAppState for splash gating
-✅ UsageTrackerService is injected at the root
-✅ Only SearchView is the home screen, with overlays for upgrade/profile
-✅ Profile and paywall overlays use new closure-based dismissal
-✅ iOS 15 compatibility (NavigationView); ready for NavigationStack on iOS 16+
+✅ **New Navigation Architecture** — AppState-driven navigation with SearchView as home screen
+✅ **Pixie Burst Animation** — magical transition when moving from splash to main app
+✅ **Splash Screen Gating** — waits for both minimum time (2.5s) and data readiness
+✅ **Daily Uses Counter** — persistent tracking with proper initialization and UserDefaults
+✅ **UsageTrackerService** — properly initializes daily quota and tracks usage
+✅ **Search → Timeline Navigation** — smooth transitions with proper movie indexing
+✅ **Overlay System** — Profile and paywall use closure-based dismissal
+✅ **iOS 15 compatibility** (NavigationView); ready for NavigationStack on iOS 16+
 🚧 UI polish and refinement in progress
 
 ## Project Structure
 
 ```
 MelodyMap/
-├── MelodyMapApp.swift          # App entry point, navigation, splash gating
+├── MelodyMapApp.swift          # App entry point, navigation, splash gating, pixie burst
 ├── Assets.xcassets/            # App icons and images
 ├── Info.plist                  # App configuration
 ├── Resources/                  # Static resources
@@ -129,16 +145,16 @@ MelodyMap/
 │   ├── APIService.swift        # Loads/caches movies and songs
 │   └── GoogleSheetsService.swift
 ├── Views/                      # SwiftUI views
-│   ├── SplashView.swift        # Disney-style splash screen
+│   ├── SplashView.swift        # Disney-style splash with pixie trail animation
 │   ├── SearchView.swift        # Home screen, search UI
 │   ├── ProfileView.swift       # Profile, with onClose closure
 │   ├── UpgradeButton.swift     # Upgrade/paywall button
 │   ├── DailyUsesCounterButton.swift # Profile/daily uses button
 │   ├── Paywall/PaywallView.swift    # Paywall, with onClose closure
-│   ├── TimelineView.swift
+│   ├── TimelineView.swift      # Timeline navigation with back button
 │   ├── SongDetailView.swift
-│   ├── MoviePageView.swift
-│   ├── PageCurlView.swift
+│   ├── MoviePageView.swift     # Individual movie pages with timeline
+│   ├── PageCurlView.swift      # UIPageViewController wrapper
 │   ├── UsageMeterView.swift
 │   ├── StarButton.swift
 │   └── Components/
@@ -171,9 +187,12 @@ TBD — likely MIT or similar (to be finalized)
 - **AI agent support:** OpenAI Codex / GPT-4o
 - **UX inspiration:** top-tier kids apps, music discovery tools, and polished streaming platforms
 
-## Key Changes
-- Splash screen is now gated on both minimum time and data readiness (movies/songs loaded)
-- AppState manages splash/data readiness and navigation state
-- MainTabView is deprecated; all navigation is in MelodyMapApp.swift
-- Profile and paywall overlays use closure-based dismissal
-- iOS 15: uses NavigationView; ready to migrate to NavigationStack for iOS 16+
+## Key Changes (Latest)
+- **Navigation Architecture:** AppState-driven navigation with SearchView as home screen
+- **Pixie Burst Animation:** Magical transition when moving from splash to main app
+- **Splash Screen Gating:** Waits for both minimum time (2.5s) and data readiness
+- **Daily Uses Counter:** Persistent tracking with proper initialization and UserDefaults
+- **UsageTrackerService:** Properly initializes daily quota (3 views/day) and tracks usage
+- **Search → Timeline Navigation:** Smooth transitions with proper movie indexing
+- **Overlay System:** Profile and paywall use closure-based dismissal
+- **iOS 15:** Uses NavigationView; ready to migrate to NavigationStack for iOS 16+
