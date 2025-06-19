@@ -58,9 +58,9 @@ struct Movie: Identifiable, Codable {
 | Aspect | Spec |
 |--------|------|
 | Orientation | Portrait 9 × 16 |
-| Page Controller | `UIPageViewController` with `.pageCurl` |
-| Per-Movie Page | Poster · horizontal timeline line · snap-dots at % · arrow buttons left / right |
-| Song Navigation | Drag on timeline (magnetic snap) and arrow taps |
+| Page Controller | `UIPageViewController` with `.pageCurl` — **now locked to a single movie; users cannot swipe/curl to other movies** |
+| Per-Movie Page | Poster · horizontal timeline line · snap-dots at % · arrow buttons left / right (only between songs in the same movie) |
+| Song Navigation | Drag on timeline (magnetic snap) and arrow taps (within current movie only) |
 | Collapsed Song Panel | Start Time (top) → divider → Song Title + ⭐ → Movie · Year → Characters |
 | Expanded Panel | Streaming icons (Disney+ first) · Purchase icons · Blurb · Keywords · Share · reserved mini-preview slot |
 | Movies w/o Songs | Excluded server-side |
@@ -113,7 +113,7 @@ Gesture / Dismiss: swipe ← / → or tap X → page-curl back.
 | Reward | +2 views per 30 s rewarded ad |
 | Daily cap | 15 views |
 | Meter | Icon-only pill top-right ("n / 3" + progress ring); hides for subscribers |
-| Quota Sheet | Page-curl modal: Watch Ad (+2) · Go Unlimited · Not Now |
+| Quota Sheet | Page-curl modal: Watch Ad (+2) · Go Unlimited · Not Now — **now shown consistently in both search and timeline views** |
 | Cooldown | 30 s if ad aborted |
 | Ad Limit | 6 rewarded ads / day |
 | Persistence | UserDefaults with proper initialization |
@@ -189,6 +189,9 @@ Tap targets ≥ 44 pt; VoiceOver labels for timeline dots & icons.
 - **Daily Uses Counter:** Persistent tracking with proper initialization and UserDefaults
 - **Search → Timeline Navigation:** Smooth transitions with proper movie indexing
 - **Overlay System:** Profile and paywall use closure-based dismissal
+- **Timeline Navigation:** Now strictly within a single movie (no accidental navigation to other movies)
+- **Unified Quota Handling:** QuotaExceededSheet is shown consistently when out of daily uses, both in search and timeline
+- **Improved UX:** Unified quota logic and modal handling for a seamless experience.
 
 _End of Spec_
 

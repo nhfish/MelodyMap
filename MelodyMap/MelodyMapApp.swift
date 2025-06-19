@@ -79,6 +79,7 @@ struct MelodyMapApp: App {
                                 .zIndex(3)
                             }
                             
+                            // Profile button - uniform placement across all screens
                             VStack {
                                 HStack {
                                     Spacer()
@@ -94,17 +95,15 @@ struct MelodyMapApp: App {
                             }
                             .zIndex(3)
                         }
-                        .background(
-                            NavigationLink(
-                                destination: ProfileView(onClose: { appState.showingProfile = false }),
-                                isActive: $appState.showingProfile
-                            ) { EmptyView() }
-                            .hidden()
-                        )
                     }
                     .navigationViewStyle(StackNavigationViewStyle())
                     .sheet(isPresented: $appState.showPaywall) {
                         PaywallView(onClose: { appState.showPaywall = false })
+                    }
+                    .sheet(isPresented: $appState.showingProfile) {
+                        ProfileView(onClose: { appState.showingProfile = false })
+                            .environmentObject(UsageTrackerService.shared)
+                            .environmentObject(AdService.shared)
                     }
                     .environmentObject(UsageTrackerService.shared)
                     .environmentObject(AdService.shared)

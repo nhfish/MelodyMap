@@ -23,7 +23,6 @@ struct TimelineView: View {
                 .padding(.leading)
                 Spacer()
             }
-            .padding(.top)
             
             PageCurlView(
                 movies: viewModel.movies, 
@@ -56,6 +55,14 @@ struct TimelineView: View {
             NavigationView {
                 SongDetailView(song: song)
             }
+        }
+        .safeAreaInset(edge: .top) { Spacer().frame(height: 0) }
+        .sheet(isPresented: $viewModel.showQuotaSheet) {
+            QuotaExceededSheet(
+                onWatchAd: { viewModel.handleWatchAd() },
+                onUpgrade: { viewModel.handleUpgrade() }
+            )
+            .environmentObject(usage)
         }
     }
 }

@@ -56,44 +56,30 @@ struct MoviePageView: View {
                             Button(action: {
                                 guard selectedIndex > 0 else { return }
                                 
-                                // Check if user can consume a view
-                                if !usage.canConsume() {
-                                    print("❌ MoviePageView: No remaining uses for left arrow navigation")
-                                    return
-                                }
-                                
-                                // Consume the view and navigate
-                                usage.consumeView()
+                                // Navigate to previous song without consuming quota
                                 selectedIndex -= 1
                                 let song = songsForMovie[selectedIndex]
                                 withAnimation { proxy.scrollTo(song.id, anchor: .top) }
-                                print("✅ MoviePageView: Consumed view for left arrow navigation to '\(song.title)'")
+                                print("✅ MoviePageView: Navigated to previous song '\(song.title)'")
                             }) {
                                 Image(systemName: "chevron.left")
                                     .frame(width: 44, height: 44)
                             }
-                            .disabled(selectedIndex <= 0 || !usage.canConsume())
+                            .disabled(selectedIndex <= 0)
                             Spacer()
                             Button(action: {
                                 guard selectedIndex + 1 < songsForMovie.count else { return }
                                 
-                                // Check if user can consume a view
-                                if !usage.canConsume() {
-                                    print("❌ MoviePageView: No remaining uses for right arrow navigation")
-                                    return
-                                }
-                                
-                                // Consume the view and navigate
-                                usage.consumeView()
+                                // Navigate to next song without consuming quota
                                 selectedIndex += 1
                                 let song = songsForMovie[selectedIndex]
                                 withAnimation { proxy.scrollTo(song.id, anchor: .top) }
-                                print("✅ MoviePageView: Consumed view for right arrow navigation to '\(song.title)'")
+                                print("✅ MoviePageView: Navigated to next song '\(song.title)'")
                             }) {
                                 Image(systemName: "chevron.right")
                                     .frame(width: 44, height: 44)
                             }
-                            .disabled(selectedIndex + 1 >= songsForMovie.count || !usage.canConsume())
+                            .disabled(selectedIndex + 1 >= songsForMovie.count)
                         }
                     }
                     .contentShape(Rectangle())

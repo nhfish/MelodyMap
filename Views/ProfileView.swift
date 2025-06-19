@@ -8,42 +8,119 @@ struct ProfileView: View {
     var onClose: (() -> Void)? = nil
 
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                if let onClose = onClose {
-                    Button(action: onClose) {
-                        Image(systemName: "xmark.circle.fill")
-                            .resizable()
-                            .frame(width: 28, height: 28)
-                            .foregroundColor(.secondary)
-                            .padding(8)
+        ZStack {
+            // Background overlay
+            Color.black.opacity(0.4)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    onClose?()
+                }
+            
+            // Card content
+            VStack(spacing: 0) {
+                // Close button at top
+                HStack {
+                    Spacer()
+                    if let onClose = onClose {
+                        Button(action: onClose) {
+                            Image(systemName: "xmark.circle.fill")
+                                .resizable()
+                                .frame(width: 28, height: 28)
+                                .foregroundColor(.secondary)
+                                .padding(8)
+                        }
+                        .accessibilityLabel("Close Profile")
                     }
-                    .accessibilityLabel("Close Profile")
                 }
-            }
-            Form {
-                Section(header: Text("Subscription")) {
-                    Text(viewModel.isSubscribed ? "Subscribed" : "Free User")
-                }
-                Section(header: Text("Daily Uses")) {
-                    Text("Remaining: \(tracker.remaining)")
-                    Button("Watch Ad to Extend") {
-                        guard let root = UIApplication.shared.connectedScenes
-                            .compactMap({ ($0 as? UIWindowScene)?.windows.first { $0.isKeyWindow } })
-                            .first?.rootViewController else { return }
-                        loadingAd = true
-                        adService.presentAd(from: root) { success in
-                            if success { tracker.addRewarded(2) }
-                            loadingAd = false
+                .padding(.horizontal)
+                .padding(.top, 8)
+                
+                // Profile content
+                VStack(spacing: 24) {
+                    // Header
+                    VStack(spacing: 8) {
+                        Image(systemName: "person.circle.fill")
+                            .font(.system(size: 60))
+                            .foregroundColor(.blue)
+                        
+                        Text("Profile")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                    }
+                    .padding(.top, 20)
+                    
+                    // Subscription status
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Subscription")
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                        
+                        HStack {
+                            Image(systemName: viewModel.isSubscribed ? "checkmark.circle.fill" : "circle")
+                                .foregroundColor(viewModel.isSubscribed ? .green : .gray)
+                            Text(viewModel.isSubscribed ? "Subscribed" : "Free User")
+                                .font(.body)
+                            Spacer()
+                        }
+                        .padding(.horizontal)
+                        .padding(.vertical, 12)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                    }
+                    .padding(.horizontal)
+                    
+                    // Daily uses
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Daily Uses")
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                        
+                        VStack(spacing: 8) {
+                            HStack {
+                                Image(systemName: "clock.fill")
+                                    .foregroundColor(.blue)
+                                Text("Remaining: \(tracker.remaining)")
+                                    .font(.body)
+                                Spacer()
+                            }
+                            
+                            Button(action: {
+                                guard let root = UIApplication.shared.connectedScenes
+                                    .compactMap({ ($0 as? UIWindowScene)?.windows.first { $0.isKeyWindow } })
+                                    .first?.rootViewController else { return }
+                                loadingAd = true
+                                adService.presentAd(from: root) { success in
+                                    if success { tracker.addRewarded(2) }
+                                    loadingAd = false
+                                }
+                            }) {
+                                HStack {
+                                    Image(systemName: "play.circle.fill")
+                                        .foregroundColor(.green)
+                                    Text("Watch Ad to Extend")
+                                        .font(.body)
+                                        .fontWeight(.medium)
+                                    Spacer()
+                                }
+                            }
+                            .disabled(loadingAd)
+                            .padding(.horizontal)
+                            .padding(.vertical, 12)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(8)
                         }
                     }
-                    .disabled(loadingAd)
+                    .padding(.horizontal)
+                    
+                    Spacer()
                 }
             }
-            Spacer()
+            .background(Color(.systemBackground))
+            .cornerRadius(20)
+            .shadow(radius: 20)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 40)
         }
-        .navigationTitle("Profile")
     }
 }
 

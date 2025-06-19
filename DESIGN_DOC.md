@@ -142,4 +142,7 @@ Remote-config keys will allow tuning quota and pricing without app updates. Addi
 - **Search → Timeline Navigation:** Smooth transitions with proper movie indexing
 - **Overlay System:** Profile and paywall use closure-based dismissal
 - **iOS 15:** Uses NavigationView; ready to migrate to NavigationStack for iOS 16+
+- **Timeline Navigation:** Users can now only navigate between songs within a single movie in the timeline view. Swiping or curling to other movies is disabled.
+- **Unified Quota Handling:** The QuotaExceededSheet is now presented consistently when out of daily uses, both in search and timeline views.
+- **Improved UX:** Unified quota logic and modal handling for a seamless experience.
 

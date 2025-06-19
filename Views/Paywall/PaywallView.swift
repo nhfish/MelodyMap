@@ -26,8 +26,17 @@ struct PaywallView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
+        ZStack {
+            // Background overlay
+            Color.black.opacity(0.4)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    onClose?()
+                }
+            
+            // Card content
+            VStack(spacing: 0) {
+                // Close button at top
                 HStack {
                     Spacer()
                     if let onClose = onClose {
@@ -41,6 +50,9 @@ struct PaywallView: View {
                         .accessibilityLabel("Close Paywall")
                     }
                 }
+                .padding(.horizontal)
+                .padding(.top, 8)
+                
                 ScrollView {
                     VStack(spacing: 32) {
                         // Header
@@ -176,15 +188,11 @@ struct PaywallView: View {
                     }
                 }
             }
-            .navigationTitle("Premium")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Close") {
-                        // TODO: Add dismiss action
-                    }
-                }
-            }
+            .background(Color(.systemBackground))
+            .cornerRadius(20)
+            .shadow(radius: 20)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 40)
         }
         .alert("Purchases Disabled", isPresented: $showingAlert) {
             Button("OK") { }

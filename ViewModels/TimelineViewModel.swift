@@ -19,6 +19,7 @@ final class TimelineViewModel: ObservableObject {
             }
         }
     }
+    @Published var showQuotaSheet: Bool = false
     
     init() {
         // No-op: movies and songs are set by AppState
@@ -35,27 +36,23 @@ final class TimelineViewModel: ObservableObject {
     }
     
     func presentSongDetail(for song: Song) {
-        selectedSong = song
-        
-        // Check if user can consume a view
         if !UsageTrackerService.shared.canConsume() {
-            print("❌ TimelineViewModel: No remaining uses, triggering watch ad reward")
-            // Directly trigger watch ad instead of showing quota sheet
-            watchAd()
-        } else {
-            // Consume the view and present song detail
-            UsageTrackerService.shared.consumeView()
-            // The view will handle presenting the song detail
+            print("❌ TimelineViewModel: No remaining uses, showing quota sheet")
+            showQuotaSheet = true
+            return
         }
+        // Consume the view and present song detail
+        UsageTrackerService.shared.consumeView()
+        selectedSong = song
     }
     
-    // MARK: - Phase 7-3 Stub
-    func watchAd() {
+    // Called from QuotaExceededSheet action
+    func handleWatchAd() {
         UsageTrackerService.shared.addRewarded(2)
-        
-        // If user was trying to view a song when they had no remaining uses,
-        // the song detail should already be set in selectedSong, so no additional action needed
-        // The view will handle presenting the song detail
-        print("✅ TimelineViewModel: Ad watched, song detail should be presented")
+        showQuotaSheet = false
+    }
+    func handleUpgrade() {
+        // This would trigger the paywall in the app state
+        showQuotaSheet = false
     }
 }

@@ -7,11 +7,13 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 ## Features
 🎵 **Smart Song Search** — instantly find any song with a single search bar
 
-🎬 **Movie Timeline View** — see where each song appears in the movie with an intuitive timeline
+🎬 **Movie Timeline View** — see where each song appears in the movie with an intuitive timeline. **Navigation is now strictly within a single movie; users cannot swipe or curl to other movies from the timeline.**
 
 📋 **Manually Curated Content** — all songs are added and tagged by hand to ensure quality
 
-🎯 **Usage Tracking** — daily limits (3 views/day) with extension options via ads or premium subscription
+🎯 **Usage Tracking** — daily limits (3 views/day) with extension options via rewarded ads or subscription
+
+🛡️ **Unified Quota Handling** — The Quota Exceeded Sheet now appears consistently when out of daily uses, both in search and timeline views, for a seamless experience.
 
 💎 **Premium Subscription** — unlock unlimited song views with monthly or yearly plans
 
@@ -196,3 +198,6 @@ TBD — likely MIT or similar (to be finalized)
 - **Search → Timeline Navigation:** Smooth transitions with proper movie indexing
 - **Overlay System:** Profile and paywall use closure-based dismissal
 - **iOS 15:** Uses NavigationView; ready to migrate to NavigationStack for iOS 16+
+- Timeline navigation is now strictly within a single movie (no accidental navigation to other movies)
+- QuotaExceededSheet is shown consistently when out of daily uses, both in search and timeline
+- Unified quota logic for improved UX

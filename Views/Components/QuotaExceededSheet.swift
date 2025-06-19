@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct QuotaExceededSheet: View {
+    @EnvironmentObject private var tracker: UsageTrackerService
     let onWatchAd: () -> Void
     let onUpgrade: () -> Void
     
@@ -16,7 +17,7 @@ struct QuotaExceededSheet: View {
                     .font(.title2)
                     .fontWeight(.bold)
                 
-                Text("You've reached your daily limit of 10 song views. Watch an ad to continue or upgrade to unlimited access.")
+                Text("You've reached your daily limit of \(tracker.quota) song views. Watch an ad to continue or upgrade to unlimited access.")
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -30,12 +31,12 @@ struct QuotaExceededSheet: View {
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     Spacer()
-                    Text("10/10")
+                    Text("\(tracker.quota - tracker.remaining)/\(tracker.quota)")
                         .font(.subheadline)
                         .fontWeight(.semibold)
                 }
                 
-                ProgressView(value: 1.0)
+                ProgressView(value: Double(tracker.quota - tracker.remaining), total: Double(tracker.quota))
                     .progressViewStyle(LinearProgressViewStyle(tint: .orange))
             }
             .padding(.horizontal)
@@ -83,5 +84,6 @@ struct QuotaExceededSheet_Previews: PreviewProvider {
             onWatchAd: {},
             onUpgrade: {}
         )
+        .environmentObject(UsageTrackerService.shared)
     }
 } 

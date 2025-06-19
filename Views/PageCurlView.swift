@@ -25,7 +25,8 @@ struct PageCurlView: UIViewControllerRepresentable {
             transitionStyle: .pageCurl,
             navigationOrientation: .horizontal
         )
-        controller.dataSource = context.coordinator
+        // Disable swiping/curling to other movies by not setting dataSource
+        // controller.dataSource = context.coordinator
         if let scrollView = controller.view.subviews.compactMap({ $0 as? UIScrollView }).first {
             scrollView.bounces = false
         }
@@ -85,7 +86,7 @@ struct PageCurlView: UIViewControllerRepresentable {
         }
     }
 
-    class Coordinator: NSObject, UIPageViewControllerDataSource {
+    class Coordinator: NSObject {
         var parent: PageCurlView
         var cache: [String: UIViewController] = [:]
         var lastSetMovieIndex: Int = -1
@@ -105,25 +106,6 @@ struct PageCurlView: UIViewControllerRepresentable {
             ))
             cache[movie.id] = vc
             return vc
-        }
-
-        private func index(of viewController: UIViewController) -> Int? {
-            for (index, movie) in parent.movies.enumerated() {
-                if cache[movie.id] === viewController { return index }
-            }
-            return nil
-        }
-
-        func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-            guard let index = index(of: viewController), index > 0 else { return nil }
-            let movie = parent.movies[index - 1]
-            return controller(for: movie)
-        }
-
-        func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-            guard let index = index(of: viewController), index + 1 < parent.movies.count else { return nil }
-            let movie = parent.movies[index + 1]
-            return controller(for: movie)
         }
     }
 }
