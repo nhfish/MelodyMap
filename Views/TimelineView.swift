@@ -7,6 +7,7 @@ struct TimelineView: View {
     
     var body: some View {
         VStack {
+            Spacer().frame(height: 16) // Add top spacing to match SearchView
             // Back button
             HStack {
                 Button(action: {

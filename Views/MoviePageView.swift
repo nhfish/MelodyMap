@@ -13,6 +13,7 @@ struct MoviePageView: View {
 
     @State private var selectedIndex: Int = 0
     @State private var hasHandledPreSelectedSong = false
+    @State private var showQuotaSheet = false
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -55,12 +56,16 @@ struct MoviePageView: View {
                         HStack {
                             Button(action: {
                                 guard selectedIndex > 0 else { return }
-                                
-                                // Navigate to previous song without consuming quota
-                                selectedIndex -= 1
-                                let song = songsForMovie[selectedIndex]
-                                withAnimation { proxy.scrollTo(song.id, anchor: .top) }
-                                print("✅ MoviePageView: Navigated to previous song '\(song.title)'")
+                                // Consume a daily use before navigating
+                                if usage.canConsume() {
+                                    usage.consumeView()
+                                    selectedIndex -= 1
+                                    let song = songsForMovie[selectedIndex]
+                                    withAnimation { proxy.scrollTo(song.id, anchor: .top) }
+                                    print("✅ MoviePageView: Navigated to previous song '\(song.title)'")
+                                } else {
+                                    showQuotaSheet = true
+                                }
                             }) {
                                 Image(systemName: "chevron.left")
                                     .frame(width: 44, height: 44)
@@ -69,12 +74,16 @@ struct MoviePageView: View {
                             Spacer()
                             Button(action: {
                                 guard selectedIndex + 1 < songsForMovie.count else { return }
-                                
-                                // Navigate to next song without consuming quota
-                                selectedIndex += 1
-                                let song = songsForMovie[selectedIndex]
-                                withAnimation { proxy.scrollTo(song.id, anchor: .top) }
-                                print("✅ MoviePageView: Navigated to next song '\(song.title)'")
+                                // Consume a daily use before navigating
+                                if usage.canConsume() {
+                                    usage.consumeView()
+                                    selectedIndex += 1
+                                    let song = songsForMovie[selectedIndex]
+                                    withAnimation { proxy.scrollTo(song.id, anchor: .top) }
+                                    print("✅ MoviePageView: Navigated to next song '\(song.title)'")
+                                } else {
+                                    showQuotaSheet = true
+                                }
                             }) {
                                 Image(systemName: "chevron.right")
                                     .frame(width: 44, height: 44)
@@ -104,7 +113,7 @@ struct MoviePageView: View {
 
                 let currentSong = songsForMovie[selectedIndex]
                 VStack(alignment: .leading, spacing: 4) {
-                    Text((currentSong.startTime ?? "00:00:00") + "  ·  \(currentSong.percent ?? 0)%")
+                    Text(formatTimecode(currentSong.startTime) + "  ·  \(currentSong.percent ?? 0)%")
                         .font(.caption)
                     Divider()
                     HStack {
@@ -112,7 +121,7 @@ struct MoviePageView: View {
                             .bold()
                         StarButton()
                     }
-                    Text("\(movie.title) · \(movie.releaseYear)")
+                    Text("\(movie.title) · \(String(movie.releaseYear))")
                     Text("Characters: " + currentSong.singers.joined(separator: ", "))
                 }
                 .onTapGesture { 
@@ -129,6 +138,13 @@ struct MoviePageView: View {
                 if song != nil && !hasHandledPreSelectedSong {
                     handlePreSelectedSong(proxy: proxy)
                 }
+            }
+            .sheet(isPresented: $showQuotaSheet) {
+                QuotaExceededSheet(
+                    onWatchAd: { showQuotaSheet = false },
+                    onUpgrade: { showQuotaSheet = false }
+                )
+                .environmentObject(usage)
             }
         }
     }
@@ -148,6 +164,29 @@ struct MoviePageView: View {
             withAnimation(.easeInOut(duration: 0.5)) {
                 proxy.scrollTo(preSelectedSong.id, anchor: UnitPoint.top)
             }
+        }
+    }
+
+    /// Ensures the timecode is always displayed as HH:MM:SS
+    private func formatTimecode(_ time: String?) -> String {
+        guard let time = time, !time.isEmpty else { return "00:00:00" }
+        let parts = time.split(separator: ":").map { String($0) }
+        if parts.count == 3 {
+            // Already HH:MM:SS
+            return String(format: "%02d:%02d:%02d",
+                          Int(parts[0]) ?? 0,
+                          Int(parts[1]) ?? 0,
+                          Int(parts[2]) ?? 0)
+        } else if parts.count == 2 {
+            // MM:SS, pad with 00 for hours
+            return String(format: "00:%02d:%02d",
+                          Int(parts[0]) ?? 0,
+                          Int(parts[1]) ?? 0)
+        } else if parts.count == 1 {
+            // SS only
+            return String(format: "00:00:%02d", Int(parts[0]) ?? 0)
+        } else {
+            return "00:00:00"
         }
     }
 }

@@ -145,4 +145,9 @@ Remote-config keys will allow tuning quota and pricing without app updates. Addi
 - **Timeline Navigation:** Users can now only navigate between songs within a single movie in the timeline view. Swiping or curling to other movies is disabled.
 - **Unified Quota Handling:** The QuotaExceededSheet is now presented consistently when out of daily uses, both in search and timeline views.
 - **Improved UX:** Unified quota logic and modal handling for a seamless experience.
+- **Arrow Navigation:** Arrow navigation in TimelineView now consumes a daily use and triggers the QuotaExceededSheet if out of quota.
+- **QuotaExceededSheet:** Cleaner UI (no usage bar/text) and used for all quota-exceeded actions, including arrow navigation.
+- **Profile Button Consistency:** Profile button is now visually aligned in both TimelineView and SearchView.
+- **Timecode Formatting:** Song timecodes are always displayed as HH:MM:SS.
+- **Release Year Display:** Release year is always shown without a comma.
 

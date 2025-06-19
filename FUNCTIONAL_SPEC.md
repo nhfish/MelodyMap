@@ -67,6 +67,9 @@ struct Movie: Identifiable, Codable {
 | Sorting | `SortOrder` ascending |
 | Favorites | `UserDefaults` array of `song.id` |
 | Access | Via search results with smooth transitions |
+| Arrow Navigation | Consumes a daily use and triggers the QuotaExceededSheet if out of quota |
+| Timecode | Always formatted as HH:MM:SS |
+| Release Year | Always shown without a comma |
 
 ## 5. System 4 – Global Search
 
@@ -113,7 +116,7 @@ Gesture / Dismiss: swipe ← / → or tap X → page-curl back.
 | Reward | +2 views per 30 s rewarded ad |
 | Daily cap | 15 views |
 | Meter | Icon-only pill top-right ("n / 3" + progress ring); hides for subscribers |
-| Quota Sheet | Page-curl modal: Watch Ad (+2) · Go Unlimited · Not Now — **now shown consistently in both search and timeline views** |
+| Quota Sheet | Cleaner UI (no usage bar/text), used for all quota-exceeded actions including arrow navigation |
 | Cooldown | 30 s if ad aborted |
 | Ad Limit | 6 rewarded ads / day |
 | Persistence | UserDefaults with proper initialization |
@@ -191,7 +194,11 @@ Tap targets ≥ 44 pt; VoiceOver labels for timeline dots & icons.
 - **Overlay System:** Profile and paywall use closure-based dismissal
 - **Timeline Navigation:** Now strictly within a single movie (no accidental navigation to other movies)
 - **Unified Quota Handling:** QuotaExceededSheet is shown consistently when out of daily uses, both in search and timeline
-- **Improved UX:** Unified quota logic and modal handling for a seamless experience.
+- **Improved UX:** Unified quota logic and modal handling for a seamless experience
+- **Arrow navigation in TimelineView now consumes a daily use and triggers the QuotaExceededSheet if out of quota**
+- **QuotaExceededSheet is cleaner (no usage bar/text) and used for all quota-exceeded actions**
+- **Profile button alignment is now visually consistent across views**
+- **Timecode and release year formatting improved for clarity**
 
 _End of Spec_
 

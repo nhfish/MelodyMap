@@ -24,23 +24,6 @@ struct QuotaExceededSheet: View {
                     .padding(.horizontal)
             }
             
-            // Usage info
-            VStack(spacing: 8) {
-                HStack {
-                    Text("Today's Usage:")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    Text("\(tracker.quota - tracker.remaining)/\(tracker.quota)")
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                }
-                
-                ProgressView(value: Double(tracker.quota - tracker.remaining), total: Double(tracker.quota))
-                    .progressViewStyle(LinearProgressViewStyle(tint: .orange))
-            }
-            .padding(.horizontal)
-            
             // Buttons
             VStack(spacing: 12) {
                 Button(action: onWatchAd) {

@@ -19,6 +19,12 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 
 ✨ **Pixie Burst Animation** — magical transition effects when moving from splash to main app
 
+- **Timeline Navigation:** Arrow navigation between songs now consumes a daily use and will show the QuotaExceededSheet if out of quota.
+- **Unified Quota Handling:** The QuotaExceededSheet is now used for all quota-exceeded actions, including arrow navigation, and no longer shows today's usage or a progress bar.
+- **Profile Button Consistency:** The profile button is now visually aligned in both TimelineView and SearchView, matching the navigation bar style.
+- **Timecode Formatting:** Song timecodes are always displayed as HH:MM:SS.
+- **Release Year Display:** Release year is always shown without a comma.
+
 ## Current Development Status
 
 ### ✅ **Completed**
@@ -201,3 +207,8 @@ TBD — likely MIT or similar (to be finalized)
 - Timeline navigation is now strictly within a single movie (no accidental navigation to other movies)
 - QuotaExceededSheet is shown consistently when out of daily uses, both in search and timeline
 - Unified quota logic for improved UX
+- **Timeline Navigation:** Arrow navigation between songs now consumes a daily use and will show the QuotaExceededSheet if out of quota.
+- **Unified Quota Handling:** The QuotaExceededSheet is now used for all quota-exceeded actions, including arrow navigation, and no longer shows today's usage or a progress bar.
+- **Profile Button Consistency:** The profile button is now visually aligned in both TimelineView and SearchView, matching the navigation bar style.
+- **Timecode Formatting:** Song timecodes are always displayed as HH:MM:SS.
+- **Release Year Display:** Release year is always shown without a comma.
