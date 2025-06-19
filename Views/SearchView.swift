@@ -15,11 +15,13 @@ struct SearchView: View {
     }
 
     var body: some View {
-        NavigationView {
-            VStack {
+        GeometryReader { geo in
+            VStack(spacing: 0) {
+                Spacer()
+                    .frame(height: geo.size.height / 3)
                 TextField("Search", text: $vm.query)
                     .textFieldStyle(.roundedBorder)
-                    .padding([.horizontal, .top])
+                    .padding(.horizontal)
                     .onChange(of: vm.query) { _ in vm.search() }
 
                 if vm.indexedSongs.isEmpty {
@@ -49,24 +51,41 @@ struct SearchView: View {
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
-                    // Results list
-                    List(vm.results, id: \.song.id) { indexed in
-                        Button(action: {
-                            vm.selectSongFromSearch(indexed)
-                        }) {
-                            VStack(alignment: .leading) {
-                                Text(indexed.song.title)
-                                    .bold()
-                                    .foregroundColor(.primary)
-                                Text(indexed.movie.title)
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
+                    // Results list with fade at bottom
+                    ZStack(alignment: .bottom) {
+                        List(vm.results, id: \.song.id) { indexed in
+                            Button(action: {
+                                vm.selectSongFromSearch(indexed)
+                            }) {
+                                VStack(alignment: .leading) {
+                                    Text(indexed.song.title)
+                                        .bold()
+                                        .foregroundColor(.primary)
+                                    Text(indexed.movie.title)
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
                             }
                         }
+                        .listStyle(PlainListStyle())
+                        // Fade gradient overlay at bottom third
+                        LinearGradient(
+                            gradient: Gradient(stops: [
+                                .init(color: Color.clear, location: 0.0),
+                                .init(color: Color.clear, location: 0.7),
+                                .init(color: Color(.systemBackground), location: 1.0)
+                            ]),
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                        .frame(height: geo.size.height / 3)
+                        .allowsHitTesting(false)
+                        .frame(maxHeight: .infinity, alignment: .bottom)
                     }
                 }
+                Spacer(minLength: 0)
             }
-            .navigationTitle("Search")
+            .edgesIgnoringSafeArea(.bottom)
         }
         .onAppear {
             print("🎬 SearchView: onAppear called")
