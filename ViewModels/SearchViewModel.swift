@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import UIKit
 
 @MainActor
 final class SearchViewModel: ObservableObject {
@@ -8,11 +9,17 @@ final class SearchViewModel: ObservableObject {
     @Published var indexedSongs: [IndexedSong] = []
     @Published var navigateToTimeline = false
     @Published var selectedIndexedSong: IndexedSong?
+    @Published var shouldShowQuotaSheet = false
     
     // Closure to handle navigation to timeline
     var onNavigateToTimeline: ((IndexedSong) -> Void)?
     
-    init() {
+    // AdService dependency
+    private let adService: AdService
+    
+    init(onNavigateToTimeline: ((IndexedSong) -> Void)? = nil, adService: AdService = AdService.shared) {
+        self.onNavigateToTimeline = onNavigateToTimeline
+        self.adService = adService
         Task { await buildIndex() }
     }
     
@@ -102,9 +109,8 @@ final class SearchViewModel: ObservableObject {
         selectedIndexedSong = indexedSong
         // Check if user can consume a view (use remaining directly to avoid race)
         if UsageTrackerService.shared.remaining <= 0 {
-            print("❌ SearchViewModel: No remaining uses, triggering watch ad reward")
-            // Directly trigger watch ad instead of showing quota sheet
-            watchAd()
+            print("❌ SearchViewModel: No remaining uses, showing quota exceeded sheet")
+            shouldShowQuotaSheet = true
         } else {
             // Consume the view and navigate to timeline
             UsageTrackerService.shared.consumeView()
@@ -113,16 +119,38 @@ final class SearchViewModel: ObservableObject {
         }
     }
     
+    func dismissQuotaSheet() {
+        shouldShowQuotaSheet = false
+    }
+    
     // MARK: - Phase 7-3 Stub
     func watchAd() {
-        UsageTrackerService.shared.addRewarded(2)
+        // Get the root view controller to present the ad
+        guard let root = UIApplication.shared.connectedScenes
+            .compactMap({ ($0 as? UIWindowScene)?.windows.first { $0.isKeyWindow } })
+            .first?.rootViewController else { 
+            print("❌ SearchViewModel: Could not get root view controller for ad presentation")
+            return 
+        }
         
-        // If user was trying to view a song when they had no remaining uses,
-        // navigate to the timeline after watching the ad
-        if let selectedSong = selectedIndexedSong {
-            print("✅ SearchViewModel: Ad watched, navigating to timeline for '\(selectedSong.song.title)'")
-            onNavigateToTimeline?(selectedSong)
-            selectedIndexedSong = nil // Clear the selection
+        print("🎬 SearchViewModel: Presenting ad for reward")
+        adService.presentAd(from: root) { success in
+            Task { @MainActor in
+                if success {
+                    print("✅ SearchViewModel: Ad watched successfully, adding 2 uses")
+                    UsageTrackerService.shared.addRewarded(2)
+                    
+                    // If user was trying to view a song when they had no remaining uses,
+                    // navigate to the timeline after watching the ad
+                    if let selectedSong = self.selectedIndexedSong {
+                        print("✅ SearchViewModel: Ad watched, navigating to timeline for '\(selectedSong.song.title)'")
+                        self.onNavigateToTimeline?(selectedSong)
+                        self.selectedIndexedSong = nil // Clear the selection
+                    }
+                } else {
+                    print("❌ SearchViewModel: Ad failed or was dismissed without reward")
+                }
+            }
         }
     }
 }

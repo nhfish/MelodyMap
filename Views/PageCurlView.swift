@@ -42,7 +42,18 @@ struct PageCurlView: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UIPageViewController, context: Context) {
+        // Only update if there are actual changes
+        let hasMoviesChanged = context.coordinator.parent.movies.count != movies.count
+        let hasIndexChanged = context.coordinator.parent.currentMovieIndex != currentMovieIndex
+        let hasSongChanged = context.coordinator.parent.preSelectedSong?.id != preSelectedSong?.id
+        
+        // Update the parent reference
         context.coordinator.parent = self
+        
+        // Only proceed if there are actual changes
+        guard hasMoviesChanged || hasIndexChanged || hasSongChanged else {
+            return
+        }
         
         print("🔄 PageCurlView updateUIViewController - movies: \(movies.count), currentMovieIndex: \(currentMovieIndex), lastSet: \(context.coordinator.lastSetMovieIndex)")
         
@@ -50,6 +61,15 @@ struct PageCurlView: UIViewControllerRepresentable {
         if !movies.isEmpty && currentMovieIndex < movies.count && currentMovieIndex != context.coordinator.lastSetMovieIndex {
             let targetMovie = movies[currentMovieIndex]
             let targetVC = context.coordinator.controller(for: targetMovie)
+            
+            // Check if we're already showing the correct view controller
+            if let currentVC = uiViewController.viewControllers?.first,
+               currentVC === targetVC {
+                // Already showing the correct view controller, just update the index
+                context.coordinator.lastSetMovieIndex = currentMovieIndex
+                print("🔄 Already showing correct movie: \(targetMovie.title)")
+                return
+            }
             
             print("🎯 Target movie: \(targetMovie.title) at index \(currentMovieIndex)")
             

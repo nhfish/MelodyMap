@@ -1,9 +1,18 @@
 import SwiftUI
 
 struct SearchView: View {
-    @StateObject private var vm = SearchViewModel()
+    @StateObject private var vm: SearchViewModel
     @EnvironmentObject private var usage: UsageTrackerService
+    @EnvironmentObject private var adService: AdService
     var onNavigateToTimeline: ((IndexedSong) -> Void)? = nil
+
+    @State private var showQuotaSheet = false
+
+    init(onNavigateToTimeline: ((IndexedSong) -> Void)? = nil) {
+        print("🎬 SearchView: init called")
+        _vm = StateObject(wrappedValue: SearchViewModel(onNavigateToTimeline: onNavigateToTimeline, adService: AdService.shared))
+        self.onNavigateToTimeline = onNavigateToTimeline
+    }
 
     var body: some View {
         NavigationView {
@@ -60,12 +69,26 @@ struct SearchView: View {
             }
             .navigationTitle("Search")
         }
-        .overlay(alignment: .topTrailing) {
-            UsageMeterView()
-                .padding()
-        }
         .onAppear {
-            vm.onNavigateToTimeline = onNavigateToTimeline
+            print("🎬 SearchView: onAppear called")
+        }
+        .onReceive(vm.$shouldShowQuotaSheet) { value in
+            print("🎬 SearchView: shouldShowQuotaSheet changed to \(value)")
+            showQuotaSheet = value
+        }
+        .sheet(isPresented: $showQuotaSheet, onDismiss: { vm.dismissQuotaSheet() }) {
+            QuotaExceededSheet(
+                onWatchAd: {
+                    print("🎬 SearchView: Watch Ad button tapped")
+                    vm.watchAd()
+                    showQuotaSheet = false
+                },
+                onUpgrade: {
+                    print("🎬 SearchView: Upgrade button tapped")
+                    // TODO: Implement upgrade flow
+                    showQuotaSheet = false
+                }
+            )
         }
     }
 }

@@ -15,7 +15,9 @@ final class UsageTrackerService: ObservableObject {
     @Published private(set) var remaining: Int = 0
 
     private init() {
+        print("🎯 UsageTrackerService: init called")
         resetIfNeeded()
+        print("🎯 UsageTrackerService: initialized with \(remaining) remaining uses")
     }
 
     func canConsume() -> Bool {
@@ -41,10 +43,12 @@ final class UsageTrackerService: ObservableObject {
         if let last = defaults.object(forKey: dateKey) as? Date,
            Calendar.current.isDateInToday(last) {
             remaining = defaults.integer(forKey: remainingKey)
+            print("🎯 UsageTrackerService: resetIfNeeded - using existing value: \(remaining)")
             return
         }
         remaining = baseQuota
         defaults.set(Date(), forKey: dateKey)
         defaults.set(remaining, forKey: remainingKey)
+        print("🎯 UsageTrackerService: resetIfNeeded - reset to base quota: \(remaining)")
     }
 }

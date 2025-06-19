@@ -21,21 +21,7 @@ final class TimelineViewModel: ObservableObject {
     }
     
     init() {
-        load()
-    }
-
-    func load() {
-        Task {
-            do {
-                let fetchedMovies = try await APIService.shared.fetchMovies()
-                let fetchedSongs = try await APIService.shared.fetchSongs()
-                movies = fetchedMovies.sorted { $0.sortOrder < $1.sortOrder }
-                songs = fetchedSongs
-                print("📚 TimelineViewModel loaded \(movies.count) movies and \(songs.count) songs")
-            } catch {
-                print("Failed to load timeline data: \(error)")
-            }
-        }
+        // No-op: movies and songs are set by AppState
     }
     
     func navigateToMovieWithSong(_ indexedSong: IndexedSong) {

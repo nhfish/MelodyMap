@@ -36,7 +36,6 @@ struct TimelineView: View {
             )
         }
         .onAppear {
-            viewModel.load()
             // Sync the view model with app state
             viewModel.currentMovieIndex = appState.selectedMovieIndex
             viewModel.preSelectedSong = appState.preSelectedSong
@@ -52,10 +51,6 @@ struct TimelineView: View {
                     appState.preSelectedSong = nil
                 }
             }
-        }
-        .overlay(alignment: .topTrailing) {
-            UsageMeterView()
-                .padding()
         }
         .sheet(item: $viewModel.selectedSong) { song in
             NavigationView {
