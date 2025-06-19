@@ -51,37 +51,46 @@ struct SearchView: View {
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
-                    // Results list with fade at bottom
-                    ZStack(alignment: .bottom) {
-                        List(vm.results, id: \.song.id) { indexed in
-                            Button(action: {
-                                vm.selectSongFromSearch(indexed)
-                            }) {
-                                VStack(alignment: .leading) {
-                                    Text(indexed.song.title)
-                                        .bold()
-                                        .foregroundColor(.primary)
-                                    Text(indexed.movie.title)
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
+                    // Results list with position-based fade and no separators
+                    ScrollView {
+                        VStack(spacing: 0) {
+                            ForEach(vm.results, id: \.song.id) { indexed in
+                                GeometryReader { rowGeo in
+                                    Button(action: {
+                                        vm.selectSongFromSearch(indexed)
+                                    }) {
+                                        VStack(alignment: .leading, spacing: 2) {
+                                            Text(indexed.song.title)
+                                                .bold()
+                                                .foregroundColor(.primary)
+                                            Text(indexed.movie.title)
+                                                .font(.caption)
+                                                .foregroundColor(.secondary)
+                                        }
+                                        .padding(.vertical, 8)
+                                        .padding(.horizontal)
+                                    }
+                                    .opacity({
+                                        let rowFrame = rowGeo.frame(in: .named("searchScroll"))
+                                        let screenHeight = geo.size.height
+                                        let fadeStartY = screenHeight * (2.0/3.0)
+                                        let fadeEndY = screenHeight
+                                        let rowMidY = rowFrame.midY
+                                        if rowMidY < fadeStartY {
+                                            return 1.0
+                                        } else if rowMidY > fadeEndY {
+                                            return 0.0
+                                        } else {
+                                            return 1.0 - ((rowMidY - fadeStartY) / (fadeEndY - fadeStartY))
+                                        }
+                                    }())
                                 }
+                                .frame(height: 44)
                             }
                         }
-                        .listStyle(PlainListStyle())
-                        // Fade gradient overlay at bottom third
-                        LinearGradient(
-                            gradient: Gradient(stops: [
-                                .init(color: Color.clear, location: 0.0),
-                                .init(color: Color.clear, location: 0.7),
-                                .init(color: Color(.systemBackground), location: 1.0)
-                            ]),
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                        .frame(height: geo.size.height / 3)
-                        .allowsHitTesting(false)
-                        .frame(maxHeight: .infinity, alignment: .bottom)
                     }
+                    .coordinateSpace(name: "searchScroll")
+                    .clipped()
                 }
                 Spacer(minLength: 0)
             }
