@@ -63,7 +63,6 @@ struct SearchView: View {
                                     .foregroundColor(.secondary)
                             }
                         }
-                        .disabled(usage.remaining <= 0)
                     }
                 }
             }
