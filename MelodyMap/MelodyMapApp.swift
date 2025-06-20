@@ -102,6 +102,7 @@ struct MelodyMapApp: App {
                                     }
                                 }
                                 .zIndex(3)
+                                .transition(.opacity.animation(.easeInOut))
                             }
                             
                             // Profile button - uniform placement across all screens
@@ -172,6 +173,7 @@ struct MelodyMapApp: App {
                     }
                 }
             }
+            .animation(.easeInOut, value: favorites.favoritedSongIDs.count)
         }
     }
 }
