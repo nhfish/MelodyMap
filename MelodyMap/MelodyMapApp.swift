@@ -91,12 +91,12 @@ struct MelodyMapApp: App {
                                             showingFavorites = true
                                         }) {
                                             Image(systemName: "star.fill")
-                                                .font(.system(size: 24))
-                                                .foregroundColor(.white)
-                                                .padding()
-                                                .background(Color.yellow)
+                                                .resizable()
+                                                .frame(width: 36, height: 36)
+                                                .foregroundColor(.yellow)
+                                                .background(Color.black.opacity(0.6))
                                                 .clipShape(Circle())
-                                                .shadow(radius: 5)
+                                                .shadow(radius: 4)
                                         }
                                         .padding([.trailing, .bottom], 16)
                                     }
