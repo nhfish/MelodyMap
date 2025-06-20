@@ -51,11 +51,11 @@ struct SearchView: View {
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
-                    // Results list with position-based fade and no separators
-                    ScrollView {
-                        VStack(spacing: 0) {
-                            ForEach(vm.results, id: \.song.id) { indexed in
-                                GeometryReader { rowGeo in
+                    // Results list with gradient mask fade at bottom
+                    ZStack {
+                        ScrollView {
+                            VStack(spacing: 0) {
+                                ForEach(vm.results, id: \.song.id) { indexed in
                                     Button(action: {
                                         vm.selectSongFromSearch(indexed)
                                     }) {
@@ -69,28 +69,23 @@ struct SearchView: View {
                                         }
                                         .padding(.vertical, 8)
                                         .padding(.horizontal)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
                                     }
-                                    .opacity({
-                                        let rowFrame = rowGeo.frame(in: .named("searchScroll"))
-                                        let screenHeight = geo.size.height
-                                        let fadeStartY = screenHeight * (2.0/3.0)
-                                        let fadeEndY = screenHeight
-                                        let rowMidY = rowFrame.midY
-                                        if rowMidY < fadeStartY {
-                                            return 1.0
-                                        } else if rowMidY > fadeEndY {
-                                            return 0.0
-                                        } else {
-                                            return 1.0 - ((rowMidY - fadeStartY) / (fadeEndY - fadeStartY))
-                                        }
-                                    }())
                                 }
-                                .frame(height: 44)
                             }
                         }
+                        .mask(
+                            LinearGradient(
+                                gradient: Gradient(stops: [
+                                    .init(color: .black, location: 0.0),
+                                    .init(color: .black, location: 0.66),
+                                    .init(color: .clear, location: 1.0)
+                                ]),
+                                startPoint: .top,
+                                endPoint: .bottom
+                            )
+                        )
                     }
-                    .coordinateSpace(name: "searchScroll")
-                    .clipped()
                 }
                 Spacer(minLength: 0)
             }
