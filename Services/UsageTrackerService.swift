@@ -8,6 +8,9 @@ final class UsageTrackerService: ObservableObject {
     private let baseQuota = 3
     private let dateKey = "UsageTrackerService.lastDate"
     private let remainingKey = "UsageTrackerService.remaining"
+    private let unlockedSongsKey = "UsageTrackerService.unlockedSongs"
+    
+    private var unlockedSongs: [String: Date] = [:]
 
     /// Public accessor for the daily quota limit.
     var quota: Int { baseQuota }
@@ -20,20 +23,57 @@ final class UsageTrackerService: ObservableObject {
     private init() {
         print("🎯 UsageTrackerService: init called")
         resetIfNeeded()
-        print("🎯 UsageTrackerService: initialized with \(remaining) remaining uses")
+        loadUnlockedSongs()
+        print("🎯 UsageTrackerseService: initialized with \(remaining) remaining uses and \(unlockedSongs.count) unlocked songs.")
     }
 
+    @available(*, deprecated, message: "Use canViewSong(withId:) instead")
     func canConsume() -> Bool {
         resetIfNeeded()
         return remaining > 0
     }
+    
+    func canViewSong(withId songId: String) -> Bool {
+        resetIfNeeded()
+        if let expiryDate = unlockedSongs[songId], expiryDate > Date() {
+            return true // Access is free
+        }
+        return remaining > 0 // Fallback to daily quota
+    }
 
+    @available(*, deprecated, message: "Use consumeUse(forSongId:) instead")
     func consumeView() {
         resetIfNeeded()
         guard remaining > 0 else { return }
         remaining -= 1
         UserDefaults.standard.set(remaining, forKey: remainingKey)
         print("🎯 UsageTrackerService: consumed view, remaining: \(remaining)")
+    }
+    
+    func consumeUse(forSongId songId: String) {
+        resetIfNeeded()
+        
+        // If the song is already unlocked for free, do nothing.
+        if let expiryDate = unlockedSongs[songId], expiryDate > Date() {
+            print("🎯 UsageTrackerService: song \(songId) already unlocked, no use consumed.")
+            return
+        }
+        
+        // If no uses left, do nothing.
+        guard remaining > 0 else {
+            print("🎯 UsageTrackerService: no uses remaining, cannot consume.")
+            return
+        }
+        
+        // Consume a use and unlock the song for 15 minutes.
+        remaining -= 1
+        UserDefaults.standard.set(remaining, forKey: remainingKey)
+        
+        let expiryDate = Date().addingTimeInterval(15 * 60) // 15 minutes
+        unlockedSongs[songId] = expiryDate
+        saveUnlockedSongs()
+        
+        print("🎯 UsageTrackerService: consumed use for song \(songId), remaining: \(remaining). Unlocked until \(expiryDate).")
     }
 
     func addRewarded(_ bonus: Int) {
@@ -66,5 +106,24 @@ final class UsageTrackerService: ObservableObject {
         defaults.set(remaining, forKey: remainingKey)
         lastResetCheck = now
         print("🎯 UsageTrackerService: reset to base quota: \(remaining)")
+    }
+
+    // MARK: - Unlocked Songs Persistence
+    
+    private func loadUnlockedSongs() {
+        let defaults = UserDefaults.standard
+        if let savedSongs = defaults.dictionary(forKey: unlockedSongsKey) as? [String: Date] {
+            // Filter out any songs whose free access has expired.
+            unlockedSongs = savedSongs.filter { $0.value > Date() }
+            print("🎯 UsageTrackerService: loaded and cleaned unlocked songs. \(unlockedSongs.count) still active.")
+            // Save back the cleaned dictionary
+            if unlockedSongs.count != savedSongs.count {
+                saveUnlockedSongs()
+            }
+        }
+    }
+    
+    private func saveUnlockedSongs() {
+        UserDefaults.standard.set(unlockedSongs, forKey: unlockedSongsKey)
     }
 }

@@ -19,7 +19,8 @@ Melody Map is an iOS-first app built with Swift and SwiftUI. It helps parents an
 - **TimelineViewModel** – controls the page controller and holds movie/song arrays.
 - **SearchViewModel** – builds an in-memory search index and returns grouped results.
 - **SongDetailViewModel** – manages expansion state and favorites.
-- **UsageTrackerService** – tracks daily song views (3/day) and resets the quota with proper UserDefaults persistence.
+- **UsageTrackerService** – tracks daily song views (3/day) and resets the quota with proper UserDefaults persistence. It also tracks recently "unlocked" songs, allowing free re-watches for 15 minutes.
+- **FavoritesService** – manages a persistent list of favorited song IDs using UserDefaults.
 - **AdService** – preloads and presents rewarded ads. *(Uses compile-time flag ADS_ENABLED)*
 - **PurchaseService** – handles StoreKit 2 flows and publishes `isSubscriber`. *(Uses compile-time flag SUBS_ENABLED)*
 
@@ -28,6 +29,7 @@ Melody Map is an iOS-first app built with Swift and SwiftUI. It helps parents an
 - **SearchView** – global search with fuzzy/phonetic matching, primary home screen.
 - **TimelineView** – a `UIPageViewController` showing movie pages with snap points for songs, accessed via search results.
 - **SongDetailView** – collapsible panel with streaming and purchase links.
+- **FavoritesView** – a modal sheet that displays a list of all songs the user has favorited.
 - **ProfileView** – shows usage stats and subscription status, overlay with closure-based dismissal.
 - **QuotaExceededSheet** – modal sheet for when daily limits are reached.
 - **PaywallView** – subscription upgrade interface with monthly/yearly options, overlay with closure-based dismissal.
@@ -46,6 +48,8 @@ Melody Map is an iOS-first app built with Swift and SwiftUI. It helps parents an
 Daily free usage is limited to 3 song views per day (updated from 10). Users can extend their quota by:
 - Watching rewarded ads (+2 views per ad)
 - Upgrading to premium subscription (unlimited views)
+
+A "song view" is consumed when a user navigates to a new song. Once a song is viewed, it enters a 15-minute "free re-watch" window where it can be viewed again without consuming additional uses.
 
 **Quota System:**
 - `UsageTrackerService` tracks daily consumption with proper UserDefaults persistence
@@ -143,6 +147,7 @@ Remote-config keys will allow tuning quota and pricing without app updates. Addi
 - **Overlay System:** Profile and paywall use closure-based dismissal
 - **iOS 15:** Uses NavigationView; ready to migrate to NavigationStack for iOS 16+
 - **Timeline Navigation:** Users can now only navigate between songs within a single movie in the timeline view. Swiping or curling to other movies is disabled.
+- **Favorites System:** Users can tap a star to favorite songs and access them via a dedicated button that appears in the lower-right corner when favorites exist.
 - **Unified Quota Handling:** The QuotaExceededSheet is now presented consistently when out of daily uses, both in search and timeline views.
 - **Improved UX:** Unified quota logic and modal handling for a seamless experience.
 - **Arrow Navigation:** Arrow navigation in TimelineView now consumes a daily use and triggers the QuotaExceededSheet if out of quota.

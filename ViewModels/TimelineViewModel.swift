@@ -36,13 +36,13 @@ final class TimelineViewModel: ObservableObject {
     }
     
     func presentSongDetail(for song: Song) {
-        if !UsageTrackerService.shared.canConsume() {
-            print("❌ TimelineViewModel: No remaining uses, showing quota sheet")
+        if !UsageTrackerService.shared.canViewSong(withId: song.id) {
+            print("❌ TimelineViewModel: No remaining uses for song \(song.id), showing quota sheet")
             showQuotaSheet = true
             return
         }
-        // Consume the view and present song detail
-        UsageTrackerService.shared.consumeView()
+        // Consume the view (if needed) and present song detail
+        UsageTrackerService.shared.consumeUse(forSongId: song.id)
         selectedSong = song
     }
     

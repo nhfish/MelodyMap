@@ -107,13 +107,13 @@ final class SearchViewModel: ObservableObject {
     func selectSongFromSearch(_ indexedSong: IndexedSong) {
         print("🔍 SearchViewModel: selectSongFromSearch called for '\(indexedSong.song.title)' from '\(indexedSong.movie.title)'")
         selectedIndexedSong = indexedSong
-        // Use canConsume() for quota check (unified logic)
-        if !UsageTrackerService.shared.canConsume() {
-            print("❌ SearchViewModel: No remaining uses, showing quota exceeded sheet")
+        
+        if !UsageTrackerService.shared.canViewSong(withId: indexedSong.song.id) {
+            print("❌ SearchViewModel: No remaining uses for song \(indexedSong.song.id), showing quota exceeded sheet")
             shouldShowQuotaSheet = true
         } else {
-            // Consume the view and navigate to timeline
-            UsageTrackerService.shared.consumeView()
+            // Consume the view (if needed) and navigate to timeline
+            UsageTrackerService.shared.consumeUse(forSongId: indexedSong.song.id)
             print("✅ SearchViewModel: Consumed view, triggering navigation to timeline")
             onNavigateToTimeline?(indexedSong)
         }

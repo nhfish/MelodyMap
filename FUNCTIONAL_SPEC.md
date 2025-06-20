@@ -113,6 +113,7 @@ Gesture / Dismiss: swipe ← / → or tap X → page-curl back.
 | Parameter | Value |
 |-----------|-------|
 | Base free views / day | 3 Song Detail opens (updated from 10) |
+| Free Re-watch Window | 15 minutes (viewing a song again within this window does not consume a use) |
 | Reward | +2 views per 30 s rewarded ad |
 | Daily cap | 15 views |
 | Meter | Icon-only pill top-right ("n / 3" + progress ring); hides for subscribers |
@@ -128,7 +129,7 @@ Gesture / Dismiss: swipe ← / → or tap X → page-curl back.
 | Products | `melodymap.monthly` $1.99 · 3-day trial   `melodymap.yearly` $14.99 · 3-day trial |
 | Family Sharing | Enabled |
 | Paywall Entry Points | Quota sheet · Search-tab bottom banner · Profile tab |
-| Paywall Animation | Pixie flies in → castle glyph glows centre-screen → floating blurred sheet appears; reverse on dismiss |
+| Paywall Presentation | Presented as a standard, system-provided modal sheet using the `.sheet` modifier. |
 | Paywall Bullets | "Unlimited song times" · "No ads or wait" · "Works fully offline" |
 | StoreKit 2 | `PurchaseService` publishes `isSubscriber` → hides ads/meter, sets unlimited quota |
 
@@ -151,6 +152,7 @@ Gesture / Dismiss: swipe ← / → or tap X → page-curl back.
 | `SearchViewModel` | Build search index; return grouped hits |
 | `SongDetailViewModel` | Expand / collapse panel; favorite toggle |
 | `UsageTrackerService` | Quota count (3/day), daily reset, UserDefaults persistence |
+| `FavoritesService` | Manages the list of favorited song IDs, persisted to UserDefaults. |
 | `AdService` | Preload & present rewarded ads |
 | `PurchaseService` | StoreKit 2 purchase / trial / restore |
 | `AppState` | Navigation state, splash/data readiness, pixie burst coordination |
@@ -165,7 +167,7 @@ Splash = pixie trail animation with minimum 2.5s display time.
 
 Pixie burst = magical particle animation for splash-to-main transitions.
 
-Paywall = pixie + centre-sheet fade / blur.
+Paywall = standard system sheet presentation.
 
 Reduce Motion → fall back to cross-fade.
 
@@ -195,6 +197,8 @@ Tap targets ≥ 44 pt; VoiceOver labels for timeline dots & icons.
 - **Timeline Navigation:** Now strictly within a single movie (no accidental navigation to other movies)
 - **Unified Quota Handling:** QuotaExceededSheet is shown consistently when out of daily uses, both in search and timeline
 - **Improved UX:** Unified quota logic and modal handling for a seamless experience
+- **Generous Free Tier:** Viewing a song unlocks it for a free 15-minute re-watch period.
+- **Favorites System:** Users can now favorite songs, and access them from a dedicated list. The favorites button only appears when at least one song is favorited.
 - **Arrow navigation in TimelineView now consumes a daily use and triggers the QuotaExceededSheet if out of quota**
 - **QuotaExceededSheet is cleaner (no usage bar/text) and used for all quota-exceeded actions**
 - **Profile button alignment is now visually consistent across views**

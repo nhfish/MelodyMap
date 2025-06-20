@@ -43,6 +43,8 @@
 		BFD99D212E02B728000B54EE /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D202E02B728000B54EE /* SplashView.swift */; };
 		BFD99D232E032824000B54EE /* UpgradeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D222E032824000B54EE /* UpgradeButton.swift */; };
 		BFD99D252E03283C000B54EE /* DailyUsesCounterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D242E03283C000B54EE /* DailyUsesCounterButton.swift */; };
+		BFD99D272E052C03000B54EE /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D262E052C03000B54EE /* FavoritesService.swift */; };
+		BFD99D292E052DA5000B54EE /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D282E052DA5000B54EE /* FavoritesView.swift */; };
 		C1D2FE12780743C4971575A0 /* MoviePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A366303D6046388571CA84 /* MoviePageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +121,8 @@
 		BFD99D202E02B728000B54EE /* SplashView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		BFD99D222E032824000B54EE /* UpgradeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeButton.swift; sourceTree = "<group>"; };
 		BFD99D242E03283C000B54EE /* DailyUsesCounterButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyUsesCounterButton.swift; sourceTree = "<group>"; };
+		BFD99D262E052C03000B54EE /* FavoritesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
+		BFD99D282E052DA5000B54EE /* FavoritesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +227,7 @@
 		BFD99CDE2DFDFD81000B54EE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BFD99D262E052C03000B54EE /* FavoritesService.swift */,
 				BFD99D102DFF4A90000B54EE /* UsageTrackerService.swift */,
 				BFD99CDF2DFDFD81000B54EE /* InAppPurchaseService.swift */,
 				BFD99D172E00CC0E000B54EE /* PurchaseService.swift */,
@@ -262,6 +267,7 @@
 		BFD99CEA2DFDFD81000B54EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BFD99D282E052DA5000B54EE /* FavoritesView.swift */,
 				BFD99D242E03283C000B54EE /* DailyUsesCounterButton.swift */,
 				BFD99D222E032824000B54EE /* UpgradeButton.swift */,
 				BFD99D202E02B728000B54EE /* SplashView.swift */,
@@ -442,6 +448,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFD99D042DFDFD81000B54EE /* SongDetailView.swift in Sources */,
+				BFD99D272E052C03000B54EE /* FavoritesService.swift in Sources */,
 				BFD99D122DFE910E000B54EE /* PageCurlView.swift in Sources */,
 				C1D2FE12780743C4971575A0 /* MoviePageView.swift in Sources */,
 				BFD99D0B2DFE90DE000B54EE /* APIService.swift in Sources */,
@@ -468,6 +475,7 @@
 				BFD99D002DFDFD81000B54EE /* MainTabView.swift in Sources */,
 				BFD99D012DFDFD81000B54EE /* SearchView.swift in Sources */,
 				BFD99D032DFDFD81000B54EE /* TimelineView.swift in Sources */,
+				BFD99D292E052DA5000B54EE /* FavoritesView.swift in Sources */,
 				BFD99D072DFDFD81000B54EE /* SearchViewModel.swift in Sources */,
 				BFD99D0D2DFF466A000B54EE /* StarButton.swift in Sources */,
 				BFD99CFF2DFDFD81000B54EE /* UserProfile.swift in Sources */,

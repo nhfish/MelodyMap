@@ -6,6 +6,7 @@ struct MoviePageView: View {
     let preSelectedSong: Song?
     let onSongSelected: (Song) -> Void
     @EnvironmentObject private var usage: UsageTrackerService
+    @EnvironmentObject private var favorites: FavoritesService
 
     private var songsForMovie: [Song] {
         songs.filter { $0.movieId == movie.id }
@@ -56,13 +57,13 @@ struct MoviePageView: View {
                         HStack {
                             Button(action: {
                                 guard selectedIndex > 0 else { return }
+                                let songToView = songsForMovie[selectedIndex - 1]
                                 // Consume a daily use before navigating
-                                if usage.canConsume() {
-                                    usage.consumeView()
+                                if usage.canViewSong(withId: songToView.id) {
+                                    usage.consumeUse(forSongId: songToView.id)
                                     selectedIndex -= 1
-                                    let song = songsForMovie[selectedIndex]
-                                    withAnimation { proxy.scrollTo(song.id, anchor: .top) }
-                                    print("✅ MoviePageView: Navigated to previous song '\(song.title)'")
+                                    withAnimation { proxy.scrollTo(songToView.id, anchor: .top) }
+                                    print("✅ MoviePageView: Navigated to previous song '\(songToView.title)'")
                                 } else {
                                     showQuotaSheet = true
                                 }
@@ -74,13 +75,13 @@ struct MoviePageView: View {
                             Spacer()
                             Button(action: {
                                 guard selectedIndex + 1 < songsForMovie.count else { return }
+                                let songToView = songsForMovie[selectedIndex + 1]
                                 // Consume a daily use before navigating
-                                if usage.canConsume() {
-                                    usage.consumeView()
+                                if usage.canViewSong(withId: songToView.id) {
+                                    usage.consumeUse(forSongId: songToView.id)
                                     selectedIndex += 1
-                                    let song = songsForMovie[selectedIndex]
-                                    withAnimation { proxy.scrollTo(song.id, anchor: .top) }
-                                    print("✅ MoviePageView: Navigated to next song '\(song.title)'")
+                                    withAnimation { proxy.scrollTo(songToView.id, anchor: .top) }
+                                    print("✅ MoviePageView: Navigated to next song '\(songToView.title)'")
                                 } else {
                                     showQuotaSheet = true
                                 }
@@ -119,7 +120,12 @@ struct MoviePageView: View {
                     HStack {
                         Text(currentSong.title)
                             .bold()
-                        StarButton()
+                        
+                        let isStarredBinding = Binding(
+                            get: { favorites.isFavorite(songID: currentSong.id) },
+                            set: { _ in favorites.toggleFavorite(songID: currentSong.id) }
+                        )
+                        StarButton(isStarred: isStarredBinding)
                     }
                     Text("\(movie.title) · \(String(movie.releaseYear))")
                     Text("Characters: " + currentSong.singers.joined(separator: ", "))
@@ -204,5 +210,6 @@ struct MoviePageView_Previews: PreviewProvider {
             }
         )
         .environmentObject(UsageTrackerService.shared)
+        .environmentObject(FavoritesService.shared)
     }
 }

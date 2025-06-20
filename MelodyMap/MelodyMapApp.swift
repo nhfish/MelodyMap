@@ -12,9 +12,11 @@ struct MelodyMapApp: App {
     @StateObject private var appState = AppState()
     @State private var showPixieBurst = false
     @State private var pixieBurstDone = false
+    @State private var showingFavorites = false
 
     var body: some Scene {
         WindowGroup {
+            let favorites = FavoritesService.shared
             ZStack {
                 if appState.showSplash {
                     SplashView()
@@ -79,6 +81,29 @@ struct MelodyMapApp: App {
                                 .zIndex(3)
                             }
                             
+                            // Favorites Button - only show if there are favorites
+                            if !favorites.favoritedSongIDs.isEmpty {
+                                VStack {
+                                    Spacer()
+                                    HStack {
+                                        Spacer()
+                                        Button(action: {
+                                            showingFavorites = true
+                                        }) {
+                                            Image(systemName: "star.fill")
+                                                .font(.system(size: 24))
+                                                .foregroundColor(.white)
+                                                .padding()
+                                                .background(Color.yellow)
+                                                .clipShape(Circle())
+                                                .shadow(radius: 5)
+                                        }
+                                        .padding([.trailing, .bottom], 16)
+                                    }
+                                }
+                                .zIndex(3)
+                            }
+                            
                             // Profile button - uniform placement across all screens
                             VStack {
                                 HStack {
@@ -100,13 +125,20 @@ struct MelodyMapApp: App {
                     .sheet(isPresented: $appState.showPaywall) {
                         PaywallView(onClose: { appState.showPaywall = false })
                     }
+                    .sheet(isPresented: $showingFavorites) {
+                        FavoritesView(onDone: { showingFavorites = false })
+                            .environmentObject(appState)
+                            .environmentObject(favorites)
+                    }
                     .sheet(isPresented: $appState.showingProfile) {
                         ProfileView(onClose: { appState.showingProfile = false })
                             .environmentObject(UsageTrackerService.shared)
                             .environmentObject(AdService.shared)
+                            .environmentObject(favorites)
                     }
                     .environmentObject(UsageTrackerService.shared)
                     .environmentObject(AdService.shared)
+                    .environmentObject(favorites)
                     .opacity(showPixieBurst ? 0 : 1)
                     .onAppear {
                         print("🎬 MelodyMapApp: Showing main UI")

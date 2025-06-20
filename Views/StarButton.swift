@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct StarButton: View {
-    @State private var isStarred = false
+    @Binding var isStarred: Bool
 
     var body: some View {
-        Button(action: { isStarred.toggle() }) {
+        Button(action: {
+            isStarred.toggle()
+        }) {
             Image(systemName: isStarred ? "star.fill" : "star")
                 .foregroundColor(.yellow)
         }
@@ -15,6 +17,6 @@ struct StarButton: View {
 
 struct StarButton_Previews: PreviewProvider {
     static var previews: some View {
-        StarButton()
+        StarButton(isStarred: .constant(true))
     }
 }
