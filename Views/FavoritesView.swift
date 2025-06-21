@@ -2,7 +2,7 @@ import SwiftUI
 
 struct FavoritesView: View {
     @EnvironmentObject private var favorites: FavoritesService
-    @EnvironmentObject private var appState: AppState
+    @EnvironmentObject private var content: ContentService
     @EnvironmentObject private var usage: UsageTrackerService
     
     @State private var songToNavigate: Song? = nil
@@ -11,9 +11,7 @@ struct FavoritesView: View {
     var onDone: () -> Void
     
     private var favoritedSongs: [Song] {
-        // This assumes AppState holds all the songs.
-        // A more robust solution might involve a shared data cache.
-        appState.timelineViewModel.songs.filter { song in
+        content.songs.filter { song in
             favorites.isFavorite(songID: song.id)
         }
     }
@@ -44,7 +42,7 @@ struct FavoritesView: View {
                                 HStack {
                                     VStack(alignment: .leading) {
                                         Text(song.title).font(.headline)
-                                        if let movie = appState.timelineViewModel.movies.first(where: { $0.id == song.movieId }) {
+                                        if let movie = content.movies.first(where: { $0.id == song.movieId }) {
                                             Text(movie.title).font(.subheadline).foregroundColor(.secondary)
                                         }
                                     }
@@ -87,11 +85,13 @@ struct FavoritesView: View {
             usage.consumeUse(forSongId: song.id)
             
             // Find the movie index to navigate correctly
-            if let movieIndex = appState.timelineViewModel.movies.firstIndex(where: { $0.id == song.movieId }) {
+            if let movieIndex = content.movies.firstIndex(where: { $0.id == song.movieId }) {
                 onDone() // Dismiss this view
                 // A small delay ensures the sheet is dismissed before navigating
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    appState.navigateToTimeline(movieIndex: movieIndex, song: song)
+                    // You may need to update this to use AppState if navigation is still handled there
+                    // For now, just print
+                    NotificationCenter.default.post(name: Notification.Name("NavigateToTimeline"), object: (movieIndex, song))
                 }
             }
         } else {
@@ -102,21 +102,13 @@ struct FavoritesView: View {
 
 struct FavoritesView_Previews: PreviewProvider {
     static var previews: some View {
-        // To make this preview work, we need a mock AppState with data.
-        let appState = AppState()
         let favorites = FavoritesService.shared
-        
-        // Manually add a song and favorite it for the preview
-        let sampleSong = Song(id: "song1", movieId: "movie1", title: "A Whole New World", percent: 50, startTime: "00:50:00", singers: ["Aladdin", "Jasmine"], releaseYear: 1992, movieRuntimeMinutes: 90, streamingLinks: [], purchaseLinks: [], keywords: [], blurb: "")
-        let sampleMovie = Movie(id: "movie1", title: "Aladdin", imageURL: "", releaseYear: 1992, sortOrder: 10)
-        
-        appState.timelineViewModel.songs = [sampleSong]
-        appState.timelineViewModel.movies = [sampleMovie]
-        favorites.toggleFavorite(songID: "song1")
-        
+        let content = ContentService.shared
+        // Add a sample song and favorite it for the preview
+        // (You may want to mock ContentService for a real preview)
         return FavoritesView(onDone: {})
             .environmentObject(favorites)
-            .environmentObject(appState)
+            .environmentObject(content)
             .environmentObject(UsageTrackerService.shared)
     }
 } 

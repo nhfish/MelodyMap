@@ -150,8 +150,7 @@ MelodyMap/
 │   ├── UserProfile.swift
 │   └── IndexedSong.swift
 ├── Networking/                 # API and data services
-│   ├── APIService.swift        # Loads/caches movies and songs
-│   └── GoogleSheetsService.swift
+│   └── APIService.swift        # Loads/caches movies and songs
 ├── Views/                      # SwiftUI views
 │   ├── SplashView.swift        # Disney-style splash with pixie trail animation
 │   ├── SearchView.swift        # Home screen, search UI

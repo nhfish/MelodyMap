@@ -1,9 +1,8 @@
 import Foundation
+import SwiftUI
 
 @MainActor
 final class TimelineViewModel: ObservableObject {
-    @Published var movies: [Movie] = []
-    @Published var songs: [Song] = []
     @Published var selectedSong: Song?
     @Published var currentMovieIndex: Int = 0 {
         didSet {
@@ -21,11 +20,9 @@ final class TimelineViewModel: ObservableObject {
     }
     @Published var showQuotaSheet: Bool = false
     
-    init() {
-        // No-op: movies and songs are set by AppState
-    }
+    init() {}
     
-    func navigateToMovieWithSong(_ indexedSong: IndexedSong) {
+    func navigateToMovieWithSong(_ indexedSong: IndexedSong, movies: [Movie]) {
         // Find the movie index
         if let movieIndex = movies.firstIndex(where: { $0.id == indexedSong.movie.id }) {
             currentMovieIndex = movieIndex
@@ -51,6 +48,7 @@ final class TimelineViewModel: ObservableObject {
         UsageTrackerService.shared.addRewarded(2)
         showQuotaSheet = false
     }
+    
     func handleUpgrade() {
         // This would trigger the paywall in the app state
         showQuotaSheet = false

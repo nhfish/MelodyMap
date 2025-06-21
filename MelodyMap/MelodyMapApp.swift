@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import Combine
 
 @main
 struct MelodyMapApp: App {
-    @StateObject private var appState = AppState()
+    @StateObject private var appState = AppState(contentService: .shared)
     @State private var showPixieBurst = false
     @State private var pixieBurstDone = false
     @State private var showingFavorites = false
@@ -17,6 +18,7 @@ struct MelodyMapApp: App {
     var body: some Scene {
         WindowGroup {
             let favorites = FavoritesService.shared
+            let content = ContentService.shared
             ZStack {
                 if appState.showSplash {
                     SplashView()
@@ -42,16 +44,11 @@ struct MelodyMapApp: App {
                                     }
                             } else {
                                 SearchView(onNavigateToTimeline: { indexedSong in
-                                    // Find the movie index for navigation
-                                    Task {
-                                        let movies = try await APIService.shared.fetchMovies()
-                                        let sortedMovies = movies.sorted { $0.sortOrder < $1.sortOrder }
-                                        if let movieIndex = sortedMovies.firstIndex(where: { $0.id == indexedSong.movie.id }) {
-                                            await MainActor.run {
-                                                withAnimation(.easeInOut(duration: 0.6)) {
-                                                    appState.navigateToTimeline(movieIndex: movieIndex, song: indexedSong.song)
-                                                }
-                                            }
+                                    // Find the movie index for navigation from ContentService
+                                    let movies = content.movies.sorted { $0.sortOrder < $1.sortOrder }
+                                    if let movieIndex = movies.firstIndex(where: { $0.id == indexedSong.movie.id }) {
+                                        withAnimation(.easeInOut(duration: 0.6)) {
+                                            appState.navigateToTimeline(movieIndex: movieIndex, song: indexedSong.song)
                                         }
                                     }
                                 })
@@ -81,29 +78,29 @@ struct MelodyMapApp: App {
                                 .zIndex(3)
                             }
                             
-                            // Favorites Button - only show if there are favorites
-                            if !favorites.favoritedSongIDs.isEmpty {
-                                VStack {
+                            // Favorites Button - always render but control visibility
+                            VStack {
+                                Spacer()
+                                HStack {
                                     Spacer()
-                                    HStack {
-                                        Spacer()
-                                        Button(action: {
-                                            showingFavorites = true
-                                        }) {
-                                            Image(systemName: "star.fill")
-                                                .resizable()
-                                                .frame(width: 36, height: 36)
-                                                .foregroundColor(.yellow)
-                                                .background(Color.black.opacity(0.6))
-                                                .clipShape(Circle())
-                                                .shadow(radius: 4)
-                                        }
-                                        .padding([.trailing, .bottom], 16)
+                                    Button(action: {
+                                        showingFavorites = true
+                                    }) {
+                                        Image(systemName: "star.fill")
+                                            .resizable()
+                                            .frame(width: 36, height: 36)
+                                            .foregroundColor(.yellow)
+                                            .background(Color.black.opacity(0.6))
+                                            .clipShape(Circle())
+                                            .shadow(radius: 4)
                                     }
+                                    .padding([.trailing, .bottom], 16)
                                 }
-                                .zIndex(3)
-                                .transition(.opacity.animation(.easeInOut))
                             }
+                            .zIndex(3)
+                            .opacity(favorites.favoritedSongIDs.isEmpty ? 0 : 1)
+                            .animation(.easeInOut(duration: 0.3), value: favorites.favoritedSongIDs.count)
+                            .allowsHitTesting(!favorites.favoritedSongIDs.isEmpty)
                             
                             // Profile button - uniform placement across all screens
                             VStack {
@@ -140,6 +137,7 @@ struct MelodyMapApp: App {
                     .environmentObject(UsageTrackerService.shared)
                     .environmentObject(AdService.shared)
                     .environmentObject(favorites)
+                    .environmentObject(ContentService.shared)
                     .opacity(showPixieBurst ? 0 : 1)
                     .onAppear {
                         print("🎬 MelodyMapApp: Showing main UI")
@@ -195,12 +193,31 @@ class AppState: ObservableObject {
 
     private var timerDone = false
     private var contentLoaded = false
+    private var cancellables = Set<AnyCancellable>()
+    private let contentService: ContentService
+
+    init(contentService: ContentService = .shared) {
+        self.contentService = contentService
+        
+        // Subscribe to content service updates
+        contentService.$movies
+            .combineLatest(contentService.$songs)
+            .debounce(for: .milliseconds(100), scheduler: RunLoop.main) // Small debounce
+            .sink { [weak self] movies, songs in
+                if !movies.isEmpty || !songs.isEmpty {
+                    print("🎬 AppState: Content loaded from ContentService.")
+                    self?.contentLoaded = true
+                    self?.checkIfReady()
+                }
+            }
+            .store(in: &cancellables)
+    }
 
     func loadData() {
         print("🎬 AppState: loadData called")
         // Start timer
         timerDone = false
-        contentLoaded = false
+        // contentLoaded will be set by the sink subscriber
         showSplash = true
         dataReady = false
 
@@ -213,20 +230,8 @@ class AppState: ObservableObject {
 
         // Start loading data (songs and movies)
         Task {
-            print("🎬 AppState: Starting data loading")
-            let songs = try? await APIService.shared.fetchSongs()
-            let movies = try? await APIService.shared.fetchMovies()
-            await MainActor.run {
-                if let movies = movies, let songs = songs {
-                    print("🎬 AppState: Data loaded successfully - \(movies.count) movies, \(songs.count) songs")
-                    self.timelineViewModel.movies = movies.sorted { $0.sortOrder < $1.sortOrder }
-                    self.timelineViewModel.songs = songs
-                } else {
-                    print("🎬 AppState: Data loading failed")
-                }
-                self.contentLoaded = true
-                self.checkIfReady()
-            }
+            print("🎬 AppState: Triggering content refresh")
+            await contentService.refreshIfNeeded()
         }
     }
 

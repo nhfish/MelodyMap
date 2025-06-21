@@ -21,7 +21,6 @@
 		BFD99CFD2DFDFD81000B54EE /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CE72DFDFD81000B54EE /* Movie.swift */; };
 		BFD99CFE2DFDFD81000B54EE /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CE82DFDFD81000B54EE /* Song.swift */; };
 		BFD99CFF2DFDFD81000B54EE /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CE92DFDFD81000B54EE /* UserProfile.swift */; };
-		BFD99D002DFDFD81000B54EE /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CEB2DFDFD81000B54EE /* MainTabView.swift */; };
 		BFD99D012DFDFD81000B54EE /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CEC2DFDFD81000B54EE /* SearchView.swift */; };
 		BFD99D022DFDFD81000B54EE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CED2DFDFD81000B54EE /* ProfileView.swift */; };
 		BFD99D032DFDFD81000B54EE /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CEE2DFDFD81000B54EE /* TimelineView.swift */; };
@@ -29,7 +28,6 @@
 		BFD99D052DFDFD81000B54EE /* TimelineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CF12DFDFD81000B54EE /* TimelineViewModel.swift */; };
 		BFD99D062DFDFD81000B54EE /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CF22DFDFD81000B54EE /* UserProfileViewModel.swift */; };
 		BFD99D072DFDFD81000B54EE /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CF32DFDFD81000B54EE /* SearchViewModel.swift */; };
-		BFD99D082DFDFD82000B54EE /* GoogleSheetsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99CF52DFDFD81000B54EE /* GoogleSheetsService.swift */; };
 		BFD99D0B2DFE90DE000B54EE /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D0A2DFE90DD000B54EE /* APIService.swift */; };
 		BFD99D0D2DFF466A000B54EE /* StarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D0C2DFF466A000B54EE /* StarButton.swift */; };
 		BFD99D0F2DFF49AD000B54EE /* UsageMeterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D0E2DFF49AD000B54EE /* UsageMeterView.swift */; };
@@ -45,6 +43,7 @@
 		BFD99D252E03283C000B54EE /* DailyUsesCounterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D242E03283C000B54EE /* DailyUsesCounterButton.swift */; };
 		BFD99D272E052C03000B54EE /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D262E052C03000B54EE /* FavoritesService.swift */; };
 		BFD99D292E052DA5000B54EE /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D282E052DA5000B54EE /* FavoritesView.swift */; };
+		BFD99D2B2E05F98F000B54EE /* ContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D2A2E05F98F000B54EE /* ContentService.swift */; };
 		C1D2FE12780743C4971575A0 /* MoviePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A366303D6046388571CA84 /* MoviePageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,7 +96,6 @@
 		BFD99CE72DFDFD81000B54EE /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		BFD99CE82DFDFD81000B54EE /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		BFD99CE92DFDFD81000B54EE /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
-		BFD99CEB2DFDFD81000B54EE /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		BFD99CEC2DFDFD81000B54EE /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		BFD99CED2DFDFD81000B54EE /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		BFD99CEE2DFDFD81000B54EE /* TimelineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 		BFD99CF12DFDFD81000B54EE /* TimelineViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewModel.swift; sourceTree = "<group>"; };
 		BFD99CF22DFDFD81000B54EE /* UserProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		BFD99CF32DFDFD81000B54EE /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
-		BFD99CF52DFDFD81000B54EE /* GoogleSheetsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleSheetsService.swift; sourceTree = "<group>"; };
 		BFD99D0A2DFE90DD000B54EE /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		BFD99D0C2DFF466A000B54EE /* StarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarButton.swift; sourceTree = "<group>"; };
 		BFD99D0E2DFF49AD000B54EE /* UsageMeterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageMeterView.swift; sourceTree = "<group>"; };
@@ -123,6 +120,7 @@
 		BFD99D242E03283C000B54EE /* DailyUsesCounterButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyUsesCounterButton.swift; sourceTree = "<group>"; };
 		BFD99D262E052C03000B54EE /* FavoritesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
 		BFD99D282E052DA5000B54EE /* FavoritesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		BFD99D2A2E05F98F000B54EE /* ContentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +225,7 @@
 		BFD99CDE2DFDFD81000B54EE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BFD99D2A2E05F98F000B54EE /* ContentService.swift */,
 				BFD99D262E052C03000B54EE /* FavoritesService.swift */,
 				BFD99D102DFF4A90000B54EE /* UsageTrackerService.swift */,
 				BFD99CDF2DFDFD81000B54EE /* InAppPurchaseService.swift */,
@@ -273,7 +272,6 @@
 				BFD99D202E02B728000B54EE /* SplashView.swift */,
 				BFD99D0E2DFF49AD000B54EE /* UsageMeterView.swift */,
 				BFD99D0C2DFF466A000B54EE /* StarButton.swift */,
-				BFD99CEB2DFDFD81000B54EE /* MainTabView.swift */,
 				BFD99CEC2DFDFD81000B54EE /* SearchView.swift */,
 				BFD99CED2DFDFD81000B54EE /* ProfileView.swift */,
 				BFD99CEE2DFDFD81000B54EE /* TimelineView.swift */,
@@ -300,7 +298,6 @@
 			isa = PBXGroup;
 			children = (
 				BFD99D0A2DFE90DD000B54EE /* APIService.swift */,
-				BFD99CF52DFDFD81000B54EE /* GoogleSheetsService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -458,6 +455,7 @@
 				BFD99CFA2DFDFD81000B54EE /* DataSyncService.swift in Sources */,
 				BFD99CFC2DFDFD81000B54EE /* Helpers.swift in Sources */,
 				BFD99D052DFDFD81000B54EE /* TimelineViewModel.swift in Sources */,
+				BFD99D2B2E05F98F000B54EE /* ContentService.swift in Sources */,
 				BFD99CF92DFDFD81000B54EE /* AdService.swift in Sources */,
 				BFD99D022DFDFD81000B54EE /* ProfileView.swift in Sources */,
 				BFD99D252E03283C000B54EE /* DailyUsesCounterButton.swift in Sources */,
@@ -469,10 +467,8 @@
 				BFD99CF82DFDFD81000B54EE /* InAppPurchaseService.swift in Sources */,
 				BFD99D162E00CC0E000B54EE /* PurchaseService.swift in Sources */,
 				BFD6747F2DFD2C4300225927 /* MelodyMapApp.swift in Sources */,
-				BFD99D082DFDFD82000B54EE /* GoogleSheetsService.swift in Sources */,
 				BFD99D152DFF4B00000B54EE /* Components/QuotaExceededSheet.swift in Sources */,
 				BFD99D182E00CC0F000B54EE /* Paywall/PaywallView.swift in Sources */,
-				BFD99D002DFDFD81000B54EE /* MainTabView.swift in Sources */,
 				BFD99D012DFDFD81000B54EE /* SearchView.swift in Sources */,
 				BFD99D032DFDFD81000B54EE /* TimelineView.swift in Sources */,
 				BFD99D292E052DA5000B54EE /* FavoritesView.swift in Sources */,

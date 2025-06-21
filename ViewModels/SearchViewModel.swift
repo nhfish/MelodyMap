@@ -1,6 +1,7 @@
 import Foundation
 import Combine
 import UIKit
+import SwiftUI
 
 @MainActor
 final class SearchViewModel: ObservableObject {
@@ -14,62 +15,44 @@ final class SearchViewModel: ObservableObject {
     // Closure to handle navigation to timeline
     var onNavigateToTimeline: ((IndexedSong) -> Void)?
     
-    // AdService dependency
+    // Services
+    private let contentService: ContentService
     private let adService: AdService
+    private var cancellables = Set<AnyCancellable>()
     
     init(onNavigateToTimeline: ((IndexedSong) -> Void)? = nil, adService: AdService = AdService.shared) {
         self.onNavigateToTimeline = onNavigateToTimeline
         self.adService = adService
-        Task { await buildIndex() }
+        self.contentService = ContentService.shared
+        
+        // Observe content changes and rebuild index
+        Task { await MainActor.run { self.buildIndex() } }
+        contentService.$songs.combineLatest(contentService.$movies)
+            .sink { [weak self] _, _ in
+                self?.buildIndex()
+            }
+            .store(in: &cancellables)
     }
     
-    private func buildIndex() async {
-        do {
-            print("🔍 Building search index...")
-            let songs = try await APIService.shared.fetchSongs()
-            print("📝 Fetched \(songs.count) songs")
-            
-            let movies = try await APIService.shared.fetchMovies()
-            print("🎬 Fetched \(movies.count) movies")
-            
-            let movieDict = Dictionary(uniqueKeysWithValues: movies.map { ($0.id, $0) })
-            print("📚 Created movie dictionary with \(movieDict.count) entries")
-            
-            let index = songs.compactMap { song -> IndexedSong? in
-                guard let movie = movieDict[song.movieId] else { 
-                    print("⚠️ No movie found for song: \(song.title) (movieId: \(song.movieId))")
-                    return nil 
-                }
-                return IndexedSong(song: song, movie: movie)
+    private func buildIndex() {
+        print("🔍 Building search index from ContentService...")
+        let songs = contentService.songs
+        let movies = contentService.movies
+        let movieDict = Dictionary(uniqueKeysWithValues: movies.map { ($0.id, $0) })
+        let index = songs.compactMap { song -> IndexedSong? in
+            guard let movie = movieDict[song.movieId] else {
+                print("⚠️ No movie found for song: \(song.title) (movieId: \(song.movieId))")
+                return nil
             }
-            
-            await MainActor.run { 
-                self.indexedSongs = index
-                print("✅ Search index built with \(self.indexedSongs.count) indexed songs")
-            }
-        } catch {
-            print("❌ Failed to build search index: \(error)")
+            return IndexedSong(song: song, movie: movie)
         }
+        self.indexedSongs = index
+        print("✅ Search index built with \(self.indexedSongs.count) indexed songs")
     }
-
-    /// Used by AppState to load both movies and songs for splash screen gating
-    @MainActor
-    static func loadForAppState(completion: @escaping () -> Void) {
-        Task {
-            do {
-                _ = try await APIService.shared.fetchSongs()
-                _ = try await APIService.shared.fetchMovies()
-                await MainActor.run { completion() }
-            } catch {
-                print("❌ Failed to load data for splash gating: \(error)")
-                await MainActor.run { completion() }
-            }
-        }
-    }
-
+    
     func search() {
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
-        guard !trimmed.isEmpty else { 
+        guard !trimmed.isEmpty else {
             results = []
             print("🔍 Search query empty, clearing results")
             return
@@ -128,9 +111,9 @@ final class SearchViewModel: ObservableObject {
         // Get the root view controller to present the ad
         guard let root = UIApplication.shared.connectedScenes
             .compactMap({ ($0 as? UIWindowScene)?.windows.first { $0.isKeyWindow } })
-            .first?.rootViewController else { 
+            .first?.rootViewController else {
             print("❌ SearchViewModel: Could not get root view controller for ad presentation")
-            return 
+            return
         }
         
         print("🎬 SearchViewModel: Presenting ad for reward")

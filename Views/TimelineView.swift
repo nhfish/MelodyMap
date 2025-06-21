@@ -4,6 +4,7 @@ struct TimelineView: View {
     @ObservedObject var viewModel: TimelineViewModel
     @EnvironmentObject private var usage: UsageTrackerService
     @EnvironmentObject private var appState: AppState
+    @EnvironmentObject private var content: ContentService
     
     var body: some View {
         VStack {
@@ -26,8 +27,8 @@ struct TimelineView: View {
             }
             
             PageCurlView(
-                movies: viewModel.movies, 
-                songs: viewModel.songs, 
+                movies: content.movies, 
+                songs: content.songs, 
                 currentMovieIndex: appState.selectedMovieIndex,
                 preSelectedSong: appState.preSelectedSong,
                 onSongSelected: { song in
@@ -73,5 +74,6 @@ struct TimelineView_Previews: PreviewProvider {
         TimelineView(viewModel: TimelineViewModel())
             .environmentObject(UsageTrackerService.shared)
             .environmentObject(AppState())
+            .environmentObject(ContentService.shared)
     }
 }
