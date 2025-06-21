@@ -97,10 +97,13 @@ struct MelodyMapApp: App {
                                     .padding([.trailing, .bottom], 16)
                                 }
                             }
-                            .zIndex(3)
+                            .zIndex(4)
                             .opacity(favorites.favoritedSongIDs.isEmpty ? 0 : 1)
                             .animation(.easeInOut(duration: 0.3), value: favorites.favoritedSongIDs.count)
                             .allowsHitTesting(!favorites.favoritedSongIDs.isEmpty)
+                            .onChange(of: favorites.favoritedSongIDs.count) { count in
+                                print("⭐️ Favorites button: count changed to \(count), opacity will be \(count == 0 ? 0 : 1)")
+                            }
                             
                             // Profile button - uniform placement across all screens
                             VStack {
@@ -171,7 +174,6 @@ struct MelodyMapApp: App {
                     }
                 }
             }
-            .animation(.easeInOut, value: favorites.favoritedSongIDs.count)
         }
     }
 }
