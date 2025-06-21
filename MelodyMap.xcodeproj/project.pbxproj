@@ -44,6 +44,9 @@
 		BFD99D272E052C03000B54EE /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D262E052C03000B54EE /* FavoritesService.swift */; };
 		BFD99D292E052DA5000B54EE /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D282E052DA5000B54EE /* FavoritesView.swift */; };
 		BFD99D2B2E05F98F000B54EE /* ContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D2A2E05F98F000B54EE /* ContentService.swift */; };
+		BFD99D2D2E0680EB000B54EE /* MusicKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D2C2E0680EB000B54EE /* MusicKitService.swift */; };
+		BFD99D302E06813A000B54EE /* SongPreviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D2E2E068139000B54EE /* SongPreviewButton.swift */; };
+		BFD99D312E06813A000B54EE /* AudioPreviewPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D2F2E06813A000B54EE /* AudioPreviewPlayer.swift */; };
 		C1D2FE12780743C4971575A0 /* MoviePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A366303D6046388571CA84 /* MoviePageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -121,6 +124,9 @@
 		BFD99D262E052C03000B54EE /* FavoritesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
 		BFD99D282E052DA5000B54EE /* FavoritesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		BFD99D2A2E05F98F000B54EE /* ContentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentService.swift; sourceTree = "<group>"; };
+		BFD99D2C2E0680EB000B54EE /* MusicKitService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicKitService.swift; sourceTree = "<group>"; };
+		BFD99D2E2E068139000B54EE /* SongPreviewButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SongPreviewButton.swift; path = Components/SongPreviewButton.swift; sourceTree = "<group>"; };
+		BFD99D2F2E06813A000B54EE /* AudioPreviewPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPreviewPlayer.swift; path = Components/AudioPreviewPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +231,7 @@
 		BFD99CDE2DFDFD81000B54EE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BFD99D2C2E0680EB000B54EE /* MusicKitService.swift */,
 				BFD99D2A2E05F98F000B54EE /* ContentService.swift */,
 				BFD99D262E052C03000B54EE /* FavoritesService.swift */,
 				BFD99D102DFF4A90000B54EE /* UsageTrackerService.swift */,
@@ -266,6 +273,8 @@
 		BFD99CEA2DFDFD81000B54EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BFD99D2F2E06813A000B54EE /* AudioPreviewPlayer.swift */,
+				BFD99D2E2E068139000B54EE /* SongPreviewButton.swift */,
 				BFD99D282E052DA5000B54EE /* FavoritesView.swift */,
 				BFD99D242E03283C000B54EE /* DailyUsesCounterButton.swift */,
 				BFD99D222E032824000B54EE /* UpgradeButton.swift */,
@@ -448,12 +457,14 @@
 				BFD99D272E052C03000B54EE /* FavoritesService.swift in Sources */,
 				BFD99D122DFE910E000B54EE /* PageCurlView.swift in Sources */,
 				C1D2FE12780743C4971575A0 /* MoviePageView.swift in Sources */,
+				BFD99D312E06813A000B54EE /* AudioPreviewPlayer.swift in Sources */,
 				BFD99D0B2DFE90DE000B54EE /* APIService.swift in Sources */,
 				BFD99D0F2DFF49AD000B54EE /* UsageMeterView.swift in Sources */,
 				BFD99D062DFDFD81000B54EE /* UserProfileViewModel.swift in Sources */,
 				BFD99CFD2DFDFD81000B54EE /* Movie.swift in Sources */,
 				BFD99CFA2DFDFD81000B54EE /* DataSyncService.swift in Sources */,
 				BFD99CFC2DFDFD81000B54EE /* Helpers.swift in Sources */,
+				BFD99D2D2E0680EB000B54EE /* MusicKitService.swift in Sources */,
 				BFD99D052DFDFD81000B54EE /* TimelineViewModel.swift in Sources */,
 				BFD99D2B2E05F98F000B54EE /* ContentService.swift in Sources */,
 				BFD99CF92DFDFD81000B54EE /* AdService.swift in Sources */,
@@ -461,6 +472,7 @@
 				BFD99D252E03283C000B54EE /* DailyUsesCounterButton.swift in Sources */,
 				BFD99CFE2DFDFD81000B54EE /* Song.swift in Sources */,
 				BFD99D232E032824000B54EE /* UpgradeButton.swift in Sources */,
+				BFD99D302E06813A000B54EE /* SongPreviewButton.swift in Sources */,
 				BFD99D212E02B728000B54EE /* SplashView.swift in Sources */,
 				BFD99D142DFDFD81000B54EE /* IndexedSong.swift in Sources */,
 				BFD99D112DFF4A90000B54EE /* UsageTrackerService.swift in Sources */,

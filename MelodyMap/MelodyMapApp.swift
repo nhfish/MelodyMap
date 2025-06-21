@@ -141,6 +141,7 @@ struct MelodyMapApp: App {
                     .environmentObject(AdService.shared)
                     .environmentObject(favorites)
                     .environmentObject(ContentService.shared)
+                    .environmentObject(MusicKitService.shared)
                     .opacity(showPixieBurst ? 0 : 1)
                     .onAppear {
                         print("🎬 MelodyMapApp: Showing main UI")

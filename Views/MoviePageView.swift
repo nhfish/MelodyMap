@@ -114,8 +114,11 @@ struct MoviePageView: View {
 
                 let currentSong = songsForMovie[selectedIndex]
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(formatTimecode(currentSong.startTime) + "  ·  \(currentSong.percent ?? 0)%")
-                        .font(.caption)
+                    HStack {
+                        Text(formatTimecode(currentSong.startTime) + "  ·  \(currentSong.percent ?? 0)%")
+                            .font(.caption)
+                        SongPreviewButton(song: currentSong, movieTitle: movie.title)
+                    }
                     Divider()
                     HStack {
                         Text(currentSong.title)
