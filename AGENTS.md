@@ -28,6 +28,7 @@ The app provides a visual movie timeline and a simple search interface to discov
   - Monthly subscription
   - Yearly subscription
 - **Profile Overlay:** Settings screen with usage stats and subscription status
+- **Apple Music Previews:** 30-second song previews with unobtrusive controls next to timecodes
 
 ## Data Model (MVP)
 Songs dataset is initially sourced from a Google Sheet → parsed into app. Each song entry includes:
@@ -43,7 +44,7 @@ Songs dataset is initially sourced from a Google Sheet → parsed into app. Each
 - Blurb / description
 
 ## Tech Stack
-Xcode project using Swift + SwiftUI
+Xcode project using Swift + SwiftUI + MusicKit
 
 Codex agent assists with:
 - SwiftUI component generation
@@ -54,6 +55,8 @@ Codex agent assists with:
 - Ad integration (AdMob preferred but flexible)
 - Animations and subtle visual effects (pixie burst, page curls)
 - Usage tracking with UserDefaults persistence
+- MusicKit integration for Apple Music previews
+- Audio playback with AVAudioPlayer
 
 Backend is initially Google Sheets, to be migrated to a database + admin UI if app scales
 
@@ -64,6 +67,8 @@ Backend is initially Google Sheets, to be migrated to a database + admin UI if a
 - **UsageTrackerService:** Tracks daily quota (3 views/day) with proper persistence
 - **Overlay System:** Profile and paywall use closure-based dismissal
 - **Pixie Burst:** Magical particle animation for splash-to-main transitions
+- **MusicKitService:** Handles Apple Music authorization and preview functionality
+- **AudioPreviewPlayer:** Simple play/stop controls for 30-second previews
 
 ## Constraints / Guidance
 - App must feel fast, native, and lightweight
@@ -73,3 +78,5 @@ Backend is initially Google Sheets, to be migrated to a database + admin UI if a
 - All animations should feel natural and performant on iPhone hardware
 - Navigation should be intuitive with SearchView as the primary entry point
 - Usage tracking should be persistent and properly initialized
+- MusicKit integration should be unobtrusive and gracefully handle permission denials
+- Audio previews should be simple and reliable with proper memory management

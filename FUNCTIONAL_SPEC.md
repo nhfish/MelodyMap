@@ -1,4 +1,4 @@
-# Melody Map · Functional Specification v1.1
+# Melody Map · Functional Specification v1.2
 _Last updated 2025-01-27_
 
 ---
@@ -6,7 +6,7 @@ _Last updated 2025-01-27_
 ## 1. Overview & Principles
 * **Purpose** Help parents / caregivers instantly locate the start-time of Disney songs.
 * **Aesthetic** Minimalist "storybook": gentle page-curls, soft shadows, tiny pixie sparkles, magical pixie burst transitions.
-* **Tech Stack** Swift + SwiftUI · StoreKit 2 · Google AdMob (rewarded).
+* **Tech Stack** Swift + SwiftUI · StoreKit 2 · Google AdMob (rewarded) · MusicKit (previews).
 * **Offline-first** Song / Movie JSON cached on cold start; favorites & quota persist locally.
 
 ---
@@ -70,6 +70,7 @@ struct Movie: Identifiable, Codable {
 | Arrow Navigation | Consumes a daily use and triggers the QuotaExceededSheet if out of quota |
 | Timecode | Always formatted as HH:MM:SS |
 | Release Year | Always shown without a comma |
+| Preview Button | Unobtrusive play button next to timecode for Apple Music previews |
 
 ## 5. System 4 – Global Search
 
@@ -143,7 +144,20 @@ Gesture / Dismiss: swipe ← / → or tap X → page-curl back.
 | Failure Toasts | "Ad unavailable" or "Ad not completed" |
 | Cap | 6 rewarded ads / day |
 
-## 10. Services & Architecture Map
+## 10. System 9 – MusicKit Preview Integration
+
+| Feature | Value |
+|---------|-------|
+| Preview Length | 30 seconds (Apple Music standard) |
+| Permission | Requested on first preview button tap |
+| Search Strategy | Movie title + song title for optimal matching |
+| UI Location | Unobtrusive button next to timecode in timeline |
+| Controls | Simple tap-to-play, tap-to-stop |
+| Fallback | Graceful hide if no preview available |
+| Cleanup | Automatic when leaving view |
+| Privacy | `NSAppleMusicUsageDescription` in main app Info.plist |
+
+## 11. Services & Architecture Map
 
 | Service | Duty |
 |---------|-----|
@@ -155,11 +169,12 @@ Gesture / Dismiss: swipe ← / → or tap X → page-curl back.
 | `FavoritesService` | Manages the list of favorited song IDs, persisted to UserDefaults. |
 | `AdService` | Preload & present rewarded ads |
 | `PurchaseService` | StoreKit 2 purchase / trial / restore |
+| `MusicKitService` | Apple Music authorization, catalog search, preview URL retrieval |
 | `AppState` | Navigation state, splash/data readiness, pixie burst coordination |
 
 All service singletons injected via `.environmentObject`.
 
-## 11. Animation & Accessibility
+## 12. Animation & Accessibility
 
 Default transition = page-curl (storybook).
 
@@ -173,7 +188,7 @@ Reduce Motion → fall back to cross-fade.
 
 Tap targets ≥ 44 pt; VoiceOver labels for timeline dots & icons.
 
-## 12. Remote-Config Keys (future)
+## 13. Remote-Config Keys (future)
 
 | Key | Default |
 |-----|---------|
@@ -185,7 +200,7 @@ Tap targets ≥ 44 pt; VoiceOver labels for timeline dots & icons.
 | `freeTrialDays` | 3 |
 | `adUnitID` | — |
 
-## 13. Key Changes (v1.1)
+## 14. Key Changes (v1.2)
 
 - **Usage Quota:** Reduced from 10 to 3 views per day for better monetization
 - **Navigation Architecture:** AppState-driven navigation with SearchView as home screen
@@ -203,6 +218,10 @@ Tap targets ≥ 44 pt; VoiceOver labels for timeline dots & icons.
 - **QuotaExceededSheet is cleaner (no usage bar/text) and used for all quota-exceeded actions**
 - **Profile button alignment is now visually consistent across views**
 - **Timecode and release year formatting improved for clarity**
+- **MusicKit Integration:** Apple Music previews with 30-second previews, on-demand permission requests, and simple play/stop controls
+- **Preview Button UI:** Unobtrusive preview buttons next to timecodes in timeline view
+- **Audio Preview Player:** Simple audio playback component with proper memory management
+- **Privacy Compliance:** Proper NSAppleMusicUsageDescription in main app Info.plist
 
 _End of Spec_
 

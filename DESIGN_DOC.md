@@ -23,6 +23,7 @@ Melody Map is an iOS-first app built with Swift and SwiftUI. It helps parents an
 - **FavoritesService** – manages a persistent list of favorited song IDs using UserDefaults.
 - **AdService** – preloads and presents rewarded ads. *(Uses compile-time flag ADS_ENABLED)*
 - **PurchaseService** – handles StoreKit 2 flows and publishes `isSubscriber`. *(Uses compile-time flag SUBS_ENABLED)*
+- **MusicKitService** – handles Apple Music integration for 30-second song previews, including authorization and catalog search.
 
 ### Views
 - **SplashView** – Disney-style splash screen with pixie trail animation and minimum display time.
@@ -34,6 +35,8 @@ Melody Map is an iOS-first app built with Swift and SwiftUI. It helps parents an
 - **QuotaExceededSheet** – modal sheet for when daily limits are reached.
 - **PaywallView** – subscription upgrade interface with monthly/yearly options, overlay with closure-based dismissal.
 - **PixieBurstTransitionView** – magical particle animation for splash-to-main transitions.
+- **SongPreviewButton** – unobtrusive button next to timecodes for playing Apple Music previews.
+- **AudioPreviewPlayer** – simple play/stop controls for 30-second song previews.
 
 ## Data Flow (Updated)
 1. AppState calls SearchViewModel.loadForAppState to load movies and songs for splash gating.
@@ -43,6 +46,7 @@ Melody Map is an iOS-first app built with Swift and SwiftUI. It helps parents an
 5. SearchView serves as home screen with search functionality.
 6. TimelineView is accessed via search results with smooth transitions.
 7. Profile and paywall overlays use closure-based dismissal.
+8. MusicKitService handles Apple Music preview requests on-demand.
 
 ## Usage Limits and Monetization
 Daily free usage is limited to 3 song views per day (updated from 10). Users can extend their quota by:
@@ -64,6 +68,22 @@ A "song view" is consumed when a user navigates to a new song. Once a song is vi
 
 When disabled, the systems use mock implementations for development and testing.
 
+## MusicKit Integration
+**Apple Music Previews:**
+- 30-second song previews available for all users (no Apple Music subscription required)
+- Permission requested only when user first taps a preview button
+- Search by movie title + song title for optimal matching
+- Graceful fallback if previews unavailable or permission denied
+- Simple tap-to-play, tap-to-stop controls
+- Automatic cleanup when leaving view
+
+**Technical Implementation:**
+- `MusicKitService` handles authorization and catalog search
+- `AudioPreviewPlayer` manages playback with AVAudioPlayer
+- Preview buttons appear unobtrusively next to timecodes
+- Loading states with progress indicators
+- Memory management with proper delegate patterns
+
 ## Technical Implementation Status
 
 ### ✅ Completed
@@ -83,6 +103,9 @@ When disabled, the systems use mock implementations for development and testing.
 - **Splash Screen Gating** — waits for both minimum time (2.5s) and data readiness
 - **Daily Uses Counter** — persistent tracking with proper initialization and UserDefaults
 - **Search → Timeline Navigation** — smooth transitions with proper movie indexing
+- **MusicKit Integration** — Apple Music previews with authorization and playback
+- **Preview Button UI** — unobtrusive controls next to timecodes
+- **Audio Preview Player** — simple play/stop functionality
 
 ### 🚧 In Progress
 - Core UI polish and refinement
@@ -128,10 +151,25 @@ The StoreKit integration uses a compile-time flag `SUBS_ENABLED` for easy toggli
 2. The system will use mock implementation
 3. PaywallView shows "Purchases disabled" alert
 
+### MusicKit Integration
+The MusicKit integration is always enabled and provides Apple Music preview functionality:
+
+**Features:**
+- 30-second song previews (no subscription required)
+- On-demand permission requests
+- Automatic catalog search and matching
+- Graceful error handling
+
+**Privacy:**
+- `NSAppleMusicUsageDescription` in main app Info.plist
+- Permission requested only when needed
+- Clear user messaging about preview functionality
+
 ### Build Configuration
 - iOS Deployment Target: 15.2
 - SwiftUI-based architecture
 - StoreKit framework included for future in-app purchases
+- MusicKit framework for Apple Music previews
 - Clean build system with optional Google Ads dependencies
 
 ## Future Work
@@ -155,4 +193,7 @@ Remote-config keys will allow tuning quota and pricing without app updates. Addi
 - **Profile Button Consistency:** Profile button is now visually aligned in both TimelineView and SearchView.
 - **Timecode Formatting:** Song timecodes are always displayed as HH:MM:SS.
 - **Release Year Display:** Release year is always shown without a comma.
+- **MusicKit Integration:** Apple Music previews with 30-second previews, on-demand permission requests, and simple play/stop controls.
+- **Preview Button UI:** Unobtrusive preview buttons next to timecodes in timeline view.
+- **Audio Preview Player:** Simple audio playback component with proper memory management.
 
