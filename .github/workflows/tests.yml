@@ -1,0 +1,198 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  unit-tests:
+    name: Unit Tests
+    runs-on: macos-latest
+    
+    strategy:
+      matrix:
+        xcode: ['15.0']
+        ios: ['17.0']
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app
+      
+    - name: Build and test
+      run: |
+        xcodebuild test \
+          -project MelodyMap.xcodeproj \
+          -scheme MelodyMap \
+          -destination 'platform=iOS Simulator,name=iPhone 15,OS=${{ matrix.ios }}' \
+          -derivedDataPath build \
+          -resultBundlePath TestResults.xcresult \
+          -enableCodeCoverage YES \
+          | xcpretty -c && exit ${PIPESTATUS[0]}
+          
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results-${{ matrix.xcode }}-${{ matrix.ios }}
+        path: TestResults.xcresult
+        
+    - name: Generate coverage report
+      run: |
+        xcrun xccov view --report --json TestResults.xcresult > coverage.json
+        
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        file: coverage.json
+        flags: unittests
+        name: codecov-umbrella
+
+  ui-tests:
+    name: UI Tests
+    runs-on: macos-latest
+    needs: unit-tests
+    
+    strategy:
+      matrix:
+        xcode: ['15.0']
+        ios: ['17.0']
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app
+      
+    - name: Build and run UI tests
+      run: |
+        xcodebuild test \
+          -project MelodyMap.xcodeproj \
+          -scheme MelodyMapUITests \
+          -destination 'platform=iOS Simulator,name=iPhone 15,OS=${{ matrix.ios }}' \
+          -derivedDataPath build \
+          -resultBundlePath UITestResults.xcresult \
+          | xcpretty -c && exit ${PIPESTATUS[0]}
+          
+    - name: Upload UI test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: ui-test-results-${{ matrix.xcode }}-${{ matrix.ios }}
+        path: UITestResults.xcresult
+
+  performance-tests:
+    name: Performance Tests
+    runs-on: macos-latest
+    needs: unit-tests
+    
+    strategy:
+      matrix:
+        xcode: ['15.0']
+        ios: ['17.0']
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app
+      
+    - name: Run performance tests
+      run: |
+        xcodebuild test \
+          -project MelodyMap.xcodeproj \
+          -scheme MelodyMap \
+          -destination 'platform=iOS Simulator,name=iPhone 15,OS=${{ matrix.ios }}' \
+          -only-testing:MelodyMapTests/ContentServiceTests/testCacheLoadPerformance \
+          -only-testing:MelodyMapTests/ContentServiceTests/testCacheSavePerformance \
+          -only-testing:MelodyMapTests/SearchViewModelTests/testSearchPerformance \
+          -derivedDataPath build \
+          -resultBundlePath PerformanceTestResults.xcresult \
+          | xcpretty -c && exit ${PIPESTATUS[0]}
+          
+    - name: Upload performance test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: performance-test-results-${{ matrix.xcode }}-${{ matrix.ios }}
+        path: PerformanceTestResults.xcresult
+
+  accessibility-tests:
+    name: Accessibility Tests
+    runs-on: macos-latest
+    needs: unit-tests
+    
+    strategy:
+      matrix:
+        xcode: ['15.0']
+        ios: ['17.0']
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app
+      
+    - name: Run accessibility tests
+      run: |
+        xcodebuild test \
+          -project MelodyMap.xcodeproj \
+          -scheme MelodyMapUITests \
+          -destination 'platform=iOS Simulator,name=iPhone 15,OS=${{ matrix.ios }}' \
+          -only-testing:MelodyMapUITests/AccessibilityTests \
+          -derivedDataPath build \
+          -resultBundlePath AccessibilityTestResults.xcresult \
+          | xcpretty -c && exit ${PIPESTATUS[0]}
+          
+    - name: Upload accessibility test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: accessibility-test-results-${{ matrix.xcode }}-${{ matrix.ios }}
+        path: AccessibilityTestResults.xcresult
+
+  test-summary:
+    name: Test Summary
+    runs-on: ubuntu-latest
+    needs: [unit-tests, ui-tests, performance-tests, accessibility-tests]
+    if: always()
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Download test results
+      uses: actions/download-artifact@v4
+      with:
+        path: test-results
+        
+    - name: Generate test summary
+      run: |
+        echo "## Test Results Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Unit Tests" >> $GITHUB_STEP_SUMMARY
+        echo "- Status: ${{ needs.unit-tests.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### UI Tests" >> $GITHUB_STEP_SUMMARY
+        echo "- Status: ${{ needs.ui-tests.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Performance Tests" >> $GITHUB_STEP_SUMMARY
+        echo "- Status: ${{ needs.performance-tests.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Accessibility Tests" >> $GITHUB_STEP_SUMMARY
+        echo "- Status: ${{ needs.accessibility-tests.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [[ "${{ needs.unit-tests.result }}" == "failure" || "${{ needs.ui-tests.result }}" == "failure" || "${{ needs.performance-tests.result }}" == "failure" || "${{ needs.accessibility-tests.result }}" == "failure" ]]; then
+          echo "❌ Some tests failed. Please check the logs above for details." >> $GITHUB_STEP_SUMMARY
+          exit 1
+        else
+          echo "✅ All tests passed!" >> $GITHUB_STEP_SUMMARY
+        fi 
