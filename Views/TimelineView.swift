@@ -7,8 +7,21 @@ struct TimelineView: View {
     @EnvironmentObject private var content: ContentService
     
     var body: some View {
-        VStack {
-            // Close button at top right
+        ZStack {
+            // Main content
+            if !content.movies.isEmpty {
+                let movie = content.movies[appState.selectedMovieIndex]
+                MoviePageView(
+                    movie: movie,
+                    songs: content.songs,
+                    preSelectedSong: appState.preSelectedSong,
+                    onSongSelected: { song in
+                        viewModel.presentSongDetail(for: song)
+                    }
+                )
+            }
+        }
+        .overlay(
             HStack {
                 Spacer()
                 Button(action: {
@@ -27,33 +40,9 @@ struct TimelineView: View {
             .padding(.horizontal)
             .padding(.top, 44)
             .background(Color.white.opacity(0.01))
-            
-            // Commented out PageCurlView to test if it's causing layout issues
-            /*
-            PageCurlView(
-                movies: content.movies, 
-                songs: content.songs, 
-                currentMovieIndex: appState.selectedMovieIndex,
-                preSelectedSong: appState.preSelectedSong,
-                onSongSelected: { song in
-                    viewModel.presentSongDetail(for: song)
-                }
-            )
-            */
-            
-            // Direct MoviePageView instead of PageCurlView
-            if !content.movies.isEmpty {
-                let movie = content.movies[appState.selectedMovieIndex]
-                MoviePageView(
-                    movie: movie,
-                    songs: content.songs,
-                    preSelectedSong: appState.preSelectedSong,
-                    onSongSelected: { song in
-                        viewModel.presentSongDetail(for: song)
-                    }
-                )
-            }
-        }
+            .contentShape(Rectangle())
+            , alignment: .top
+        )
         .onAppear {
             // Sync the view model with app state
             viewModel.currentMovieIndex = appState.selectedMovieIndex

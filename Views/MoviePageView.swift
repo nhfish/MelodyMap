@@ -20,6 +20,10 @@ struct MoviePageView: View {
     var body: some View {
         ScrollViewReader { proxy in
             VStack(spacing: 16) {
+                ZStack {
+                    Spacer().frame(height: 80)
+                }
+                .allowsHitTesting(false)
                 AsyncImage(url: URL(string: movie.imageURL)) { image in
                     image
                         .resizable()
@@ -158,6 +162,7 @@ struct MoviePageView: View {
                     // Expanded details
                     if isExpanded {
                         VStack(alignment: .leading, spacing: 8) {
+                            Spacer().frame(height: 8) // Add buffer above icon row
                             // Service icons row
                             HStack(spacing: 20) {
                                 // Apple Movie Store
@@ -242,9 +247,6 @@ struct MoviePageView: View {
                         }
                         .transition(.opacity.combined(with: .move(edge: .top)))
                     }
-                }
-                .onTapGesture { 
-                    onSongSelected(currentSong)
                 }
 
                 Spacer()
