@@ -25,8 +25,11 @@ struct TimelineView: View {
                 .accessibilityLabel("Close Timeline")
             }
             .padding(.horizontal)
-            .padding(.top, 8)
+            .padding(.top, 44)
+            .background(Color.white.opacity(0.01))
             
+            // Commented out PageCurlView to test if it's causing layout issues
+            /*
             PageCurlView(
                 movies: content.movies, 
                 songs: content.songs, 
@@ -36,6 +39,20 @@ struct TimelineView: View {
                     viewModel.presentSongDetail(for: song)
                 }
             )
+            */
+            
+            // Direct MoviePageView instead of PageCurlView
+            if !content.movies.isEmpty {
+                let movie = content.movies[appState.selectedMovieIndex]
+                MoviePageView(
+                    movie: movie,
+                    songs: content.songs,
+                    preSelectedSong: appState.preSelectedSong,
+                    onSongSelected: { song in
+                        viewModel.presentSongDetail(for: song)
+                    }
+                )
+            }
         }
         .onAppear {
             // Sync the view model with app state
@@ -59,7 +76,6 @@ struct TimelineView: View {
                 SongDetailView(song: song)
             }
         }
-        .safeAreaInset(edge: .top) { Spacer().frame(height: 0) }
         .sheet(isPresented: $viewModel.showQuotaSheet) {
             QuotaExceededSheet(
                 onWatchAd: { viewModel.handleWatchAd() },
@@ -68,6 +84,7 @@ struct TimelineView: View {
             )
             .environmentObject(usage)
         }
+        .ignoresSafeArea(.container, edges: .top)
     }
 }
 

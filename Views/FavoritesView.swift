@@ -4,6 +4,7 @@ struct FavoritesView: View {
     @EnvironmentObject private var favorites: FavoritesService
     @EnvironmentObject private var content: ContentService
     @EnvironmentObject private var usage: UsageTrackerService
+    @EnvironmentObject private var appState: AppState
     
     @State private var songToNavigate: Song? = nil
     @State private var showQuotaSheet = false
@@ -11,9 +12,9 @@ struct FavoritesView: View {
     var onDone: () -> Void
     
     private var favoritedSongs: [Song] {
-        content.songs.filter { song in
-            favorites.isFavorite(songID: song.id)
-        }
+        content.songs
+            .filter { song in favorites.isFavorite(songID: song.id) }
+            .sorted { $0.title.localizedCaseInsensitiveCompare($1.title) == .orderedAscending }
     }
     
     var body: some View {
@@ -50,29 +51,30 @@ struct FavoritesView: View {
             } else {
                 List {
                     ForEach(favoritedSongs) { song in
-                        Button(action: {
-                            handleSongTap(song)
-                        }) {
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text(song.title).font(.headline)
-                                    if let movie = content.movies.first(where: { $0.id == song.movieId }) {
-                                        Text(movie.title).font(.subheadline).foregroundColor(.secondary)
-                                    }
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(song.title).font(.headline)
+                                if let movie = content.movies.first(where: { $0.id == song.movieId }) {
+                                    Text(movie.title).font(.subheadline).foregroundColor(.secondary)
                                 }
-                                Spacer()
-                                StarButton(
-                                    isStarred: Binding(
-                                        get: { favorites.isFavorite(songID: song.id) },
-                                        set: { _ in favorites.toggleFavorite(songID: song.id) }
-                                    )
-                                )
                             }
+                            Spacer()
+                            StarButton(
+                                isStarred: Binding(
+                                    get: { favorites.isFavorite(songID: song.id) },
+                                    set: { _ in favorites.toggleFavorite(songID: song.id) }
+                                )
+                            )
                         }
-                        .buttonStyle(.plain)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            handleSongTap(song)
+                        }
+                        .listRowSeparator(.hidden)
                     }
                 }
                 .listStyle(PlainListStyle())
+                .padding(.bottom, UIScreen.main.bounds.height * 0.33)
                 .animation(.default, value: favoritedSongs)
             }
         }
@@ -98,15 +100,10 @@ struct FavoritesView: View {
     private func handleSongTap(_ song: Song) {
         if usage.canViewSong(withId: song.id) {
             usage.consumeUse(forSongId: song.id)
-            
-            // Find the movie index to navigate correctly
             if let movieIndex = content.movies.firstIndex(where: { $0.id == song.movieId }) {
                 onDone() // Dismiss this view
-                // A small delay ensures the sheet is dismissed before navigating
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    // You may need to update this to use AppState if navigation is still handled there
-                    // For now, just print
-                    NotificationCenter.default.post(name: Notification.Name("NavigateToTimeline"), object: (movieIndex, song))
+                    appState.navigateToTimeline(movieIndex: movieIndex, song: song)
                 }
             }
         } else {
@@ -125,5 +122,6 @@ struct FavoritesView_Previews: PreviewProvider {
             .environmentObject(favorites)
             .environmentObject(content)
             .environmentObject(UsageTrackerService.shared)
+            .environmentObject(AppState())
     }
 } 

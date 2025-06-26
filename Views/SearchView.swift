@@ -73,6 +73,7 @@ struct SearchView: View {
                                     }
                                 }
                             }
+                            .padding(.bottom, geo.size.height / 3)
                         }
                         .mask(
                             LinearGradient(

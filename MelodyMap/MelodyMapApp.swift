@@ -87,12 +87,11 @@ struct MelodyMapApp: App {
                                         Button(action: {
                                             showingFavorites = true
                                         }) {
-                                            Image(systemName: "star.fill")
+                                            Image(systemName: "star.circle.fill")
                                                 .resizable()
                                                 .frame(width: 36, height: 36)
                                                 .foregroundColor(.yellow)
-                                                .background(Color.black.opacity(0.6))
-                                                .clipShape(Circle())
+                                                .shadow(radius: 4)
                                         }
                                         .padding([.trailing, .bottom], 16)
                                     }

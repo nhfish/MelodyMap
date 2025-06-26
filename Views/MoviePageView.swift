@@ -158,6 +158,64 @@ struct MoviePageView: View {
                     // Expanded details
                     if isExpanded {
                         VStack(alignment: .leading, spacing: 8) {
+                            // Service icons row
+                            HStack(spacing: 20) {
+                                // Apple Movie Store
+                                let appleURL = (currentSong.streamingLinks + currentSong.purchaseLinks).first(where: { $0.localizedCaseInsensitiveContains("itunes") || $0.localizedCaseInsensitiveContains("apple") })
+                                if let url = appleURL {
+                                    Link(destination: URL(string: url)!) {
+                                        Image(systemName: "applelogo")
+                                            .resizable()
+                                            .frame(width: 28, height: 28)
+                                            .foregroundColor(.primary)
+                                            .accessibilityLabel("Apple Movie Store")
+                                    }
+                                } else {
+                                    Image(systemName: "applelogo")
+                                        .resizable()
+                                        .frame(width: 28, height: 28)
+                                        .foregroundColor(.gray)
+                                        .opacity(0.5)
+                                        .accessibilityLabel("Apple Movie Store (Unavailable)")
+                                }
+                                // Disney+
+                                let disneyURL = (currentSong.streamingLinks + currentSong.purchaseLinks).first(where: { $0.localizedCaseInsensitiveContains("disney") })
+                                if let url = disneyURL {
+                                    Link(destination: URL(string: url)!) {
+                                        Image(systemName: "play.rectangle.fill")
+                                            .resizable()
+                                            .frame(width: 28, height: 28)
+                                            .foregroundColor(.blue)
+                                            .accessibilityLabel("Disney Plus")
+                                    }
+                                } else {
+                                    Image(systemName: "play.rectangle.fill")
+                                        .resizable()
+                                        .frame(width: 28, height: 28)
+                                        .foregroundColor(.gray)
+                                        .opacity(0.5)
+                                        .accessibilityLabel("Disney Plus (Unavailable)")
+                                }
+                                // Amazon Video
+                                let amazonURL = (currentSong.streamingLinks + currentSong.purchaseLinks).first(where: { $0.localizedCaseInsensitiveContains("amazon") })
+                                if let url = amazonURL {
+                                    Link(destination: URL(string: url)!) {
+                                        Image(systemName: "cart.fill")
+                                            .resizable()
+                                            .frame(width: 28, height: 28)
+                                            .foregroundColor(.orange)
+                                            .accessibilityLabel("Amazon Video")
+                                    }
+                                } else {
+                                    Image(systemName: "cart.fill")
+                                        .resizable()
+                                        .frame(width: 28, height: 28)
+                                        .foregroundColor(.gray)
+                                        .opacity(0.5)
+                                        .accessibilityLabel("Amazon Video (Unavailable)")
+                                }
+                            }
+                            // Streaming and purchase links
                             if !currentSong.streamingLinks.isEmpty {
                                 Text("Streaming Links:").font(.subheadline).bold()
                                 ForEach(currentSong.streamingLinks, id: \.self) { link in
