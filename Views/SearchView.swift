@@ -109,6 +109,10 @@ struct SearchView: View {
                     print("🎬 SearchView: Upgrade button tapped")
                     // TODO: Implement upgrade flow
                     showQuotaSheet = false
+                },
+                onDismiss: {
+                    print("🎬 SearchView: Dismiss button tapped")
+                    showQuotaSheet = false
                 }
             )
         }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>FDD2D67A-6515-45EC-8601-1FDADE626241</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>FDD2D67A-6515-45EC-8601-1FDADE626241.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Testing project MelodyMap with scheme MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>772606979.87373996</real>
+			<key>timeStoppedRecording</key>
+			<real>772607068.72327101</real>
+			<key>title</key>
+			<string>Testing project MelodyMap with scheme MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>FDD2D67A-6515-45EC-8601-1FDADE626241</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -4,9 +4,25 @@ struct QuotaExceededSheet: View {
     @EnvironmentObject private var tracker: UsageTrackerService
     let onWatchAd: () -> Void
     let onUpgrade: () -> Void
+    let onDismiss: () -> Void
     
     var body: some View {
         VStack(spacing: 24) {
+            // Close button at top right
+            HStack {
+                Spacer()
+                Button(action: onDismiss) {
+                    Image(systemName: "xmark.circle.fill")
+                        .resizable()
+                        .frame(width: 28, height: 28)
+                        .foregroundColor(.secondary)
+                        .padding(8)
+                }
+                .accessibilityLabel("Close Quota Exceeded")
+            }
+            .padding(.horizontal)
+            .padding(.top, 8)
+            
             // Header
             VStack(spacing: 12) {
                 Image(systemName: "exclamationmark.triangle.fill")
@@ -65,7 +81,8 @@ struct QuotaExceededSheet_Previews: PreviewProvider {
     static var previews: some View {
         QuotaExceededSheet(
             onWatchAd: {},
-            onUpgrade: {}
+            onUpgrade: {},
+            onDismiss: {}
         )
         .environmentObject(UsageTrackerService.shared)
     }

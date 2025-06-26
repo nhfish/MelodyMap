@@ -78,38 +78,35 @@ struct MelodyMapApp: App {
                                 .zIndex(3)
                             }
                             
-                            // Favorites Button - always render but control visibility
-                            VStack {
-                                Spacer()
-                                HStack {
+                            // Favorites Button - only show when there are favorites
+                            if !favorites.favoritedSongIDs.isEmpty {
+                                VStack {
                                     Spacer()
-                                    Button(action: {
-                                        showingFavorites = true
-                                    }) {
-                                        Image(systemName: "star.fill")
-                                            .resizable()
-                                            .frame(width: 36, height: 36)
-                                            .foregroundColor(.yellow)
-                                            .background(Color.black.opacity(0.6))
-                                            .clipShape(Circle())
-                                            .shadow(radius: 4)
+                                    HStack {
+                                        Spacer()
+                                        Button(action: {
+                                            showingFavorites = true
+                                        }) {
+                                            Image(systemName: "star.fill")
+                                                .resizable()
+                                                .frame(width: 36, height: 36)
+                                                .foregroundColor(.yellow)
+                                                .background(Color.black.opacity(0.6))
+                                                .clipShape(Circle())
+                                        }
+                                        .padding([.trailing, .bottom], 16)
                                     }
-                                    .padding([.trailing, .bottom], 16)
                                 }
-                            }
-                            .zIndex(4)
-                            .opacity(favorites.favoritedSongIDs.isEmpty ? 0 : 1)
-                            .animation(.easeInOut(duration: 0.3), value: favorites.favoritedSongIDs.count)
-                            .allowsHitTesting(!favorites.favoritedSongIDs.isEmpty)
-                            .onChange(of: favorites.favoritedSongIDs.count) { count in
-                                print("⭐️ Favorites button: count changed to \(count), opacity will be \(count == 0 ? 0 : 1)")
+                                .zIndex(4)
+                                .transition(.opacity.combined(with: .scale))
+                                .animation(.easeInOut(duration: 0.3), value: favorites.favoritedSongIDs.count)
                             }
                             
                             // Profile button - uniform placement across all screens
                             VStack {
                                 HStack {
                                     Spacer()
-                                    if !appState.showingProfile {
+                                    if !appState.showingProfile && !appState.showingTimeline {
                                         DailyUsesCounterButton {
                                             appState.showingProfile = true
                                         }

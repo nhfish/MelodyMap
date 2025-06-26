@@ -8,23 +8,24 @@ struct TimelineView: View {
     
     var body: some View {
         VStack {
-            Spacer().frame(height: 16) // Add top spacing to match SearchView
-            // Back button
+            // Close button at top right
             HStack {
+                Spacer()
                 Button(action: {
                     withAnimation(.easeInOut(duration: 0.6)) {
                         appState.showingTimeline = false
                     }
                 }) {
-                    HStack {
-                        Image(systemName: "chevron.left")
-                        Text("Back to Search")
-                    }
-                    .foregroundColor(.blue)
+                    Image(systemName: "xmark.circle.fill")
+                        .resizable()
+                        .frame(width: 28, height: 28)
+                        .foregroundColor(.secondary)
+                        .padding(8)
                 }
-                .padding(.leading)
-                Spacer()
+                .accessibilityLabel("Close Timeline")
             }
+            .padding(.horizontal)
+            .padding(.top, 8)
             
             PageCurlView(
                 movies: content.movies, 
@@ -62,7 +63,8 @@ struct TimelineView: View {
         .sheet(isPresented: $viewModel.showQuotaSheet) {
             QuotaExceededSheet(
                 onWatchAd: { viewModel.handleWatchAd() },
-                onUpgrade: { viewModel.handleUpgrade() }
+                onUpgrade: { viewModel.handleUpgrade() },
+                onDismiss: { viewModel.showQuotaSheet = false }
             )
             .environmentObject(usage)
         }

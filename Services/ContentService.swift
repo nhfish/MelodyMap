@@ -87,6 +87,12 @@ final class ContentService: ObservableObject {
         await refresh()
     }
     
+    func clearCacheAndRefresh() async {
+        print("🗑️ ContentService: Clearing cache and forcing refresh...")
+        clearCache()
+        await refresh()
+    }
+    
     private func loadFromCache() {
         do {
             if let cache = loadCacheFile() {

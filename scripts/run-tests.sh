@@ -36,11 +36,10 @@ run_unit_tests() {
     xcodebuild test \
         -project MelodyMap.xcodeproj \
         -scheme MelodyMap \
-        -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' \
+        -destination 'platform=iOS Simulator,name=iPhone 13,OS=15.2' \
         -derivedDataPath build \
         -resultBundlePath TestResults.xcresult \
-        -enableCodeCoverage YES \
-        | xcpretty -c && exit ${PIPESTATUS[0]}
+        -enableCodeCoverage YES
     
     print_success "Unit tests completed successfully!"
 }
@@ -52,10 +51,9 @@ run_ui_tests() {
     xcodebuild test \
         -project MelodyMap.xcodeproj \
         -scheme MelodyMapUITests \
-        -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' \
+        -destination 'platform=iOS Simulator,name=iPhone 13,OS=15.2' \
         -derivedDataPath build \
-        -resultBundlePath UITestResults.xcresult \
-        | xcpretty -c && exit ${PIPESTATUS[0]}
+        -resultBundlePath UITestResults.xcresult
     
     print_success "UI tests completed successfully!"
 }
@@ -67,13 +65,12 @@ run_performance_tests() {
     xcodebuild test \
         -project MelodyMap.xcodeproj \
         -scheme MelodyMap \
-        -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' \
+        -destination 'platform=iOS Simulator,name=iPhone 13,OS=15.2' \
         -only-testing:MelodyMapTests/ContentServiceTests/testCacheLoadPerformance \
         -only-testing:MelodyMapTests/ContentServiceTests/testCacheSavePerformance \
         -only-testing:MelodyMapTests/SearchViewModelTests/testSearchPerformance \
         -derivedDataPath build \
-        -resultBundlePath PerformanceTestResults.xcresult \
-        | xcpretty -c && exit ${PIPESTATUS[0]}
+        -resultBundlePath PerformanceTestResults.xcresult
     
     print_success "Performance tests completed successfully!"
 }
@@ -85,11 +82,10 @@ run_accessibility_tests() {
     xcodebuild test \
         -project MelodyMap.xcodeproj \
         -scheme MelodyMapUITests \
-        -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.0' \
+        -destination 'platform=iOS Simulator,name=iPhone 13,OS=15.2' \
         -only-testing:MelodyMapUITests/AccessibilityTests \
         -derivedDataPath build \
-        -resultBundlePath AccessibilityTestResults.xcresult \
-        | xcpretty -c && exit ${PIPESTATUS[0]}
+        -resultBundlePath AccessibilityTestResults.xcresult
     
     print_success "Accessibility tests completed successfully!"
 }

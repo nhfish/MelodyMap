@@ -15,6 +15,7 @@ struct MoviePageView: View {
     @State private var selectedIndex: Int = 0
     @State private var hasHandledPreSelectedSong = false
     @State private var showQuotaSheet = false
+    @State private var isExpanded = false
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -41,16 +42,21 @@ struct MoviePageView: View {
                                 .frame(height: 2)
                                 .foregroundColor(.secondary)
                             ForEach(Array(songsForMovie.enumerated()), id: \.element.id) { index, song in
+                                let percent = song.effectivePercent
+                                let xPosition = geo.size.width * CGFloat(percent) / 100.0
                                 Circle()
                                     .frame(width: 12, height: 12)
-                                    .foregroundColor(song.id == preSelectedSong?.id ? .blue : .primary)
-                                    .position(x: geo.size.width * CGFloat(song.percent ?? 0) / 100,
-                                              y: 1)
+                                    .foregroundColor(song.id == songsForMovie[selectedIndex].id ? .blue : .primary)
+                                    .position(x: xPosition, y: 1)
                                     .onTapGesture {
                                         selectedIndex = index
                                         withAnimation {
                                             proxy.scrollTo(song.id, anchor: .top)
                                         }
+                                    }
+                                    .onAppear {
+                                        print("🎯 Timeline dot for '\(song.title)': percent=\(percent)%, xPosition=\(xPosition), geo.width=\(geo.size.width)")
+                                        print("🎯 Raw percent value: \(song.percent ?? 0.0), effective percent: \(song.effectivePercent)")
                                     }
                             }
                         }
@@ -98,8 +104,8 @@ struct MoviePageView: View {
                             .onEnded { value in
                                 let ratio = min(max(0, value.location.x / geo.size.width), 1)
                                 let nearestIndex = songsForMovie.enumerated().min { lhs, rhs in
-                                    let l = abs(ratio - CGFloat(lhs.element.percent ?? 0) / 100)
-                                    let r = abs(ratio - CGFloat(rhs.element.percent ?? 0) / 100)
+                                    let l = abs(ratio - CGFloat(lhs.element.effectivePercent) / 100.0)
+                                    let r = abs(ratio - CGFloat(rhs.element.effectivePercent) / 100.0)
                                     return l < r
                                 }?.offset ?? selectedIndex
                                 selectedIndex = nearestIndex
@@ -115,8 +121,11 @@ struct MoviePageView: View {
                 let currentSong = songsForMovie[selectedIndex]
                 VStack(alignment: .leading, spacing: 4) {
                     HStack {
-                        Text(formatTimecode(currentSong.startTime) + "  ·  \(currentSong.percent ?? 0)%")
+                        Text(formatTimecode(currentSong.startTime))
                             .font(.caption)
+                            .onAppear {
+                                print("🕐 Timecode for '\(currentSong.title)': original='\(currentSong.startTime ?? "nil")', formatted='\(formatTimecode(currentSong.startTime))'")
+                            }
                         SongPreviewButton(song: currentSong, movieTitle: movie.title)
                     }
                     Divider()
@@ -131,7 +140,50 @@ struct MoviePageView: View {
                         StarButton(isStarred: isStarredBinding)
                     }
                     Text("\(movie.title) · \(String(movie.releaseYear))")
+                    Text("Runtime: \(currentSong.movieRuntimeMinutes) minutes")
                     Text("Characters: " + currentSong.singers.joined(separator: ", "))
+                    // Chevron for expanding/collapsing details
+                    HStack {
+                        Spacer()
+                        Button(action: { withAnimation { isExpanded.toggle() } }) {
+                            Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                                .rotationEffect(.degrees(isExpanded ? 180 : 0))
+                                .animation(.easeInOut, value: isExpanded)
+                                .font(.system(size: 20, weight: .bold))
+                                .padding(.top, 4)
+                        }
+                        .accessibilityLabel(isExpanded ? "Hide Song Details" : "Show Song Details")
+                        Spacer()
+                    }
+                    // Expanded details
+                    if isExpanded {
+                        VStack(alignment: .leading, spacing: 8) {
+                            if !currentSong.streamingLinks.isEmpty {
+                                Text("Streaming Links:").font(.subheadline).bold()
+                                ForEach(currentSong.streamingLinks, id: \.self) { link in
+                                    Link(destination: URL(string: link)!) {
+                                        Text(link)
+                                            .foregroundColor(.blue)
+                                            .underline()
+                                    }
+                                }
+                            }
+                            if !currentSong.purchaseLinks.isEmpty {
+                                Text("Purchase Links:").font(.subheadline).bold()
+                                ForEach(currentSong.purchaseLinks, id: \.self) { link in
+                                    Link(destination: URL(string: link)!) {
+                                        Text(link)
+                                            .foregroundColor(.blue)
+                                            .underline()
+                                    }
+                                }
+                            }
+                            if let blurb = currentSong.blurb, !blurb.isEmpty {
+                                Text("\n" + blurb).font(.body)
+                            }
+                        }
+                        .transition(.opacity.combined(with: .move(edge: .top)))
+                    }
                 }
                 .onTapGesture { 
                     onSongSelected(currentSong)
@@ -151,7 +203,8 @@ struct MoviePageView: View {
             .sheet(isPresented: $showQuotaSheet) {
                 QuotaExceededSheet(
                     onWatchAd: { showQuotaSheet = false },
-                    onUpgrade: { showQuotaSheet = false }
+                    onUpgrade: { showQuotaSheet = false },
+                    onDismiss: { showQuotaSheet = false }
                 )
                 .environmentObject(usage)
             }
@@ -178,22 +231,29 @@ struct MoviePageView: View {
 
     /// Ensures the timecode is always displayed as HH:MM:SS
     private func formatTimecode(_ time: String?) -> String {
-        guard let time = time, !time.isEmpty else { return "00:00:00" }
+        guard let time = time, !time.isEmpty else { 
+            return "00:00:00" 
+        }
         let parts = time.split(separator: ":").map { String($0) }
+        
         if parts.count == 3 {
-            // Already HH:MM:SS
-            return String(format: "%02d:%02d:%02d",
-                          Int(parts[0]) ?? 0,
-                          Int(parts[1]) ?? 0,
-                          Int(parts[2]) ?? 0)
+            // Handle possible decimals in seconds (e.g., 00:24:32.000)
+            let hours = Int(parts[0]) ?? 0
+            let minutes = Int(parts[1]) ?? 0
+            let secondsString = parts[2].split(separator: ".").first.map(String.init) ?? parts[2]
+            let seconds = Int(secondsString) ?? 0
+            return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
         } else if parts.count == 2 {
             // MM:SS, pad with 00 for hours
-            return String(format: "00:%02d:%02d",
-                          Int(parts[0]) ?? 0,
-                          Int(parts[1]) ?? 0)
+            let minutes = Int(parts[0]) ?? 0
+            let secondsString = parts[1].split(separator: ".").first.map(String.init) ?? parts[1]
+            let seconds = Int(secondsString) ?? 0
+            return String(format: "00:%02d:%02d", minutes, seconds)
         } else if parts.count == 1 {
             // SS only
-            return String(format: "00:00:%02d", Int(parts[0]) ?? 0)
+            let secondsString = parts[0].split(separator: ".").first.map(String.init) ?? parts[0]
+            let seconds = Int(secondsString) ?? 0
+            return String(format: "00:00:%02d", seconds)
         } else {
             return "00:00:00"
         }

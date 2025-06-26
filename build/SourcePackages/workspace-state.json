@@ -1,0 +1,1 @@
+{"object": {"artifacts": [{"packageRef": {"identity": "gmaspm", "kind": "root", "location": "/Users/natefish/Desktop/2025 Melody Map/MelodyMap/GMASPM", "name": "GMASPM"}, "path": "/Users/natefish/Desktop/2025 Melody Map/MelodyMap/GMASPM/GoogleMobileAds.xcframework", "source": {"type": "local"}, "targetName": "GoogleMobileAds"}], "dependencies": []}, "version": 4}

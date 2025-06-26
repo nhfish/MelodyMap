@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)"
+options: "2f8c5f3eec5403144d63dc5724ccfe24043637d193ecfd0a702f5b6937c49b30"
+build_start_time: [1750914253, 299785137]
+build_end_time: [1750914264, 609951019]
+inputs:
+  "/Users/natefish/Desktop/2025 Melody Map/MelodyMap/MelodyMapTests/MelodyMapTests.swift": [1749873862, 260925531]
