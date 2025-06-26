@@ -29,10 +29,13 @@ final class ContentService: ObservableObject {
     }
     
     func refreshIfNeeded() async {
-        if let cache = loadCacheFile(), Date().timeIntervalSince(cache.lastFetch) < cacheAge {
-            // Cache is fresh
-            print("📦 ContentService: Using fresh cache.")
-            return
+        if let cache = loadCacheFile() {
+            let age = Date().timeIntervalSince(cache.lastFetch)
+            if age < 12 * 60 * 60 {
+                // Cache is fresh
+                print("📦 ContentService: Using fresh cache.")
+                return
+            }
         }
         await refresh()
     }
@@ -51,7 +54,7 @@ final class ContentService: ObservableObject {
             self.isOffline = false
             
             do {
-                saveToCache(movies: newMovies, songs: newSongs)
+                try saveToCache(movies: newMovies, songs: newSongs)
             } catch {
                 ErrorHandlingService.shared.handle(
                     MelodyMapError.cacheError(underlying: error),
@@ -141,16 +144,15 @@ final class ContentService: ObservableObject {
         let lowercasedQuery = query.lowercased()
         return movies.filter { movie in
             movie.title.lowercased().contains(lowercasedQuery) ||
-            movie.year.description.contains(lowercasedQuery)
+            String(movie.releaseYear).contains(lowercasedQuery)
         }
     }
     
     func searchSongs(query: String) -> [Song] {
         let lowercasedQuery = query.lowercased()
         return songs.filter { song in
-            song.title.lowercased().contains(lowercasedQuery) ||
-            song.artist.lowercased().contains(lowercasedQuery) ||
-            song.movieTitle.lowercased().contains(lowercasedQuery)
+            song.title.lowercased().contains(lowercasedQuery)
+            // Add more fields if needed, e.g. song.singers, song.keywords
         }
     }
     
@@ -158,13 +160,13 @@ final class ContentService: ObservableObject {
         return !movies.isEmpty || !songs.isEmpty
     }
     
-    var cacheAge: TimeInterval? {
+    var cacheAgeSinceLastFetch: TimeInterval? {
         guard let cache = loadCacheFile() else { return nil }
         return Date().timeIntervalSince(cache.lastFetch)
     }
     
     var isCacheStale: Bool {
-        guard let age = cacheAge else { return true }
-        return age >= self.cacheAge
+        guard let age = cacheAgeSinceLastFetch else { return true }
+        return age >= (12 * 60 * 60) // 12 hours
     }
 } 

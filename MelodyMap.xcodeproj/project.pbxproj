@@ -47,6 +47,7 @@
 		BFD99D2D2E0680EB000B54EE /* MusicKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D2C2E0680EB000B54EE /* MusicKitService.swift */; };
 		BFD99D302E06813A000B54EE /* SongPreviewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D2E2E068139000B54EE /* SongPreviewButton.swift */; };
 		BFD99D312E06813A000B54EE /* AudioPreviewPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D2F2E06813A000B54EE /* AudioPreviewPlayer.swift */; };
+		BFD99D332E0C001C000B54EE /* ErrorHandlingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD99D322E0C001C000B54EE /* ErrorHandlingService.swift */; };
 		C1D2FE12780743C4971575A0 /* MoviePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A366303D6046388571CA84 /* MoviePageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +128,7 @@
 		BFD99D2C2E0680EB000B54EE /* MusicKitService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicKitService.swift; sourceTree = "<group>"; };
 		BFD99D2E2E068139000B54EE /* SongPreviewButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SongPreviewButton.swift; path = Components/SongPreviewButton.swift; sourceTree = "<group>"; };
 		BFD99D2F2E06813A000B54EE /* AudioPreviewPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPreviewPlayer.swift; path = Components/AudioPreviewPlayer.swift; sourceTree = "<group>"; };
+		BFD99D322E0C001C000B54EE /* ErrorHandlingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandlingService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 		BFD99CDE2DFDFD81000B54EE /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				BFD99D322E0C001C000B54EE /* ErrorHandlingService.swift */,
 				BFD99D2C2E0680EB000B54EE /* MusicKitService.swift */,
 				BFD99D2A2E05F98F000B54EE /* ContentService.swift */,
 				BFD99D262E052C03000B54EE /* FavoritesService.swift */,
@@ -458,6 +461,7 @@
 				BFD99D122DFE910E000B54EE /* PageCurlView.swift in Sources */,
 				C1D2FE12780743C4971575A0 /* MoviePageView.swift in Sources */,
 				BFD99D312E06813A000B54EE /* AudioPreviewPlayer.swift in Sources */,
+				BFD99D332E0C001C000B54EE /* ErrorHandlingService.swift in Sources */,
 				BFD99D0B2DFE90DE000B54EE /* APIService.swift in Sources */,
 				BFD99D0F2DFF49AD000B54EE /* UsageMeterView.swift in Sources */,
 				BFD99D062DFDFD81000B54EE /* UserProfileViewModel.swift in Sources */,

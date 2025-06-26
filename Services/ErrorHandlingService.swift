@@ -3,7 +3,7 @@ import SwiftUI
 
 // MARK: - Custom Error Types
 
-enum MelodyMapError: LocalizedError, Equatable {
+enum MelodyMapError: LocalizedError {
     case networkError(underlying: Error)
     case serverError(statusCode: Int)
     case cacheError(underlying: Error)
@@ -291,7 +291,9 @@ extension Result {
         case .success:
             break
         case .failure(let error):
-            ErrorHandlingService.shared.handle(error, context: context)
+            Task { @MainActor in
+                ErrorHandlingService.shared.handle(error, context: context)
+            }
         }
     }
     
@@ -301,7 +303,9 @@ extension Result {
             return .success(value)
         case .failure(let error):
             let transformedError = transform(error)
-            ErrorHandlingService.shared.handle(transformedError, context: context)
+            Task { @MainActor in
+                ErrorHandlingService.shared.handle(transformedError, context: context)
+            }
             return .failure(transformedError)
         }
     }
@@ -309,19 +313,58 @@ extension Result {
 
 // MARK: - Async Error Handling
 
-extension Task {
+extension Task where Failure == Never {
     static func withErrorHandling<T>(
         context: String = "Unknown",
         priority: TaskPriority? = nil,
         operation: @escaping () async throws -> T
-    ) -> Task<T, Never> {
-        Task(priority: priority) {
+    ) -> Task<T?, Never> {
+        Task<T?, Never>(priority: priority) {
             do {
                 return try await operation()
             } catch {
-                ErrorHandlingService.shared.handle(error, context: context)
-                // Return a default value or throw a non-throwing error
-                fatalError("Task failed with error: \(error)")
+                await MainActor.run {
+                    ErrorHandlingService.shared.handle(error, context: context)
+                }
+                return nil
+            }
+        }
+    }
+    
+    static func withErrorHandling<T>(
+        context: String = "Unknown",
+        priority: TaskPriority? = nil,
+        defaultValue: T,
+        operation: @escaping () async throws -> T
+    ) -> Task<T, Never> {
+        Task<T, Never>(priority: priority) {
+            do {
+                return try await operation()
+            } catch {
+                await MainActor.run {
+                    ErrorHandlingService.shared.handle(error, context: context)
+                }
+                return defaultValue
+            }
+        }
+    }
+}
+
+// MARK: - Async Error Handling for Void Operations
+
+extension Task where Failure == Never {
+    static func withErrorHandling(
+        context: String = "Unknown",
+        priority: TaskPriority? = nil,
+        operation: @escaping () async throws -> Void
+    ) -> Task<Void, Never> {
+        Task<Void, Never>(priority: priority) {
+            do {
+                try await operation()
+            } catch {
+                await MainActor.run {
+                    ErrorHandlingService.shared.handle(error, context: context)
+                }
             }
         }
     }
