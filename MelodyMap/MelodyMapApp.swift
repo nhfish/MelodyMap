@@ -66,60 +66,51 @@ struct MelodyMapApp: App {
                                     print("🎬 MelodyMapApp: Showing SearchView")
                                 }
                             }
-                            
-                            // Overlay buttons - always on top
-                            if !appState.isSubscribed {
-                                VStack {
+
+                            // Centralized Floating Action Buttons (FABs) Overlay
+                            VStack {
+                                HStack {
+                                    // Upgrade FAB (bottom left)
+                                    FloatingActionButton(
+                                        systemName: "plus.circle.fill",
+                                        color: .yellow,
+                                        action: { appState.showPaywall = true },
+                                        accessibilityLabel: "Upgrade"
+                                    )
+                                    .padding([.leading, .bottom], 16)
                                     Spacer()
-                                    HStack {
-                                        UpgradeButton {
-                                            appState.showPaywall = true
-                                        }
-                                        .padding([.leading, .bottom], 16)
-                                        Spacer()
-                                    }
-                                }
-                                .zIndex(3)
-                            }
-                            
-                            // Favorites Button - only show when there are favorites
-                            if !favorites.favoritedSongIDs.isEmpty {
-                                VStack {
-                                    Spacer()
-                                    HStack {
-                                        Spacer()
-                                        Button(action: {
-                                            showingFavorites = true
-                                        }) {
-                                            Image(systemName: "star.circle.fill")
-                                                .resizable()
-                                                .frame(width: 36, height: 36)
-                                                .foregroundColor(.yellow)
-                                                .shadow(radius: 4)
-                                        }
+                                    // Favorite FAB (bottom right, only if there are favorites)
+                                    if !favorites.favoritedSongIDs.isEmpty {
+                                        FloatingActionButton(
+                                            systemName: "star.circle.fill",
+                                            color: .yellow,
+                                            action: { showingFavorites = true },
+                                            accessibilityLabel: "Show Favorites"
+                                        )
                                         .padding([.trailing, .bottom], 16)
                                     }
                                 }
-                                .zIndex(4)
-                                .transition(.opacity.combined(with: .scale))
-                                .animation(.easeInOut(duration: 0.3), value: favorites.favoritedSongIDs.count)
-                            }
-                            
-                            // Profile button - uniform placement across all screens
-                            VStack {
+                                Spacer()
                                 HStack {
                                     Spacer()
-                                    if !appState.showingProfile && !appState.showingTimeline {
-                                        DailyUsesCounterButton {
-                                            appState.showingProfile = true
-                                        }
-                                        .environmentObject(UsageTrackerService.shared)
-                                        .padding([.trailing, .top], 16)
+                                    // Close FAB (top right, only show in TimelineView)
+                                    if appState.showingTimeline {
+                                        FloatingActionButton(
+                                            systemName: "xmark.circle.fill",
+                                            color: .secondary,
+                                            action: {
+                                                withAnimation(.easeInOut(duration: 0.6)) {
+                                                    appState.showingTimeline = false
+                                                }
+                                            },
+                                            accessibilityLabel: "Close Timeline"
+                                        )
+                                        .padding([.trailing, .top], 20)
                                     }
                                 }
-                                Spacer()
                             }
-                            .zIndex(3)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .zIndex(1000)
                         }
                     }
                     .navigationViewStyle(StackNavigationViewStyle())

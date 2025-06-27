@@ -8,6 +8,7 @@ _Last updated 2025-01-27_
 * **Aesthetic** Minimalist "storybook": gentle page-curls, soft shadows, tiny pixie sparkles, magical pixie burst transitions.
 * **Tech Stack** Swift + SwiftUI · StoreKit 2 · Google AdMob (rewarded) · MusicKit (previews).
 * **Offline-first** Song / Movie JSON cached on cold start; favorites & quota persist locally.
+* **Centralized Floating Action Button Overlay** All floating action buttons (close, upgrade, favorite) are now managed in a single overlay layer at the app root, using a shared style for visual and behavioral consistency. FABs are fixed to screen corners, never shift with content, and maintain a 44pt+ tap target for accessibility.
 
 ---
 
@@ -52,6 +53,7 @@ struct Movie: Identifiable, Codable {
 | **Home Screen** | SearchView serves as primary home screen with search functionality |
 | **Navigation** | AppState-driven navigation with SearchView → TimelineView transitions |
 | **Overlay System** | Profile and paywall appear as overlays with closure-based dismissal |
+| **FAB Overlay** | All floating action buttons (close, upgrade, favorite) are managed in a single overlay layer at the app root, using a shared style for visual and behavioral consistency. FABs are fixed to screen corners and never shift with content changes. |
 
 ## 4. System 3 – Timeline Browsing
 
@@ -61,8 +63,8 @@ struct Movie: Identifiable, Codable {
 | Page Controller | `UIPageViewController` with `.pageCurl` — **now locked to a single movie; users cannot swipe/curl to other movies** |
 | Per-Movie Page | Poster · horizontal timeline line · snap-dots at % · arrow buttons left / right (only between songs in the same movie) |
 | Song Navigation | Drag on timeline (magnetic snap) and arrow taps (within current movie only) |
-| Collapsed Song Panel | Start Time (top) → divider → Song Title + ⭐ → Movie · Year → Characters |
-| Expanded Panel | Streaming icons (Disney+ first) · Purchase icons · Blurb · Keywords · Share · reserved mini-preview slot |
+| Collapsed Song Panel | Start Time (top) → divider → Song Title + ★ → Movie · Year → Characters |
+| Expanded Panel | Streaming icons (Disney+ primary) · Purchase icons · Blurb · Keywords · Share · reserved mini-preview slot |
 | Movies w/o Songs | Excluded server-side |
 | Sorting | `SortOrder` ascending |
 | Favorites | `UserDefaults` array of `song.id` |
@@ -71,6 +73,7 @@ struct Movie: Identifiable, Codable {
 | Timecode | Always formatted as HH:MM:SS |
 | Release Year | Always shown without a comma |
 | Preview Button | Unobtrusive play button next to timecode for Apple Music previews |
+| **FAB Overlay** | Close (X) button is always fixed to the top-right corner in TimelineView, using the shared FAB style. Upgrade and Favorites FABs are fixed to bottom corners. All FABs are visually consistent and never shift with content. |
 
 ## 5. System 4 – Global Search
 
@@ -85,6 +88,7 @@ struct Movie: Identifiable, Codable {
 | Index | In-memory struct array (≤ 1.5 k songs) |
 | Banner | Slim "Upgrade" banner pinned to bottom; hidden when subscribed |
 | Navigation | Tap song → TimelineView with proper movie indexing |
+| **FAB Overlay** | Upgrade and Favorites FABs are always fixed to the bottom corners, using the shared FAB style. |
 
 ## 6. System 5 – Song Detail View
 
@@ -92,8 +96,8 @@ Collapsed (default)
 
 ```
 Start Time HH:MM:SS  ( % )
-───────────────────────────
-Song Title  ⭐
+──────────────────────────────
+Song Title  ★
 Movie · Year
 Characters: Anna, Elsa
 ```
@@ -107,7 +111,7 @@ Blurb · Keywords · Share
 Mini-audio placeholder (future)
 ```
 
-Gesture / Dismiss: swipe ← / → or tap X → page-curl back.
+Gesture / Dismiss: swipe ← / → or tap X → page-curl back. The close (X) button uses the shared FAB style and is fixed to the top-right corner.
 
 ## 7. System 6 – Daily Usage Limit + Rewarded Ads
 
@@ -171,6 +175,7 @@ Gesture / Dismiss: swipe ← / → or tap X → page-curl back.
 | `PurchaseService` | StoreKit 2 purchase / trial / restore |
 | `MusicKitService` | Apple Music authorization, catalog search, preview URL retrieval |
 | `AppState` | Navigation state, splash/data readiness, pixie burst coordination |
+| `FloatingActionButton` | Shared component for all floating action buttons (close, upgrade, favorite), used in a centralized overlay layer at the app root. Ensures all FABs are visually and behaviorally consistent, fixed to screen corners, and maintain a 44pt+ tap target for accessibility. |
 
 All service singletons injected via `.environmentObject`.
 
@@ -186,7 +191,7 @@ Paywall = standard system sheet presentation.
 
 Reduce Motion → fall back to cross-fade.
 
-Tap targets ≥ 44 pt; VoiceOver labels for timeline dots & icons.
+Tap targets ≥ 44 pt; VoiceOver labels for timeline dots & all floating action buttons (FABs). FABs are always accessible and never shift due to content changes.
 
 ## 13. Remote-Config Keys (future)
 
@@ -198,7 +203,6 @@ Tap targets ≥ 44 pt; VoiceOver labels for timeline dots & icons.
 | `monthlyPriceTier` | 1.99 |
 | `yearlyPriceTier` | 14.99 |
 | `freeTrialDays` | 3 |
-| `adUnitID` | — |
 
 ## 14. Key Changes (v1.2)
 

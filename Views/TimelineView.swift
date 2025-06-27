@@ -21,39 +21,6 @@ struct TimelineView: View {
                 )
                 .ignoresSafeArea(.container, edges: .top) // Allow content to extend to top
             }
-            
-            // Close button overlay - fixed positioning
-            VStack {
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        print("🔴 Close button tapped!")
-                        withAnimation(.easeInOut(duration: 0.6)) {
-                            appState.showingTimeline = false
-                        }
-                    }) {
-                        ZStack {
-                            Circle()
-                                .fill(Color.white)
-                                .frame(width: 44, height: 44)
-                                .shadow(radius: 3)
-                            
-                            Image(systemName: "xmark.circle.fill")
-                                .resizable()
-                                .frame(width: 32, height: 32)
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                    .accessibilityLabel("Close Timeline")
-                    .padding(.trailing, 20) // Increased padding from edge
-                    .padding(.top, 12) // Reduced top padding
-                }
-                .frame(maxWidth: .infinity, alignment: .trailing) // Ensure proper alignment
-                .padding(.top, 44) // Fixed top padding to position correctly
-                Spacer()
-            }
-            .zIndex(999) // High z-index to stay on top
-            .allowsHitTesting(true) // Ensure hit testing works
         }
         .onAppear {
             // Sync the view model with app state

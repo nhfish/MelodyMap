@@ -8,6 +8,7 @@ Melody Map is an iOS-first app built with Swift and SwiftUI. It helps parents an
 ## Architecture (Updated)
 - **AppState**: Manages splash/data readiness and navigation state. Splash screen is gated on both minimum time (2.5s) and data readiness (movies/songs loaded).
 - **Navigation**: AppState-driven navigation with SearchView as home screen, TimelineView accessed via search results
+- **Centralized FAB Overlay**: All floating action buttons (close, upgrade, favorite) are now managed in a single overlay layer at the app root, ensuring they remain fixed to the screen corners and visually consistent across all views. The shared `FloatingActionButton` component is used for all FABs.
 - **SearchViewModel**: Exposes a static loadForAppState for splash gating.
 - **UsageTrackerService**: Injected at the root of the app with proper initialization (3 views/day).
 - **Views**: SearchView is the primary home screen, with overlays for upgrade/profile. Profile and paywall overlays use closure-based dismissal.
@@ -37,6 +38,7 @@ Melody Map is an iOS-first app built with Swift and SwiftUI. It helps parents an
 - **PixieBurstTransitionView** – magical particle animation for splash-to-main transitions.
 - **SongPreviewButton** – unobtrusive button next to timecodes for playing Apple Music previews.
 - **AudioPreviewPlayer** – simple play/stop controls for 30-second song previews.
+- **FloatingActionButton** – shared component for all floating action buttons (close, upgrade, favorite), used in a centralized overlay layer at the app root. Ensures all FABs are visually and behaviorally consistent, fixed to screen corners, and maintain a 44pt+ tap target for accessibility.
 
 ## Data Flow (Updated)
 1. AppState calls SearchViewModel.loadForAppState to load movies and songs for splash gating.
@@ -47,6 +49,7 @@ Melody Map is an iOS-first app built with Swift and SwiftUI. It helps parents an
 6. TimelineView is accessed via search results with smooth transitions.
 7. Profile and paywall overlays use closure-based dismissal.
 8. MusicKitService handles Apple Music preview requests on-demand.
+9. **Centralized FAB Overlay**: All floating action buttons are managed in a single overlay layer, ensuring they remain fixed and visually consistent regardless of content changes or scrolling.
 
 ## Usage Limits and Monetization
 Daily free usage is limited to 3 song views per day (updated from 10). Users can extend their quota by:
@@ -106,8 +109,9 @@ When disabled, the systems use mock implementations for development and testing.
 - **MusicKit Integration** — Apple Music previews with authorization and playback
 - **Preview Button UI** — unobtrusive controls next to timecodes
 - **Audio Preview Player** — simple play/stop functionality
+- **Centralized Floating Action Button Overlay** — all FABs are now managed in a single overlay layer for consistency, accessibility, and visual polish
 
-### 🚧 In Progress
+### 🛠️ In Progress
 - Core UI polish and refinement
 - User experience optimization
 - Content management system
@@ -119,7 +123,7 @@ When disabled, the systems use mock implementations for development and testing.
 - Content expansion
 
 ## Accessibility and Motion
-All interactions use page-curl by default. When iOS Reduce Motion is enabled, transitions fall back to cross-fades. Tap targets are 44 pt or larger and timeline dots include VoiceOver labels. Pixie burst animations respect accessibility settings.
+All interactions use page-curl by default. When iOS Reduce Motion is enabled, transitions fall back to cross-fades. Tap targets are 44 pt or larger and timeline dots and all floating action buttons (FABs) include VoiceOver labels. Pixie burst animations respect accessibility settings. The centralized FAB overlay ensures all FABs are always accessible and never shift due to content changes.
 
 ## Development Notes
 
@@ -196,4 +200,5 @@ Remote-config keys will allow tuning quota and pricing without app updates. Addi
 - **MusicKit Integration:** Apple Music previews with 30-second previews, on-demand permission requests, and simple play/stop controls.
 - **Preview Button UI:** Unobtrusive preview buttons next to timecodes in timeline view.
 - **Audio Preview Player:** Simple audio playback component with proper memory management.
+- **Centralized FAB Overlay:** All floating action buttons are now managed in a single overlay layer for consistency, accessibility, and visual polish.
 

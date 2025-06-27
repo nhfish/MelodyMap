@@ -24,6 +24,15 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 - **Profile Button Consistency:** The profile button is now visually aligned in both TimelineView and SearchView, matching the navigation bar style.
 - **Timecode Formatting:** Song timecodes are always displayed as HH:MM:SS.
 - **Release Year Display:** Release year is always shown without a comma.
+- **Centralized Floating Action Buttons:** All floating action buttons (close, upgrade, favorite) are now managed in a single overlay layer, visually consistent, and fixed to the screen corners for a seamless and accessible experience.
+
+## Floating Action Button (FAB) Overlay System
+Melody Map uses a centralized Floating Action Button overlay for all key actions:
+- **Close (X) Button:** Always fixed to the top-right corner when in TimelineView.
+- **Upgrade (+) Button:** Always fixed to the bottom-left corner (if not subscribed).
+- **Favorites (★) Button:** Always fixed to the bottom-right corner (if favorites exist).
+- All FABs use a shared style for icon size, color, and drop shadow, ensuring visual and behavioral consistency.
+- FABs are never affected by content resizing or scrolling, and always maintain a 44pt+ tap target for accessibility.
 
 ## Current Development Status
 
@@ -42,8 +51,9 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 - **Pixie Burst Transition** — magical animation when transitioning from splash to main app
 - **Splash Screen Gating** — waits for both minimum time (2.5s) and data readiness
 - **Daily Uses Counter** — persistent tracking with proper initialization
+- **Centralized Floating Action Button Overlay** — all FABs are now managed in a single overlay layer for consistency and accessibility
 
-### 🚧 **In Progress**
+### 🛠️ **In Progress**
 - UI polish and refinement
 - User experience optimization
 - Content management system
@@ -71,6 +81,7 @@ The app now uses a centralized navigation system:
 - **TimelineView:** Accessed via search results with smooth transitions
 - **Overlay System:** Profile and paywall appear as overlays with closure-based dismissal
 - **Pixie Burst:** Magical transition animation when moving from splash to main app
+- **Centralized FAB Overlay:** All floating action buttons are managed in a single overlay layer, ensuring they remain fixed and visually consistent
 
 ### Google Ads Integration
 Google Ads integration is temporarily disabled during development to focus on core functionality. The system uses a mock implementation that simulates successful ad views for testing purposes. This allows development to continue without SDK compatibility issues.
@@ -118,6 +129,7 @@ StoreKit integration is temporarily disabled during development. The system uses
 - Fast, joyful interactions for busy caregivers
 - Minimalist UX — designed for quick lookups, not deep browsing
 - Magical transitions with pixie burst animations
+- **Centralized FAB Overlay:** All floating action buttons are managed in a single overlay for consistency and accessibility
 
 ## Development Goals
 1. Build MVP using Google Sheets as CMS with a native SwiftUI app
@@ -134,7 +146,8 @@ StoreKit integration is temporarily disabled during development. The system uses
 ✅ **Search → Timeline Navigation** — smooth transitions with proper movie indexing
 ✅ **Overlay System** — Profile and paywall use closure-based dismissal
 ✅ **iOS 15 compatibility** (NavigationView); ready for NavigationStack on iOS 16+
-🚧 UI polish and refinement in progress
+✅ **Centralized FAB Overlay** — all floating action buttons are now managed in a single overlay layer for consistency and accessibility
+🛠️ UI polish and refinement in progress
 
 ## Project Structure
 
@@ -155,17 +168,19 @@ MelodyMap/
 │   ├── SplashView.swift        # Disney-style splash with pixie trail animation
 │   ├── SearchView.swift        # Home screen, search UI
 │   ├── ProfileView.swift       # Profile, with onClose closure
-│   ├── UpgradeButton.swift     # Upgrade/paywall button
+│   ├── Components/
+│   │   ├── FloatingActionButton.swift # Shared FAB component for all floating buttons
+│   │   └── QuotaExceededSheet.swift
+│   ├── UpgradeButton.swift     # (Legacy) Upgrade/paywall button (now replaced by FAB)
 │   ├── DailyUsesCounterButton.swift # Profile/daily uses button
 │   ├── Paywall/PaywallView.swift    # Paywall, with onClose closure
-│   ├── TimelineView.swift      # Timeline navigation with back button
+│   ├── TimelineView.swift      # Timeline navigation
 │   ├── SongDetailView.swift
 │   ├── MoviePageView.swift     # Individual movie pages with timeline
 │   ├── PageCurlView.swift      # UIPageViewController wrapper
 │   ├── UsageMeterView.swift
-│   ├── StarButton.swift
-│   └── Components/
-│       └── QuotaExceededSheet.swift
+│   ├── StarButton.swift        # Favorite button (now uses FAB style)
+│   └── FavoritesView.swift     # Favorites modal
 ├── ViewModels/                 # View models
 │   ├── TimelineViewModel.swift
 │   ├── SearchViewModel.swift   # Search, exposes loadForAppState
@@ -198,16 +213,4 @@ TBD — likely MIT or similar (to be finalized)
 - **Navigation Architecture:** AppState-driven navigation with SearchView as home screen
 - **Pixie Burst Animation:** Magical transition when moving from splash to main app
 - **Splash Screen Gating:** Waits for both minimum time (2.5s) and data readiness
-- **Daily Uses Counter:** Persistent tracking with proper initialization and UserDefaults
-- **UsageTrackerService:** Properly initializes daily quota (3 views/day) and tracks usage
-- **Search → Timeline Navigation:** Smooth transitions with proper movie indexing
-- **Overlay System:** Profile and paywall use closure-based dismissal
-- **iOS 15:** Uses NavigationView; ready to migrate to NavigationStack for iOS 16+
-- Timeline navigation is now strictly within a single movie (no accidental navigation to other movies)
-- QuotaExceededSheet is shown consistently when out of daily uses, both in search and timeline
-- Unified quota logic for improved UX
-- **Timeline Navigation:** Arrow navigation between songs now consumes a daily use and will show the QuotaExceededSheet if out of quota.
-- **Unified Quota Handling:** The QuotaExceededSheet is now used for all quota-exceeded actions, including arrow navigation, and no longer shows today's usage or a progress bar.
-- **Profile Button Consistency:** The profile button is now visually aligned in both TimelineView and SearchView, matching the navigation bar style.
-- **Timecode Formatting:** Song timecodes are always displayed as HH:MM:SS.
-- **Release Year Display:** Release year is always shown without a comma.
+- **Centralized FAB Overlay:** All floating action buttons are now managed in a single overlay layer for consistency and accessibility

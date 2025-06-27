@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF8214492E0F0DCE0025435E /* FloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8214482E0F0DCE0025435E /* FloatingActionButton.swift */; };
 		BFD6747F2DFD2C4300225927 /* MelodyMapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6747E2DFD2C4300225927 /* MelodyMapApp.swift */; };
 		BFD674832DFD2C4500225927 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD674822DFD2C4500225927 /* Assets.xcassets */; };
 		BFD674862DFD2C4500225927 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD674852DFD2C4500225927 /* Preview Assets.xcassets */; };
@@ -81,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		40A366303D6046388571CA84 /* MoviePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviePageView.swift; sourceTree = "<group>"; };
+		BF8214482E0F0DCE0025435E /* FloatingActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatingActionButton.swift; path = Components/FloatingActionButton.swift; sourceTree = "<group>"; };
 		BFD6747B2DFD2C4300225927 /* MelodyMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MelodyMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD6747E2DFD2C4300225927 /* MelodyMapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapApp.swift; sourceTree = "<group>"; };
 		BFD674822DFD2C4500225927 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 		BFD99CEA2DFDFD81000B54EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BF8214482E0F0DCE0025435E /* FloatingActionButton.swift */,
 				BFD99D2F2E06813A000B54EE /* AudioPreviewPlayer.swift */,
 				BFD99D2E2E068139000B54EE /* SongPreviewButton.swift */,
 				BFD99D282E052DA5000B54EE /* FavoritesView.swift */,
@@ -475,6 +478,7 @@
 				BFD99CF82DFDFD81000B54EE /* InAppPurchaseService.swift in Sources */,
 				BFD99D162E00CC0E000B54EE /* PurchaseService.swift in Sources */,
 				BFD6747F2DFD2C4300225927 /* MelodyMapApp.swift in Sources */,
+				BF8214492E0F0DCE0025435E /* FloatingActionButton.swift in Sources */,
 				BFD99D152DFF4B00000B54EE /* Components/QuotaExceededSheet.swift in Sources */,
 				BFD99D182E00CC0F000B54EE /* Paywall/PaywallView.swift in Sources */,
 				BFD99D012DFDFD81000B54EE /* SearchView.swift in Sources */,

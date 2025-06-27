@@ -80,6 +80,20 @@ This document tracks the progress of implementing high-impact improvements to th
 - Local development test runner
 - Parallel test execution
 
+### 6. Centralized Floating Action Button (FAB) Overlay Refactor
+- **Status**: ✅ COMPLETED
+- **Files Created/Updated**:
+  - `Views/Components/FloatingActionButton.swift` - Shared FAB component for all floating buttons
+  - `MelodyMapApp.swift` - Centralized FAB overlay layer at the app root
+  - Removed per-view FABs (close, upgrade, favorite) from TimelineView, MoviePageView, and other views
+  - Updated `StarButton.swift` to use the shared FAB style for visual consistency
+
+**Features Implemented**:
+- All floating action buttons (close, upgrade, favorite) are now managed in a single overlay layer at the app root
+- FABs are visually and behaviorally consistent, fixed to screen corners, and maintain a 44pt+ tap target for accessibility
+- FABs never shift due to content resizing or scrolling
+- Improved accessibility and code maintainability
+
 ## 📊 Test Coverage Summary
 
 ### Unit Tests Created: 9 Test Files
@@ -133,7 +147,7 @@ This document tracks the progress of implementing high-impact improvements to th
 - **Purchase Validation**: Server-side verification and transaction handling
 - **User Experience**: Seamless integration of monetization features
 
-## 📈 Quality Metrics
+## 📊 Quality Metrics
 
 ### Code Quality
 - **Test Coverage**: Comprehensive unit and integration tests
@@ -146,6 +160,7 @@ This document tracks the progress of implementing high-impact improvements to th
 - **Loading States**: Proper feedback during async operations
 - **Offline Support**: Cache-based functionality when network unavailable
 - **Accessibility**: Basic accessibility compliance testing
+- **Centralized FAB Overlay**: All floating action buttons are now managed in a single overlay layer for consistency, accessibility, and visual polish
 
 ### Development Experience
 - **Automated Testing**: CI/CD pipeline with comprehensive test suites
@@ -198,13 +213,7 @@ This document tracks the progress of implementing high-impact improvements to th
 - ✅ Graceful error handling with user-friendly messages
 - ✅ Proper loading states and feedback
 - ✅ Offline functionality with cached data
-- ✅ Seamless monetization integration
-
-### Development Experience
-- ✅ Automated testing reduces manual testing burden
-- ✅ Error tracking improves debugging efficiency
-- ✅ Mock services enable faster development cycles
-- ✅ Comprehensive documentation and examples
+- ✅ Centralized FAB Overlay: All floating action buttons are now managed in a single overlay layer for consistency, accessibility, and visual polish
 
 ## 📋 Maintenance Tasks
 
