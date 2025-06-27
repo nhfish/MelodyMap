@@ -8,7 +8,7 @@ struct TimelineView: View {
     
     var body: some View {
         ZStack {
-            // Main content
+            // Main content - extends to edges
             if !content.movies.isEmpty {
                 let movie = content.movies[appState.selectedMovieIndex]
                 MoviePageView(
@@ -19,15 +19,41 @@ struct TimelineView: View {
                         viewModel.presentSongDetail(for: song)
                     }
                 )
+                .ignoresSafeArea(.container, edges: .top) // Allow content to extend to top
             }
             
-            // Close button overlay - improved implementation
-            CloseButtonOverlay {
-                print("🔴 Close button tapped!")
-                withAnimation(.easeInOut(duration: 0.6)) {
-                    appState.showingTimeline = false
+            // Close button overlay - fixed positioning
+            VStack {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        print("🔴 Close button tapped!")
+                        withAnimation(.easeInOut(duration: 0.6)) {
+                            appState.showingTimeline = false
+                        }
+                    }) {
+                        ZStack {
+                            Circle()
+                                .fill(Color.white)
+                                .frame(width: 44, height: 44)
+                                .shadow(radius: 3)
+                            
+                            Image(systemName: "xmark.circle.fill")
+                                .resizable()
+                                .frame(width: 32, height: 32)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    .accessibilityLabel("Close Timeline")
+                    .padding(.trailing, 20) // Increased padding from edge
+                    .padding(.top, 12) // Reduced top padding
                 }
+                .frame(maxWidth: .infinity, alignment: .trailing) // Ensure proper alignment
+                .padding(.top, 44) // Fixed top padding to position correctly
+                Spacer()
             }
+            .zIndex(999) // High z-index to stay on top
+            .allowsHitTesting(true) // Ensure hit testing works
         }
         .onAppear {
             // Sync the view model with app state
@@ -58,54 +84,6 @@ struct TimelineView: View {
                 onDismiss: { viewModel.showQuotaSheet = false }
             )
             .environmentObject(usage)
-        }
-        //.ignoresSafeArea(.container, edges: .top) // Removed for debugging
-    }
-}
-
-// Dedicated close button overlay component
-struct CloseButtonOverlay: View {
-    let onClose: () -> Void
-    
-    var body: some View {
-        GeometryReader { geo in
-            VStack {
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        print("🔴 Close button action triggered!")
-                        onClose()
-                    }) {
-                        ZStack {
-                            Circle()
-                                .fill(Color.white)
-                                .frame(width: 44, height: 44)
-                                .shadow(radius: 3)
-                            
-                            Image(systemName: "xmark.circle.fill")
-                                .resizable()
-                                .frame(width: 32, height: 32)
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                    .accessibilityLabel("Close Timeline")
-                    .padding(.trailing, 16)
-                    .padding(.top, geo.safeAreaInsets.top + 8) // 8pt below the notch
-                    .contentShape(Rectangle())
-                    .allowsHitTesting(true)
-                    .buttonStyle(PlainButtonStyle())
-                    .onTapGesture {
-                        print("🔴 Close button tap gesture triggered!")
-                        onClose()
-                    }
-                    .onAppear {
-                        print("🔴 Close button overlay appeared")
-                    }
-                }
-                Spacer()
-            }
-            .zIndex(1000)
-            .allowsHitTesting(true)
         }
     }
 }
