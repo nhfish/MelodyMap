@@ -10,13 +10,12 @@ struct StarButton: View {
             Image(systemName: isStarred ? "star.fill" : "star")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 44, height: 44)
+                .frame(width: 24, height: 24)
                 .foregroundColor(.yellow)
-                .shadow(radius: 4)
         }
         .buttonStyle(PlainButtonStyle())
         .accessibilityLabel(isStarred ? "Remove from Favorites" : "Add to Favorites")
-        .padding(8)
+        .padding(4)
     }
 }
 

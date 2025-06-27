@@ -39,11 +39,6 @@ struct TimelineView: View {
                 }
             }
         }
-        .sheet(item: $viewModel.selectedSong) { song in
-            NavigationView {
-                SongDetailView(song: song)
-            }
-        }
         .sheet(isPresented: $viewModel.showQuotaSheet) {
             QuotaExceededSheet(
                 onWatchAd: { viewModel.handleWatchAd() },

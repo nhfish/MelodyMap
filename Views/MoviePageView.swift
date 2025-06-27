@@ -19,9 +19,9 @@ struct MoviePageView: View {
 
     var body: some View {
         ScrollViewReader { proxy in
-            VStack(spacing: 16) {
+            VStack(spacing: 30) {
                 ZStack {
-                    Spacer().frame(height: 80)
+                    Spacer().frame(height: 30)
                 }
                 .allowsHitTesting(false)
                 AsyncImage(url: URL(string: movie.imageURL)) { image in
@@ -131,24 +131,24 @@ struct MoviePageView: View {
 
                 let currentSong = songsForMovie[selectedIndex]
                 VStack(alignment: .leading, spacing: 4) {
-                    HStack {
+                    HStack(spacing: 10) {
                         Text(formatTimecode(currentSong.startTime))
                             .font(.caption)
                             .onAppear {
                                 print("🕐 Timecode for '\(currentSong.title)': original='\(currentSong.startTime ?? "nil")', formatted='\(formatTimecode(currentSong.startTime))'")
                             }
                         SongPreviewButton(song: currentSong, movieTitle: movie.title)
-                    }
-                    Divider()
-                    HStack {
-                        Text(currentSong.title)
-                            .bold()
-                        
                         let isStarredBinding = Binding(
                             get: { favorites.isFavorite(songID: currentSong.id) },
                             set: { _ in favorites.toggleFavorite(songID: currentSong.id) }
                         )
                         StarButton(isStarred: isStarredBinding)
+                            .frame(width: 10.0, height: 10.0)
+                    }
+                    Divider()
+                    HStack {
+                        Text(currentSong.title)
+                            .bold()
                     }
                     Text("\(movie.title) · \(String(movie.releaseYear))")
                     Text("Runtime: \(currentSong.movieRuntimeMinutes) minutes")

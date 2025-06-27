@@ -5,15 +5,15 @@ struct FloatingActionButton: View {
     let color: Color
     let action: () -> Void
     let accessibilityLabel: String
+    var size: CGFloat = 36
 
     var body: some View {
         Button(action: action) {
             Image(systemName: systemName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 44, height: 44)
+                .frame(width: size, height: size)
                 .foregroundColor(color)
-                .shadow(radius: 4)
         }
         .buttonStyle(PlainButtonStyle())
         .accessibilityLabel(accessibilityLabel)
