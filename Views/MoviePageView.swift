@@ -106,6 +106,13 @@ struct MoviePageView: View {
                     .gesture(
                         DragGesture()
                             .onEnded { value in
+                                // Don't handle drag if it's in the top area (where close button is)
+                                // Increased the threshold to better avoid the close button
+                                if value.startLocation.y < 120 {
+                                    print("🎯 MoviePageView: Ignoring drag in close button area (y: \(value.startLocation.y))")
+                                    return
+                                }
+                                
                                 let ratio = min(max(0, value.location.x / geo.size.width), 1)
                                 let nearestIndex = songsForMovie.enumerated().min { lhs, rhs in
                                     let l = abs(ratio - CGFloat(lhs.element.effectivePercent) / 100.0)
@@ -151,8 +158,6 @@ struct MoviePageView: View {
                         Spacer()
                         Button(action: { withAnimation { isExpanded.toggle() } }) {
                             Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                                .rotationEffect(.degrees(isExpanded ? 180 : 0))
-                                .animation(.easeInOut, value: isExpanded)
                                 .font(.system(size: 20, weight: .bold))
                                 .padding(.top, 4)
                         }
@@ -165,8 +170,27 @@ struct MoviePageView: View {
                             Spacer().frame(height: 8) // Add buffer above icon row
                             // Service icons row
                             HStack(spacing: 20) {
+                                // Apple Music
+                                let appleMusicURL = (currentSong.streamingLinks + currentSong.purchaseLinks).first(where: { $0.localizedCaseInsensitiveContains("music.apple.com") || $0.localizedCaseInsensitiveContains("apple.com/music") })
+                                if let url = appleMusicURL {
+                                    Link(destination: URL(string: url)!) {
+                                        Image(systemName: "music.note")
+                                            .resizable()
+                                            .frame(width: 28, height: 28)
+                                            .foregroundColor(.pink)
+                                            .accessibilityLabel("Apple Music")
+                                    }
+                                } else {
+                                    Image(systemName: "music.note")
+                                        .resizable()
+                                        .frame(width: 28, height: 28)
+                                        .foregroundColor(.gray)
+                                        .opacity(0.5)
+                                        .accessibilityLabel("Apple Music (Unavailable)")
+                                }
+                                
                                 // Apple Movie Store
-                                let appleURL = (currentSong.streamingLinks + currentSong.purchaseLinks).first(where: { $0.localizedCaseInsensitiveContains("itunes") || $0.localizedCaseInsensitiveContains("apple") })
+                                let appleURL = (currentSong.streamingLinks + currentSong.purchaseLinks).first(where: { $0.localizedCaseInsensitiveContains("itunes") || $0.localizedCaseInsensitiveContains("apple.com/movies") })
                                 if let url = appleURL {
                                     Link(destination: URL(string: url)!) {
                                         Image(systemName: "applelogo")
@@ -183,6 +207,7 @@ struct MoviePageView: View {
                                         .opacity(0.5)
                                         .accessibilityLabel("Apple Movie Store (Unavailable)")
                                 }
+                                
                                 // Disney+
                                 let disneyURL = (currentSong.streamingLinks + currentSong.purchaseLinks).first(where: { $0.localizedCaseInsensitiveContains("disney") })
                                 if let url = disneyURL {
@@ -201,6 +226,7 @@ struct MoviePageView: View {
                                         .opacity(0.5)
                                         .accessibilityLabel("Disney Plus (Unavailable)")
                                 }
+                                
                                 // Amazon Video
                                 let amazonURL = (currentSong.streamingLinks + currentSong.purchaseLinks).first(where: { $0.localizedCaseInsensitiveContains("amazon") })
                                 if let url = amazonURL {
@@ -220,27 +246,7 @@ struct MoviePageView: View {
                                         .accessibilityLabel("Amazon Video (Unavailable)")
                                 }
                             }
-                            // Streaming and purchase links
-                            if !currentSong.streamingLinks.isEmpty {
-                                Text("Streaming Links:").font(.subheadline).bold()
-                                ForEach(currentSong.streamingLinks, id: \.self) { link in
-                                    Link(destination: URL(string: link)!) {
-                                        Text(link)
-                                            .foregroundColor(.blue)
-                                            .underline()
-                                    }
-                                }
-                            }
-                            if !currentSong.purchaseLinks.isEmpty {
-                                Text("Purchase Links:").font(.subheadline).bold()
-                                ForEach(currentSong.purchaseLinks, id: \.self) { link in
-                                    Link(destination: URL(string: link)!) {
-                                        Text(link)
-                                            .foregroundColor(.blue)
-                                            .underline()
-                                    }
-                                }
-                            }
+                            
                             if let blurb = currentSong.blurb, !blurb.isEmpty {
                                 Text("\n" + blurb).font(.body)
                             }

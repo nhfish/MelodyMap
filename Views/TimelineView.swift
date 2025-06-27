@@ -20,29 +20,15 @@ struct TimelineView: View {
                     }
                 )
             }
-        }
-        .overlay(
-            HStack {
-                Spacer()
-                Button(action: {
-                    withAnimation(.easeInOut(duration: 0.6)) {
-                        appState.showingTimeline = false
-                    }
-                }) {
-                    Image(systemName: "xmark.circle.fill")
-                        .resizable()
-                        .frame(width: 28, height: 28)
-                        .foregroundColor(.secondary)
-                        .padding(8)
+            
+            // Close button overlay - improved implementation
+            CloseButtonOverlay {
+                print("🔴 Close button tapped!")
+                withAnimation(.easeInOut(duration: 0.6)) {
+                    appState.showingTimeline = false
                 }
-                .accessibilityLabel("Close Timeline")
             }
-            .padding(.horizontal)
-            .padding(.top, 44)
-            .background(Color.white.opacity(0.01))
-            .contentShape(Rectangle())
-            , alignment: .top
-        )
+        }
         .onAppear {
             // Sync the view model with app state
             viewModel.currentMovieIndex = appState.selectedMovieIndex
@@ -73,7 +59,54 @@ struct TimelineView: View {
             )
             .environmentObject(usage)
         }
-        .ignoresSafeArea(.container, edges: .top)
+        //.ignoresSafeArea(.container, edges: .top) // Removed for debugging
+    }
+}
+
+// Dedicated close button overlay component
+struct CloseButtonOverlay: View {
+    let onClose: () -> Void
+    
+    var body: some View {
+        GeometryReader { geo in
+            VStack {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        print("🔴 Close button action triggered!")
+                        onClose()
+                    }) {
+                        ZStack {
+                            Circle()
+                                .fill(Color.white)
+                                .frame(width: 44, height: 44)
+                                .shadow(radius: 3)
+                            
+                            Image(systemName: "xmark.circle.fill")
+                                .resizable()
+                                .frame(width: 32, height: 32)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    .accessibilityLabel("Close Timeline")
+                    .padding(.trailing, 16)
+                    .padding(.top, geo.safeAreaInsets.top + 8) // 8pt below the notch
+                    .contentShape(Rectangle())
+                    .allowsHitTesting(true)
+                    .buttonStyle(PlainButtonStyle())
+                    .onTapGesture {
+                        print("🔴 Close button tap gesture triggered!")
+                        onClose()
+                    }
+                    .onAppear {
+                        print("🔴 Close button overlay appeared")
+                    }
+                }
+                Spacer()
+            }
+            .zIndex(1000)
+            .allowsHitTesting(true)
+        }
     }
 }
 

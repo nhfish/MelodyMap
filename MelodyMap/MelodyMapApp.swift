@@ -20,6 +20,10 @@ struct MelodyMapApp: App {
             let favorites = FavoritesService.shared
             let content = ContentService.shared
             ZStack {
+                // White background to prevent dark mode
+                Color.white
+                    .ignoresSafeArea()
+                
                 if appState.showSplash {
                     SplashView()
                         .transition(.opacity)
