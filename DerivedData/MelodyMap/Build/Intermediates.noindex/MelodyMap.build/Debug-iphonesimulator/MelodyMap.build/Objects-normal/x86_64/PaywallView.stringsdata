@@ -1,0 +1,52 @@
+{
+  "source": "/Users/natefish/Desktop/2025 Melody Map/MelodyMap/Views/Paywall/PaywallView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Purchases Disabled"
+      },
+      {
+        "comment": "",
+        "key": "Close Paywall"
+      },
+      {
+        "comment": "",
+        "key": "Restore Purchases"
+      },
+      {
+        "comment": "",
+        "key": "Unlock Unlimited Access"
+      },
+      {
+        "comment": "",
+        "key": "Enjoy unlimited song views and premium features"
+      },
+      {
+        "comment": "",
+        "key": "What you'll get:"
+      },
+      {
+        "comment": "",
+        "key": "Cancel anytime. Terms apply."
+      },
+      {
+        "comment": "",
+        "key": "Start Free Trial"
+      },
+      {
+        "comment": "",
+        "key": "(7 days)"
+      },
+      {
+        "comment": "",
+        "key": "OK"
+      },
+      {
+        "comment": "",
+        "key": "Purchases are disabled in development builds. Enable SUBS_ENABLED to test StoreKit functionality."
+      }
+    ]
+  },
+  "version": 1
+}

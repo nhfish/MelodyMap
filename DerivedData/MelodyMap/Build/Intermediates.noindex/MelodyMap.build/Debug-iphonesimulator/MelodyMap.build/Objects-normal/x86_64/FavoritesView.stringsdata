@@ -1,0 +1,20 @@
+{
+  "source": "/Users/natefish/Desktop/2025 Melody Map/MelodyMap/Views/FavoritesView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Close Favorites"
+      },
+      {
+        "comment": "",
+        "key": "No Favorites Yet"
+      },
+      {
+        "comment": "",
+        "key": "Tap the star next to any song to save it here."
+      }
+    ]
+  },
+  "version": 1
+}

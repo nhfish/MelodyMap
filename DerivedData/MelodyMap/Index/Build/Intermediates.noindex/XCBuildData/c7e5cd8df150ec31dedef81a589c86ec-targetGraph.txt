@@ -1,0 +1,13 @@
+Target dependency graph (8 targets)
+MelodyMap in MelodyMap, no dependencies
+MelodyMap in MelodyMap, no dependencies
+MelodyMapTests in MelodyMap, depends on:
+MelodyMap in MelodyMap (explicit)
+MelodyMapTests in MelodyMap, depends on:
+MelodyMap in MelodyMap (explicit)
+MelodyMapTests in MelodyMap, no dependencies
+MelodyMapUITests in MelodyMap, depends on:
+MelodyMap in MelodyMap (explicit)
+MelodyMapUITests in MelodyMap, depends on:
+MelodyMap in MelodyMap (explicit)
+MelodyMapUITests in MelodyMap, no dependencies
