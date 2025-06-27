@@ -21,7 +21,7 @@ struct MoviePageView: View {
         ScrollViewReader { proxy in
             VStack(spacing: 30) {
                 ZStack {
-                    Spacer().frame(height: 30)
+                    Spacer().frame(height: 50)
                 }
                 .allowsHitTesting(false)
                 AsyncImage(url: URL(string: movie.imageURL)) { image in

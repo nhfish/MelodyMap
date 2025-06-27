@@ -17,7 +17,7 @@ struct DailyUsesCounterButton: View {
             .padding(8)
             .background(Color.white.opacity(0.9))
             .clipShape(Capsule())
-            .shadow(radius: 2)
+          
         }
         .buttonStyle(PlainButtonStyle())
         .accessibilityLabel("Profile and daily uses")

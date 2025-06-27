@@ -5,7 +5,7 @@ struct FloatingActionButton: View {
     let color: Color
     let action: () -> Void
     let accessibilityLabel: String
-    var size: CGFloat = 36
+    var size: CGFloat = 28
 
     var body: some View {
         Button(action: action) {

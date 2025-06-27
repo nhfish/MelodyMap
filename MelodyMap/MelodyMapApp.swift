@@ -38,6 +38,7 @@ struct MelodyMapApp: App {
                             if appState.showingTimeline {
                                 TimelineView(viewModel: appState.timelineViewModel)
                                     .environmentObject(appState)
+                                    .navigationBarHidden(true)
                                     .transition(.asymmetric(
                                         insertion: .move(edge: .trailing).combined(with: .opacity),
                                         removal: .move(edge: .leading).combined(with: .opacity)
@@ -91,7 +92,8 @@ struct MelodyMapApp: App {
                                         )
                                     }
                                 }
-                                .padding([.trailing, .top], 32)
+                                .padding(.trailing, 24)
+                                .padding(.top, 24)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
 
                                 // Bottom left: Upgrade FAB
