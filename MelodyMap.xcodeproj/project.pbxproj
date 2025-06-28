@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BF8214492E0F0DCE0025435E /* FloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8214482E0F0DCE0025435E /* FloatingActionButton.swift */; };
 		BFD6747F2DFD2C4300225927 /* MelodyMapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6747E2DFD2C4300225927 /* MelodyMapApp.swift */; };
-		BFD674832DFD2C4500225927 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD674822DFD2C4500225927 /* Assets.xcassets */; };
+		BFD674832DFD2C4500225927 /* AppAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD674822DFD2C4500225927 /* AppAssets.xcassets */; };
 		BFD674862DFD2C4500225927 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD674852DFD2C4500225927 /* Preview Assets.xcassets */; };
 		BFD674902DFD2C4600225927 /* MelodyMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6748F2DFD2C4600225927 /* MelodyMapTests.swift */; };
 		BFD6749A2DFD2C4600225927 /* MelodyMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD674992DFD2C4600225927 /* MelodyMapUITests.swift */; };
@@ -84,7 +84,7 @@
 		BF8214482E0F0DCE0025435E /* FloatingActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatingActionButton.swift; path = Components/FloatingActionButton.swift; sourceTree = "<group>"; };
 		BFD6747B2DFD2C4300225927 /* MelodyMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MelodyMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD6747E2DFD2C4300225927 /* MelodyMapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapApp.swift; sourceTree = "<group>"; };
-		BFD674822DFD2C4500225927 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BFD674822DFD2C4500225927 /* AppAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppAssets.xcassets; sourceTree = "<group>"; };
 		BFD674852DFD2C4500225927 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BFD6748B2DFD2C4600225927 /* MelodyMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MelodyMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD6748F2DFD2C4600225927 /* MelodyMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapTests.swift; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 			children = (
 				BFD99D1A2E00CB9C000B54EE /* Info.plist */,
 				BFD6747E2DFD2C4300225927 /* MelodyMapApp.swift */,
-				BFD674822DFD2C4500225927 /* Assets.xcassets */,
+				BFD674822DFD2C4500225927 /* AppAssets.xcassets */,
 				BFD674842DFD2C4500225927 /* Preview Content */,
 			);
 			path = MelodyMap;
@@ -425,7 +425,7 @@
 			files = (
 				BFD99CFB2DFDFD81000B54EE /* .gitkeep in Resources */,
 				BFD674862DFD2C4500225927 /* Preview Assets.xcassets in Resources */,
-				BFD674832DFD2C4500225927 /* Assets.xcassets in Resources */,
+				BFD674832DFD2C4500225927 /* AppAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,6 +702,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9N3P2KVL9H;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
@@ -721,6 +722,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9N3P2KVL9H;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
@@ -739,6 +741,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9N3P2KVL9H;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Fishman-Studios.MelodyMapUITests";
@@ -756,6 +759,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9N3P2KVL9H;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Fishman-Studios.MelodyMapUITests";

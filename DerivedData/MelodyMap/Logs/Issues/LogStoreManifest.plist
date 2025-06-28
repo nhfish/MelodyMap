@@ -6,63 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>36FE9807-0F12-4400-B005-CB8955E7BD1C</key>
-		<dict>
-			<key>className</key>
-			<string>IDEActivityLogMajorGroupSection</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.target.product-type.bundle</string>
-			<key>fileName</key>
-			<string>36FE9807-0F12-4400-B005-CB8955E7BD1C.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-			</dict>
-			<key>signature</key>
-			<string>MelodyMapTests-ccxlufjpvzqnfjduwjcdozbrdrre</string>
-			<key>timeStartedRecording</key>
-			<real>772758035.65472305</real>
-			<key>timeStoppedRecording</key>
-			<real>772758044.38121295</real>
-			<key>title</key>
-			<string>Build target MelodyMapTests</string>
-			<key>uniqueIdentifier</key>
-			<string>36FE9807-0F12-4400-B005-CB8955E7BD1C</string>
-		</dict>
-		<key>7EA4D6B3-6D11-43AA-BE25-75153205B64D</key>
-		<dict>
-			<key>className</key>
-			<string>IDEActivityLogMajorGroupSection</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.target.product-type.bundle</string>
-			<key>fileName</key>
-			<string>7EA4D6B3-6D11-43AA-BE25-75153205B64D.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-			</dict>
-			<key>signature</key>
-			<string>MelodyMapUITests-ccxlufjpvzqnfjduwjcdozbrdrre</string>
-			<key>timeStartedRecording</key>
-			<real>772758012.63028502</real>
-			<key>timeStoppedRecording</key>
-			<real>772758045.367733</real>
-			<key>title</key>
-			<string>Build target MelodyMapUITests</string>
-			<key>uniqueIdentifier</key>
-			<string>7EA4D6B3-6D11-43AA-BE25-75153205B64D</string>
-		</dict>
-		<key>A6B8DD90-B03B-41BB-9704-574EEB57FAD2</key>
+		<key>B469D6B0-2A76-43B9-9427-E90E67601180</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogMajorGroupSection</string>
@@ -71,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.target.product-type.application</string>
 			<key>fileName</key>
-			<string>A6B8DD90-B03B-41BB-9704-574EEB57FAD2.xcactivitylog</string>
+			<string>B469D6B0-2A76-43B9-9427-E90E67601180.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -82,13 +26,13 @@
 			<key>signature</key>
 			<string>MelodyMap-ccxlufjpvzqnfjduwjcdozbrdrre</string>
 			<key>timeStartedRecording</key>
-			<real>772758012.62934899</real>
+			<real>772775903.23341799</real>
 			<key>timeStoppedRecording</key>
-			<real>772758044.721035</real>
+			<real>772775938.71435499</real>
 			<key>title</key>
 			<string>Build target MelodyMap</string>
 			<key>uniqueIdentifier</key>
-			<string>A6B8DD90-B03B-41BB-9704-574EEB57FAD2</string>
+			<string>B469D6B0-2A76-43B9-9427-E90E67601180</string>
 		</dict>
 	</dict>
 	<key>preserveOldLogs</key>

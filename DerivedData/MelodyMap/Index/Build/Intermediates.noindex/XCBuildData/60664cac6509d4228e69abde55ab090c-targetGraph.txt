@@ -1,3 +1,0 @@
-Target dependency graph (2 targets)
-MelodyMap in MelodyMap, no dependencies
-MelodyMap in MelodyMap, no dependencies

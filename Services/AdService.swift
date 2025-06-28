@@ -19,7 +19,8 @@ final class AdService: NSObject, ObservableObject {
     @Published var successfulAdViews = 0
     
     #if ADS_ENABLED
-    private let adUnitID = "ca-app-pub-3940256099942544/1712485313"
+    // Production AdMob ad unit ID
+    private let adUnitID = "ca-app-pub-6529806187401992/5730777125"
     private var rewardedAd: GADRewardedAd?
     private var adLoadTask: Task<Void, Never>?
     private let maxRetries = 3
