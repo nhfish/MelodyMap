@@ -6,12 +6,17 @@ struct AudioPreviewPlayer: View {
     @State private var isPlaying = false
     @State private var audioPlayer: AVAudioPlayer?
     @State private var audioPlayerDelegate: AudioPlayerDelegate? // Retain delegate
+    @State private var isLooping = true // Auto-loop by default
     
     var body: some View {
         Button(action: togglePlayback) {
-            Image(systemName: isPlaying ? "stop.circle.fill" : "play.circle.fill")
+            Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                 .font(.system(size: 20))
                 .foregroundColor(.blue)
+        }
+        .onAppear {
+            // Auto-play when the player appears
+            startPlayback()
         }
         .onDisappear {
             stopPlayback()
@@ -20,9 +25,9 @@ struct AudioPreviewPlayer: View {
     
     private func togglePlayback() {
         if isPlaying {
-            stopPlayback()
+            pausePlayback()
         } else {
-            startPlayback()
+            resumePlayback()
         }
     }
     
@@ -36,13 +41,21 @@ struct AudioPreviewPlayer: View {
         Task {
             do {
                 let data = try await URLSession.shared.data(from: previewURL).0
-                let delegate = AudioPlayerDelegate {
+                let delegate = AudioPlayerDelegate { [isLooping] in
                     DispatchQueue.main.async {
-                        isPlaying = false
+                        if isLooping {
+                            // Auto-loop: restart the same player
+                            audioPlayer?.currentTime = 0
+                            audioPlayer?.play()
+                        } else {
+                            // Stop playing
+                            isPlaying = false
+                        }
                     }
                 }
                 let player = try AVAudioPlayer(data: data)
                 player.delegate = delegate
+                player.numberOfLoops = 0 // We'll handle looping manually for better control
                 audioPlayerDelegate = delegate // Retain delegate
                 audioPlayer = player
                 player.play()
@@ -51,6 +64,16 @@ struct AudioPreviewPlayer: View {
                 print("Audio preview error: \(error)")
             }
         }
+    }
+    
+    private func pausePlayback() {
+        audioPlayer?.pause()
+        isPlaying = false
+    }
+    
+    private func resumePlayback() {
+        audioPlayer?.play()
+        isPlaying = true
     }
     
     private func stopPlayback() {

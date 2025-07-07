@@ -7,6 +7,7 @@ struct SearchView: View {
     var onNavigateToTimeline: ((IndexedSong) -> Void)? = nil
 
     @State private var showQuotaSheet = false
+    @FocusState private var isSearchFocused: Bool
 
     init(onNavigateToTimeline: ((IndexedSong) -> Void)? = nil) {
         print("🎬 SearchView: init called")
@@ -22,7 +23,17 @@ struct SearchView: View {
                 TextField("Search", text: $vm.query)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
+                    .focused($isSearchFocused)
                     .onChange(of: vm.query) { _ in vm.search() }
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            Button("Done") {
+                                isSearchFocused = false
+                            }
+                            .foregroundColor(.blue)
+                        }
+                    }
 
                 if vm.indexedSongs.isEmpty {
                     // Loading state
@@ -91,7 +102,12 @@ struct SearchView: View {
                 Spacer(minLength: 0)
             }
             .edgesIgnoringSafeArea(.bottom)
+            .onTapGesture {
+                // Dismiss keyboard when tapping outside the search field
+                isSearchFocused = false
+            }
         }
+        .background(Color(.systemBackground))
         .onAppear {
             print("🎬 SearchView: onAppear called")
         }
