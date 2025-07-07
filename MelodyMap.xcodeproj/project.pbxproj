@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF00C88A2E1C61A000ADF777 /* OpenMeasurement-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BF00C8842E1C61A000ADF777 /* OpenMeasurement-LICENSE */; };
+		BF00C88B2E1C61A000ADF777 /* NanoPB-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = BF00C8832E1C61A000ADF777 /* NanoPB-LICENSE */; };
+		BF00C88C2E1C61A000ADF777 /* GoogleMobileAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF00C8862E1C61A000ADF777 /* GoogleMobileAds.xcframework */; };
+		BF00C88D2E1C61A000ADF777 /* UserMessagingPlatform.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF00C8882E1C61A000ADF777 /* UserMessagingPlatform.xcframework */; };
 		BF8214492E0F0DCE0025435E /* FloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8214482E0F0DCE0025435E /* FloatingActionButton.swift */; };
 		BFD6747F2DFD2C4300225927 /* MelodyMapApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD6747E2DFD2C4300225927 /* MelodyMapApp.swift */; };
 		BFD674832DFD2C4500225927 /* AppAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFD674822DFD2C4500225927 /* AppAssets.xcassets */; };
@@ -69,18 +73,20 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		BFD99D1E2E00CC0C000B54EE /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolder = Frameworks;
 			files = (
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		40A366303D6046388571CA84 /* MoviePageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviePageView.swift; sourceTree = "<group>"; };
+		BF00C8832E1C61A000ADF777 /* NanoPB-LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = "NanoPB-LICENSE"; sourceTree = "<group>"; };
+		BF00C8842E1C61A000ADF777 /* OpenMeasurement-LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = "OpenMeasurement-LICENSE"; sourceTree = "<group>"; };
+		BF00C8862E1C61A000ADF777 /* GoogleMobileAds.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:EQHXZ8M8AV:Google LLC"; lastKnownFileType = wrapper.xcframework; path = GoogleMobileAds.xcframework; sourceTree = "<group>"; };
+		BF00C8882E1C61A000ADF777 /* UserMessagingPlatform.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:EQHXZ8M8AV:Google LLC"; lastKnownFileType = wrapper.xcframework; path = UserMessagingPlatform.xcframework; sourceTree = "<group>"; };
 		BF8214482E0F0DCE0025435E /* FloatingActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatingActionButton.swift; path = Components/FloatingActionButton.swift; sourceTree = "<group>"; };
 		BFD6747B2DFD2C4300225927 /* MelodyMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MelodyMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFD6747E2DFD2C4300225927 /* MelodyMapApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MelodyMapApp.swift; sourceTree = "<group>"; };
@@ -130,29 +136,44 @@
 /* Begin PBXFrameworksBuildPhase section */
 		BFD674782DFD2C4300225927 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				BFD99D1E2E00CC0D000B54EE /* StoreKit.framework in Frameworks */,
+				BF00C88C2E1C61A000ADF777 /* GoogleMobileAds.xcframework in Frameworks */,
+				BF00C88D2E1C61A000ADF777 /* UserMessagingPlatform.xcframework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BFD674882DFD2C4600225927 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BFD674922DFD2C4600225927 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF00C8852E1C61A000ADF777 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				BF00C8832E1C61A000ADF777 /* NanoPB-LICENSE */,
+				BF00C8842E1C61A000ADF777 /* OpenMeasurement-LICENSE */,
+			);
+			path = Licenses;
+			sourceTree = "<group>";
+		};
+		BF00C8892E1C61A000ADF777 /* GoogleMobileAds */ = {
+			isa = PBXGroup;
+			children = (
+				BF00C8852E1C61A000ADF777 /* Licenses */,
+				BF00C8862E1C61A000ADF777 /* GoogleMobileAds.xcframework */,
+				BF00C8882E1C61A000ADF777 /* UserMessagingPlatform.xcframework */,
+			);
+			path = GoogleMobileAds;
+			sourceTree = "<group>";
+		};
 		BFD674722DFD2C4300225927 = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +332,7 @@
 		BFD99D152E00BCB8000B54EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BF00C8892E1C61A000ADF777 /* GoogleMobileAds */,
 				BFD99D1F2E00CC0D000B54EE /* StoreKit.framework */,
 			);
 			name = Frameworks;
@@ -330,11 +352,7 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			name = MelodyMap;
-			packageProductDependencies = (
-			);
 			productName = MelodyMap;
 			productReference = BFD6747B2DFD2C4300225927 /* MelodyMap.app */;
 			productType = "com.apple.product-type.application";
@@ -383,7 +401,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					BFD6747A2DFD2C4300225927 = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -399,7 +417,6 @@
 				};
 			};
 			buildConfigurationList = BFD674762DFD2C4300225927 /* Build configuration list for PBXProject "MelodyMap" */;
-			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -407,6 +424,10 @@
 				Base,
 			);
 			mainGroup = BFD674722DFD2C4300225927;
+			packageReferences = (
+				BF00C8822E1C605C00ADF777 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+			);
+			preferredProjectObjectVersion = 90;
 			productRefGroup = BFD6747C2DFD2C4300225927 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -421,34 +442,29 @@
 /* Begin PBXResourcesBuildPhase section */
 		BFD674792DFD2C4300225927 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				BFD99CFB2DFDFD81000B54EE /* .gitkeep in Resources */,
 				BFD674862DFD2C4500225927 /* Preview Assets.xcassets in Resources */,
 				BFD674832DFD2C4500225927 /* AppAssets.xcassets in Resources */,
+				BF00C88A2E1C61A000ADF777 /* OpenMeasurement-LICENSE in Resources */,
+				BF00C88B2E1C61A000ADF777 /* NanoPB-LICENSE in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BFD674892DFD2C4600225927 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BFD674932DFD2C4600225927 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BFD674772DFD2C4300225927 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				BFD99D272E052C03000B54EE /* FavoritesService.swift in Sources */,
 				C1D2FE12780743C4971575A0 /* MoviePageView.swift in Sources */,
@@ -484,24 +500,19 @@
 				BFD99D0D2DFF466A000B54EE /* StarButton.swift in Sources */,
 				BFD99CFF2DFDFD81000B54EE /* UserProfile.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BFD674872DFD2C4600225927 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				BFD674902DFD2C4600225927 /* MelodyMapTests.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		BFD674912DFD2C4600225927 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				BFD6749A2DFD2C4600225927 /* MelodyMapUITests.swift in Sources */,
 				BFD6749C2DFD2C4600225927 /* MelodyMapUITestsLaunchTests.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -519,7 +530,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		BFD6749D2DFD2C4600225927 /* Debug */ = {
+		BFD6749D2DFD2C4600225927 /* Debug configuration for PBXProject "MelodyMap" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -554,8 +565,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9N3P2KVL9H;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -570,17 +583,18 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
-		BFD6749E2DFD2C4600225927 /* Release */ = {
+		BFD6749E2DFD2C4600225927 /* Release configuration for PBXProject "MelodyMap" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -615,8 +629,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9N3P2KVL9H;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -625,33 +641,35 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		BFD674A02DFD2C4600225927 /* Debug */ = {
+		BFD674A02DFD2C4600225927 /* Debug configuration for PBXNativeTarget "MelodyMap" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MelodyMap/Preview Content\"";
-				DEVELOPMENT_TEAM = 9N3P2KVL9H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MelodyMap/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Melody Map uses Apple Music to provide song previews so you can hear the music before finding it in the movie.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -660,28 +678,29 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Fishman-Studios.MelodyMap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		BFD674A12DFD2C4600225927 /* Release */ = {
+		BFD674A12DFD2C4600225927 /* Release configuration for PBXNativeTarget "MelodyMap" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MelodyMap/Preview Content\"";
-				DEVELOPMENT_TEAM = 9N3P2KVL9H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MelodyMap/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Melody Map uses Apple Music to provide song previews so you can hear the music before finding it in the movie.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -690,82 +709,78 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Fishman-Studios.MelodyMap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		BFD674A32DFD2C4600225927 /* Debug */ = {
+		BFD674A32DFD2C4600225927 /* Debug configuration for PBXNativeTarget "MelodyMapTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9N3P2KVL9H;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Fishman-Studios.MelodyMapTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MelodyMap.app/MelodyMap";
 			};
 			name = Debug;
 		};
-		BFD674A42DFD2C4600225927 /* Release */ = {
+		BFD674A42DFD2C4600225927 /* Release configuration for PBXNativeTarget "MelodyMapTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9N3P2KVL9H;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Fishman-Studios.MelodyMapTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MelodyMap.app/MelodyMap";
 			};
 			name = Release;
 		};
-		BFD674A62DFD2C4600225927 /* Debug */ = {
+		BFD674A62DFD2C4600225927 /* Debug configuration for PBXNativeTarget "MelodyMapUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9N3P2KVL9H;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Fishman-Studios.MelodyMapUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MelodyMap;
 			};
 			name = Debug;
 		};
-		BFD674A72DFD2C4600225927 /* Release */ = {
+		BFD674A72DFD2C4600225927 /* Release configuration for PBXNativeTarget "MelodyMapUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9N3P2KVL9H;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Fishman-Studios.MelodyMapUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MelodyMap;
 			};
@@ -777,40 +792,47 @@
 		BFD674762DFD2C4300225927 /* Build configuration list for PBXProject "MelodyMap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BFD6749D2DFD2C4600225927 /* Debug */,
-				BFD6749E2DFD2C4600225927 /* Release */,
+				BFD6749D2DFD2C4600225927 /* Debug configuration for PBXProject "MelodyMap" */,
+				BFD6749E2DFD2C4600225927 /* Release configuration for PBXProject "MelodyMap" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		BFD6749F2DFD2C4600225927 /* Build configuration list for PBXNativeTarget "MelodyMap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BFD674A02DFD2C4600225927 /* Debug */,
-				BFD674A12DFD2C4600225927 /* Release */,
+				BFD674A02DFD2C4600225927 /* Debug configuration for PBXNativeTarget "MelodyMap" */,
+				BFD674A12DFD2C4600225927 /* Release configuration for PBXNativeTarget "MelodyMap" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		BFD674A22DFD2C4600225927 /* Build configuration list for PBXNativeTarget "MelodyMapTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BFD674A32DFD2C4600225927 /* Debug */,
-				BFD674A42DFD2C4600225927 /* Release */,
+				BFD674A32DFD2C4600225927 /* Debug configuration for PBXNativeTarget "MelodyMapTests" */,
+				BFD674A42DFD2C4600225927 /* Release configuration for PBXNativeTarget "MelodyMapTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		BFD674A52DFD2C4600225927 /* Build configuration list for PBXNativeTarget "MelodyMapUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BFD674A62DFD2C4600225927 /* Debug */,
-				BFD674A72DFD2C4600225927 /* Release */,
+				BFD674A62DFD2C4600225927 /* Debug configuration for PBXNativeTarget "MelodyMapUITests" */,
+				BFD674A72DFD2C4600225927 /* Release configuration for PBXNativeTarget "MelodyMapUITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BF00C8822E1C605C00ADF777 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = BFD674732DFD2C4300225927 /* Project object */;
 }

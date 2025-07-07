@@ -317,7 +317,7 @@ extension Task where Failure == Never {
     static func withErrorHandling<T>(
         context: String = "Unknown",
         priority: TaskPriority? = nil,
-        operation: @escaping () async throws -> T
+        operation: @Sendable @escaping () async throws -> T
     ) -> Task<T?, Never> {
         Task<T?, Never>(priority: priority) {
             do {
@@ -335,7 +335,7 @@ extension Task where Failure == Never {
         context: String = "Unknown",
         priority: TaskPriority? = nil,
         defaultValue: T,
-        operation: @escaping () async throws -> T
+        operation: @Sendable @escaping () async throws -> T
     ) -> Task<T, Never> {
         Task<T, Never>(priority: priority) {
             do {
@@ -356,7 +356,7 @@ extension Task where Failure == Never {
     static func withErrorHandling(
         context: String = "Unknown",
         priority: TaskPriority? = nil,
-        operation: @escaping () async throws -> Void
+        operation: @Sendable @escaping () async throws -> Void
     ) -> Task<Void, Never> {
         Task<Void, Never>(priority: priority) {
             do {

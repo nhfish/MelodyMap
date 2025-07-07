@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 final class DataSyncService {
     static let shared = DataSyncService()
 

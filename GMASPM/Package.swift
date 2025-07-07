@@ -1,18 +1,16 @@
-// swift-tools-version:5.5
-// Xcode 13.2.1 Swift version
-
+// swift-tools-version:5.9
 import PackageDescription
 
 let package = Package(
     name: "GMASPM",
-    platforms: [.iOS(.v11)],
+    platforms: [.iOS(.v15)],
     products: [
         .library(name: "GoogleMobileAds", targets: ["GoogleMobileAds"])
     ],
-   targets: [
-   	.binaryTarget(
-        		name: "GoogleMobileAds",
-        		path: "./GoogleMobileAds.xcframework"   // ← relative path to the folder you just unzipped
-    	)
-	]
+    targets: [
+        .binaryTarget(
+            name: "GoogleMobileAds",
+            path: "../GoogleMobileAdsSdkiOS-12.6.0/GoogleMobileAds.xcframework"
+        )
+    ]
 )

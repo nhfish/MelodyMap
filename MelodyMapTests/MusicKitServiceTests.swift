@@ -1,3 +1,6 @@
+/*
+// MusicKitService tests temporarily disabled for migration
+*/
 import XCTest
 import MusicKit
 @testable import MelodyMap

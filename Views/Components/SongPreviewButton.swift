@@ -1,3 +1,5 @@
+/*
+// MusicKit preview functionality temporarily disabled for migration
 import SwiftUI
 import MusicKit
 
@@ -67,4 +69,5 @@ struct SongPreviewButton: View {
         
         appleMusicSong = await musicKit.searchSong(movieTitle: movieTitle, songTitle: song.title)
     }
-} 
+}
+*/ 

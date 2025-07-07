@@ -94,18 +94,12 @@ final class ContentService: ObservableObject {
     }
     
     private func loadFromCache() {
-        do {
-            if let cache = loadCacheFile() {
-                self.movies = cache.movies
-                self.songs = cache.songs
-                print("📦 ContentService: Loaded \(movies.count) movies, \(songs.count) songs from cache.")
-            } else {
-                print("📦 ContentService: No cache found.")
-            }
-        } catch {
-            let cacheError = MelodyMapError.cacheError(underlying: error)
-            ErrorHandlingService.shared.handle(cacheError, context: "ContentService.loadFromCache")
-            print("❌ ContentService: Failed to load cache: \(error)")
+        if let cache = loadCacheFile() {
+            self.movies = cache.movies
+            self.songs = cache.songs
+            print("📦 ContentService: Loaded \(movies.count) movies, \(songs.count) songs from cache.")
+        } else {
+            print("📦 ContentService: No cache found.")
         }
     }
     

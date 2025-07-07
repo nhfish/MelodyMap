@@ -5,6 +5,7 @@ struct AudioPreviewPlayer: View {
     let previewURL: URL
     @State private var isPlaying = false
     @State private var audioPlayer: AVAudioPlayer?
+    @State private var audioPlayerDelegate: AudioPlayerDelegate? // Retain delegate
     
     var body: some View {
         Button(action: togglePlayback) {
@@ -35,12 +36,14 @@ struct AudioPreviewPlayer: View {
         Task {
             do {
                 let data = try await URLSession.shared.data(from: previewURL).0
-                let player = try AVAudioPlayer(data: data)
-                player.delegate = AudioPlayerDelegate { 
+                let delegate = AudioPlayerDelegate {
                     DispatchQueue.main.async {
                         isPlaying = false
                     }
                 }
+                let player = try AVAudioPlayer(data: data)
+                player.delegate = delegate
+                audioPlayerDelegate = delegate // Retain delegate
                 audioPlayer = player
                 player.play()
                 isPlaying = true
@@ -53,6 +56,7 @@ struct AudioPreviewPlayer: View {
     private func stopPlayback() {
         audioPlayer?.stop()
         audioPlayer = nil
+        audioPlayerDelegate = nil // Release delegate
         isPlaying = false
     }
 }

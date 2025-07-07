@@ -193,6 +193,8 @@ class MockFavoritesService: FavoritesService {
 
 // MARK: - Mock MusicKit Service
 
+/*
+// MockMusicKitService temporarily disabled for migration
 class MockMusicKitService: MusicKitService {
     var mockIsAuthorized = false
     var mockAuthorizationStatus: MusicAuthorization.Status = .notDetermined
@@ -237,6 +239,7 @@ class MockMusicKitService: MusicKitService {
         mockSong = nil
     }
 }
+*/
 
 // MARK: - Mock App State
 

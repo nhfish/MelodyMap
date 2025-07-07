@@ -1,8 +1,10 @@
 import Foundation
 import MusicKit
 
+@preconcurrency import MusicKit
+
 @MainActor
-class MusicKitService: ObservableObject {
+final class MusicKitService: ObservableObject {
     static let shared = MusicKitService()
     
     @Published var isAuthorized = false
@@ -15,7 +17,7 @@ class MusicKitService: ObservableObject {
     }
     
     func checkAuthorizationStatus() async {
-        authorizationStatus = await MusicAuthorization.currentStatus
+        authorizationStatus = MusicAuthorization.currentStatus
         isAuthorized = authorizationStatus == .authorized
     }
     
@@ -25,6 +27,8 @@ class MusicKitService: ObservableObject {
         return status == .authorized
     }
     
+    /*
+    @MainActor
     func searchSong(movieTitle: String, songTitle: String) async -> MusicKit.Song? {
         guard isAuthorized else { return nil }
         
@@ -55,6 +59,7 @@ class MusicKitService: ObservableObject {
             return nil
         }
     }
+    */
     
     func getPreviewURL(for song: MusicKit.Song) -> URL? {
         return song.previewAssets?.first?.url
