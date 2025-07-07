@@ -137,14 +137,7 @@ struct MoviePageView: View {
                             .onAppear {
                                 print("🕐 Timecode for '\(currentSong.title)': original='\(currentSong.startTime ?? "nil")', formatted='\(formatTimecode(currentSong.startTime))'")
                             }
-                        // SongPreviewButton(song: currentSong, movieTitle: movie.title)
-                        Button(action: {}) {
-                            Image(systemName: "play.circle")
-                                .font(.system(size: 20))
-                                .foregroundColor(.gray.opacity(0.5))
-                                .overlay(Text("Preview (Disabled)").font(.caption2).foregroundColor(.gray).offset(y: 20))
-                        }
-                        .disabled(true)
+                        SongPreviewButton(song: currentSong, movieTitle: movie.title)
                         let isStarredBinding = Binding(
                             get: { favorites.isFavorite(songID: currentSong.id) },
                             set: { _ in favorites.toggleFavorite(songID: currentSong.id) }
