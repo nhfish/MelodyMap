@@ -32,8 +32,15 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 
 ## Features
 🎵 **Smart Song Search** — instantly find any song with a single search bar
+- The search bar now uses a warm off-white fill when idle, and animates to deep burgundy with warm off-white text/placeholder when focused, for improved clarity and accessibility.
 
 🎬 **Movie Timeline View** — see where each song appears in the movie with an intuitive timeline. **TimelineView now presents as a card-style sheet with close button for consistent UI.**
+
+⭐️ **Favorites System** — free users can favorite up to 5 songs; subscribers have unlimited favorites. Attempting to add a 6th favorite as a free user disables the star button and prompts the upgrade/paywall sheet. The favorites sheet uses a deep burgundy background and subtle warm off-white row backgrounds for clarity.
+
+🧑‍🎤 **Profile View** — all-caps, bold, left-aligned text, consistent button sizing, and icon alignment for a polished look.
+
+✨ **Splash/Page Curl Transition** — the splash-to-main transition uses a snapshot of the splash screen for a seamless, robust page curl animation.
 
 📋 **Manually Curated Content** — all songs are added and tagged by hand to ensure quality
 
@@ -47,7 +54,7 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 
 🎵 **Apple Music Previews** — 30-second song previews with auto-play, pause/resume, and auto-loop functionality
 
-- **Sheet-Based Navigation:** All modal views (timeline, profile, paywall) now use consistent sheet presentation with close buttons
+- **Sheet-Based Navigation:** All modal views (timeline, profile, paywall) now use consistent card-style sheet presentation with close buttons and deep burgundy backgrounds.
 - **Simplified Gesture Handling:** Removed timeline drag gesture conflicts and improved user interactions
 - **Timeline Navigation:** Arrow navigation between songs now consumes a daily use and will show the QuotaExceededSheet if out of quota.
 - **Unified Quota Handling:** The QuotaExceededSheet is now used for all quota-exceeded actions, including arrow navigation, and no longer shows today's usage or a progress bar.
@@ -55,6 +62,7 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 - **Timecode Formatting:** Song timecodes are always displayed as HH:MM:SS.
 - **Release Year Display:** Release year is always shown without a comma.
 - **Centralized Floating Action Buttons:** All floating action buttons (profile, upgrade, favorite) are now managed in a single overlay layer, visually consistent, and fixed to the screen corners for a seamless and accessible experience.
+- **General UI Polish:** Improved accessibility, color contrast, and visual clarity throughout the app.
 
 ## Floating Action Button (FAB) Overlay System
 Melody Map uses a centralized Floating Action Button overlay for all key actions:

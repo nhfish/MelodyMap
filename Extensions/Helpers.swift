@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 // Add general helper extensions here
 
@@ -34,3 +35,54 @@ extension String {
         return distances[lhs.count][rhs.count]
     }
 }
+
+@MainActor
+class KeyboardObserver: ObservableObject {
+    @Published var isKeyboardVisible: Bool = false
+    private var cancellableShow: Any?
+    private var cancellableHide: Any?
+
+    init() {
+        cancellableShow = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { [weak self] _ in
+            Task { @MainActor in self?.isKeyboardVisible = true }
+        }
+        cancellableHide = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { [weak self] _ in
+            Task { @MainActor in self?.isKeyboardVisible = false }
+        }
+    }
+}
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
+#if canImport(UIKit)
+import UIKit
+import SwiftUI
+
+extension View {
+    func snapshot() -> UIImage {
+        let controller = UIHostingController(rootView: self)
+        let view = controller.view
+        let targetSize = controller.view.intrinsicContentSize
+        view?.bounds = CGRect(origin: .zero, size: targetSize)
+        view?.backgroundColor = .clear
+
+        let renderer = UIGraphicsImageRenderer(size: targetSize)
+        return renderer.image { _ in
+            view?.drawHierarchy(in: view?.bounds ?? .zero, afterScreenUpdates: true)
+        }
+    }
+}
+
+extension UIView {
+    func snapshot() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
+}
+#endif

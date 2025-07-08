@@ -2,39 +2,53 @@ import SwiftUI
 
 struct SplashView: View {
     @State private var textOpacity: Double = 0.6
+    @State private var scale: CGFloat = 0.9
     
     var body: some View {
         ZStack {
             Color.appAccent.ignoresSafeArea()
-            
-            // Stacked text with enhanced fade animation
-            VStack(spacing: 8) {
-                Text("THE")
-                    .font(.system(size: 45, weight: .bold, design: .rounded))
-                    .foregroundColor(.appGreen)
-                
-                Text("MELODY")
-                    .font(.system(size: 45, weight: .bold, design: .rounded))
-                    .foregroundColor(.appGreen)
-                
-                Text("MAP")
-                    .font(.system(size: 45, weight: .bold, design: .rounded))
-                    .foregroundColor(.appGreen)
-            }
-            .opacity(textOpacity)
-            .onAppear {
-                withAnimation(
-                    .easeInOut(duration: 2.0)
-                    .repeatForever(autoreverses: true)
-                ) {
-                    textOpacity = 1.0
+            HStack {
+                Spacer()
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("THE")
+                        .font(.system(size: 45, weight: .bold, design: .rounded))
+                        .foregroundColor(.appGreen)
+                        .textCase(.uppercase)
+                    Text("MELODY")
+                        .font(.system(size: 45, weight: .bold, design: .rounded))
+                        .foregroundColor(.appGreen)
+                        .textCase(.uppercase)
+                    Text("MAP")
+                        .font(.system(size: 45, weight: .bold, design: .rounded))
+                        .foregroundColor(.appGreen)
+                        .textCase(.uppercase)
                 }
+                .opacity(textOpacity)
+                .scaleEffect(scale)
+                .onAppear {
+                    // Animate opacity
+                    withAnimation(
+                        .easeInOut(duration: 1.2)
+                    ) {
+                        textOpacity = 1.0
+                    }
+                    // Animate scale up and stay
+                    withAnimation(
+                        .easeOut(duration: 2.0)
+                    ) {
+                        scale = 1.1
+                    }
+                }
+                Spacer()
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(alignment: .center)
         }
     }
 }
 
 struct PageCurlTransitionView: View {
+    let snapshotImage: Image
     var onComplete: (() -> Void)? = nil
     @State private var curlProgress: CGFloat = 0.0
     let duration: Double = 1.2
@@ -48,13 +62,15 @@ struct PageCurlTransitionView: View {
             // Page curl effect
             GeometryReader { geometry in
                 ZStack {
-                    // The "page" being curled (SplashView)
-                    SplashView()
+                    // The "page" being curled (snapshot image)
+                    snapshotImage
+                        .resizable()
+                        .scaledToFill()
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .clipShape(
                             PageCurlShape(
-                                progress: curlProgress,
-                                size: geometry.size
+                                size: geometry.size,
+                                progress: curlProgress
                             )
                         )
                         .overlay(
@@ -77,8 +93,13 @@ struct PageCurlTransitionView: View {
 }
 
 struct PageCurlShape: Shape {
-    let progress: CGFloat
     let size: CGSize
+    var progress: CGFloat
+
+    var animatableData: CGFloat {
+        get { progress }
+        set { progress = newValue }
+    }
     
     func path(in rect: CGRect) -> Path {
         Path { path in
@@ -224,5 +245,31 @@ private struct PixieParticle: View {
 struct SplashView_Previews: PreviewProvider {
     static var previews: some View {
         SplashView()
+    }
+} 
+
+struct SplashSnapshotView: View {
+    var body: some View {
+        HStack {
+            Spacer()
+            VStack(alignment: .leading, spacing: 2) {
+                Text("THE")
+                    .font(.system(size: 45, weight: .bold, design: .rounded))
+                    .foregroundColor(.appGreen)
+                    .textCase(.uppercase)
+                Text("MELODY")
+                    .font(.system(size: 45, weight: .bold, design: .rounded))
+                    .foregroundColor(.appGreen)
+                    .textCase(.uppercase)
+                Text("MAP")
+                    .font(.system(size: 45, weight: .bold, design: .rounded))
+                    .foregroundColor(.appGreen)
+                    .textCase(.uppercase)
+            }
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(alignment: .center)
+        .background(Color.appAccent.ignoresSafeArea())
     }
 } 

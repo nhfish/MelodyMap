@@ -28,82 +28,74 @@ struct ProfileView: View {
             
             // Profile content
             VStack(spacing: 24) {
-                // Header
+                // Header icon only, no 'Profile' text
                 VStack(spacing: 8) {
                     Image(systemName: "person.circle.fill")
                         .font(.system(size: 60))
                         .foregroundColor(.appBackground)
-                    
-                    Text("Profile")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(.appBackground)
                 }
                 .padding(.top, 20)
                 
-                // Subscription status
-                VStack(spacing: 12) {
-                    Text("Subscription")
-                        .font(.headline)
-                        .fontWeight(.semibold)
+                // Free User status styled as button background, matching Watch Ad
+                HStack {
+                    Image(systemName: viewModel.isSubscribed ? "checkmark.circle.fill" : "circle")
                         .foregroundColor(.appBackground)
-                    
-                    HStack {
-                        Image(systemName: viewModel.isSubscribed ? "checkmark.circle.fill" : "circle")
-                            .foregroundColor(.appBackground)
-                        Text(viewModel.isSubscribed ? "Subscribed" : "Free User")
-                            .font(.body)
-                            .foregroundColor(.appBackground)
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 12)
-                    .background(Color.appAccent)
-                    .cornerRadius(12)
+                        .frame(height: 20)
+                        .alignmentGuide(.firstTextBaseline) { d in d[.firstTextBaseline] }
+                    Text(viewModel.isSubscribed ? "SUBSCRIBED" : "FREE USER")
+                        .font(.body.weight(.bold))
+                        .foregroundColor(.appBackground)
+                        .textCase(.uppercase)
                 }
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 12)
+                .background(Color.appAccent)
+                .cornerRadius(12)
                 .padding(.horizontal)
                 
-                // Daily uses
-                VStack(spacing: 12) {
-                    Text("Daily Uses")
-                        .font(.headline)
-                        .fontWeight(.semibold)
+                // Daily uses (no background, all caps, bold, reorganized)
+                HStack {
+                    Image(systemName: "clock.fill")
                         .foregroundColor(.appBackground)
-                    
-                    VStack(spacing: 8) {
-                        HStack {
-                            Image(systemName: "clock.fill")
-                                .foregroundColor(.appBackground)
-                            Text("Remaining: \(tracker.remaining)")
-                                .font(.body)
-                                .foregroundColor(.appBackground)
-                        }
-                        
-                        Button(action: {
-                            guard let root = UIApplication.shared.connectedScenes
-                                .compactMap({ ($0 as? UIWindowScene)?.windows.first { $0.isKeyWindow } })
-                                .first?.rootViewController else { return }
-                            loadingAd = true
-                            adService.presentAd(from: root) { success in
-                                if success { tracker.addRewarded(2) }
-                                loadingAd = false
-                            }
-                        }) {
-                            HStack {
-                                Image(systemName: "play.circle.fill")
-                                    .foregroundColor(.appBackground)
-                                Text("Watch Ad to Extend")
-                                    .font(.body)
-                                    .fontWeight(.medium)
-                                    .foregroundColor(.appBackground)
-                            }
-                        }
-                        .disabled(loadingAd)
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 12)
-                        .background(Color.appAccent)
-                        .cornerRadius(12)
+                        .frame(height: 20)
+                        .alignmentGuide(.firstTextBaseline) { d in d[.firstTextBaseline] }
+                    Text("\(tracker.remaining) USES REMAINING")
+                        .font(.body.weight(.bold))
+                        .foregroundColor(.appBackground)
+                        .textCase(.uppercase)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal)
+                
+                // Watch Ad button (same size as Free User row)
+                Button(action: {
+                    guard let root = UIApplication.shared.connectedScenes
+                        .compactMap({ ($0 as? UIWindowScene)?.windows.first { $0.isKeyWindow } })
+                        .first?.rootViewController else { return }
+                    loadingAd = true
+                    adService.presentAd(from: root) { success in
+                        if success { tracker.addRewarded(2) }
+                        loadingAd = false
+                    }
+                }) {
+                    HStack {
+                        Image(systemName: "play.circle.fill")
+                            .foregroundColor(.appBackground)
+                            .frame(height: 20)
+                            .alignmentGuide(.firstTextBaseline) { d in d[.firstTextBaseline] }
+                        Text("WATCH AD")
+                            .font(.body.weight(.bold))
+                            .foregroundColor(.appBackground)
+                            .textCase(.uppercase)
                     }
                 }
+                .disabled(loadingAd)
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 12)
+                .background(Color.appAccent)
+                .cornerRadius(12)
                 .padding(.horizontal)
                 
                 Spacer()

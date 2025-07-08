@@ -67,7 +67,7 @@ struct Movie: Identifiable, Codable {
 | Expanded Panel | Streaming icons (Disney+ primary) · Purchase icons · Blurb · Keywords · Share · reserved mini-preview slot |
 | Movies w/o Songs | Excluded server-side |
 | Sorting | `SortOrder` ascending |
-| Favorites | `UserDefaults` array of `song.id` |
+| Favorites | `UserDefaults` array of `song.id` (free users limited to 5 favorites, subscribers unlimited; attempting to add a 6th favorite as a free user prompts the paywall) |
 | Access | Via search results with smooth transitions |
 | Arrow Navigation | Consumes a daily use and triggers the QuotaExceededSheet if out of quota |
 | Timecode | Always formatted as HH:MM:SS |
@@ -79,7 +79,7 @@ struct Movie: Identifiable, Codable {
 
 | Item | Spec |
 |------|------|
-| Omnibox | Top of Search tab; debounce 150 ms |
+| Omnibox | Top of Search tab; debounce 150 ms. Idle fill is warm off-white, focused fill is deep burgundy, text/placeholder color animates accordingly. |
 | Grouping | Results grouped by Movie, section expanded; best-match song row tinted |
 | Bold Rule | Entire song title bold (no partial highlight) |
 | Matching Fields | `songTitle`, `movieTitle`, `singers`, `keywords` |
@@ -226,6 +226,10 @@ Tap targets ≥ 44 pt; VoiceOver labels for timeline dots & all floating action 
 - **Preview Button UI:** Unobtrusive preview buttons next to timecodes in timeline view
 - **Audio Preview Player:** Simple audio playback component with proper memory management
 - **Privacy Compliance:** Proper NSAppleMusicUsageDescription in main app Info.plist
+- **Favorites sheet uses a deep burgundy background and subtle warm off-white row backgrounds for clarity.**
+- **Splash/page curl transition uses a snapshot of the splash screen for a seamless effect.**
+- **Profile view uses all-caps, bold, left-aligned text, consistent button sizing and icon alignment.**
+- **General UI polish: card-style modal sheets, consistent FAB overlay, improved accessibility and visual clarity.**
 
 _End of Spec_
 

@@ -25,14 +25,22 @@ struct SearchView: View {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(isSearchFocused ? .appAccent : .appText.opacity(0.6))
                         .padding(.leading, 16)
-                    TextField("Search", text: $vm.query)
-                        .textFieldStyle(PlainTextFieldStyle())
-                        .foregroundColor(.appText)
+                    ZStack(alignment: .leading) {
+                        if vm.query.isEmpty {
+                            Text("Search")
+                                .foregroundColor(isSearchFocused ? .warmOffWhite : .appText.opacity(0.6))
+                                .padding(.leading, 4)
+                        }
+                        TextField("", text: $vm.query)
+                            .textFieldStyle(PlainTextFieldStyle())
+                            .foregroundColor(isSearchFocused ? .warmOffWhite : .appText)
+                    }
                 }
                 .padding(.vertical, 12)
                 .background(
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.white.opacity(0.8))
+                        .fill(isSearchFocused ? Color.deepBurgundy : Color.warmOffWhite)
+                        .animation(.easeInOut(duration: 0.2), value: isSearchFocused)
                         .overlay(
                             RoundedRectangle(cornerRadius: 12)
                                 .stroke(isSearchFocused ? Color.appAccent : Color.appAccent.opacity(0.3), lineWidth: isSearchFocused ? 2 : 1)

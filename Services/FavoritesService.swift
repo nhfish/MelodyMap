@@ -18,6 +18,11 @@ final class FavoritesService: ObservableObject {
         favoritedSongIDs.contains(songID)
     }
     
+    func canAddFavorite(isSubscribed: Bool) -> Bool {
+        if isSubscribed { return true }
+        return favoritedSongIDs.count < 5
+    }
+    
     func toggleFavorite(songID: String) {
         if isFavorite(songID: songID) {
             removeFavorite(songID: songID)

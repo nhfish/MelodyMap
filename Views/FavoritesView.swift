@@ -8,6 +8,7 @@ struct FavoritesView: View {
     
     @State private var songToNavigate: Song? = nil
     @State private var showQuotaSheet = false
+    @State private var showUpgradeSheet = false
     
     var onDone: () -> Void
     
@@ -54,24 +55,38 @@ struct FavoritesView: View {
                     ForEach(favoritedSongs) { song in
                         HStack {
                             VStack(alignment: .leading) {
-                                Text(song.title).font(.headline).foregroundColor(.appBackground)
+                                Text(song.title)
+                                    .font(.headline)
+                                    .foregroundColor(.warmOffWhite)
                                 if let movie = content.movies.first(where: { $0.id == song.movieId }) {
                                     Text(movie.title).font(.subheadline).foregroundColor(.appBackground.opacity(0.7))
                                 }
                             }
                             Spacer()
+                            let isStarred = favorites.isFavorite(songID: song.id)
+                            let canAddFavorite = favorites.canAddFavorite(isSubscribed: appState.isSubscribed)
                             StarButton(
                                 isStarred: Binding(
-                                    get: { favorites.isFavorite(songID: song.id) },
-                                    set: { _ in favorites.toggleFavorite(songID: song.id) }
+                                    get: { isStarred },
+                                    set: { newValue in
+                                        if isStarred {
+                                            favorites.toggleFavorite(songID: song.id)
+                                        } else if canAddFavorite {
+                                            favorites.toggleFavorite(songID: song.id)
+                                        } else {
+                                            showUpgradeSheet = true
+                                        }
+                                    }
                                 )
                             )
+                            .disabled(!isStarred && !canAddFavorite)
                         }
                         .contentShape(Rectangle())
                         .onTapGesture {
                             handleSongTap(song)
                         }
                         .listRowSeparator(.hidden)
+                        .listRowBackground(Color.warmOffWhite.opacity(0.05))
                     }
                 }
                 .listStyle(PlainListStyle())
@@ -79,7 +94,7 @@ struct FavoritesView: View {
                 .animation(.default, value: favoritedSongs)
             }
         }
-        .background(Color.appText.ignoresSafeArea())
+        .background(Color.deepBurgundy.ignoresSafeArea())
         .sheet(isPresented: $showQuotaSheet) {
             QuotaExceededSheet(onWatchAd: {
                 // For now, just dismiss. A more robust implementation could retry the navigation.
@@ -90,6 +105,9 @@ struct FavoritesView: View {
             }, onDismiss: {
                 showQuotaSheet = false
             })
+        }
+        .sheet(isPresented: $showUpgradeSheet) {
+            PaywallView(onClose: { showUpgradeSheet = false })
         }
         .onChange(of: favorites.favoritedSongIDs) { newFavorites in
             if newFavorites.isEmpty {

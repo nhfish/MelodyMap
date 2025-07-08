@@ -2,9 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<string>MelodyMap</string>
-	<string>SwiftUI</string>
 	<string>XCTest</string>
+	<string>SwiftUI</string>
+	<string>MelodyMap</string>
 	<string>AVFoundation</string>
 	<string>GMASPM</string>
 	<string>MusicKit</string>

@@ -21,22 +21,22 @@ Melody Map is an iOS-first app built with Swift and SwiftUI. It helps parents an
 - **SearchViewModel** – builds an in-memory search index and returns grouped results.
 - **SongDetailViewModel** – manages expansion state and favorites.
 - **UsageTrackerService** – tracks daily song views (3/day) and resets the quota with proper UserDefaults persistence. It also tracks recently "unlocked" songs, allowing free re-watches for 15 minutes.
-- **FavoritesService** – manages a persistent list of favorited song IDs using UserDefaults.
+- **FavoritesService** – manages a persistent list of favorited song IDs using UserDefaults. Free users are limited to 5 favorites; subscribers have unlimited. Attempting to add a 6th favorite as a free user disables the star button and prompts the paywall.
 - **AdService** – preloads and presents rewarded ads. *(Uses compile-time flag ADS_ENABLED)*
 - **PurchaseService** – handles StoreKit 2 flows and publishes `isSubscriber`. *(Uses compile-time flag SUBS_ENABLED)*
 - **MusicKitService** – handles Apple Music integration for 30-second song previews, including authorization and catalog search.
 
 ### Views
 - **SplashView** – Disney-style splash screen with pixie trail animation and minimum display time.
-- **SearchView** – global search with fuzzy/phonetic matching, primary home screen.
+- **SearchView** – global search with fuzzy/phonetic matching, primary home screen. The search bar uses a warm off-white fill when idle, animates to deep burgundy with warm off-white text/placeholder when focused.
 - **TimelineView** – card-style sheet with close button, containing MoviePageView with timeline navigation and song details.
 - **MoviePageView** – timeline view with snap points for songs, movie poster, and song details with expandable sections.
 - **SongDetailView** – collapsible panel with streaming and purchase links.
-- **FavoritesView** – a modal sheet that displays a list of all songs the user has favorited.
-- **ProfileView** – shows usage stats and subscription status, sheet with closure-based dismissal.
+- **FavoritesView** – a modal sheet that displays a list of all songs the user has favorited. Modal sheet with deep burgundy background and subtle warm off-white row backgrounds for each song.
+- **ProfileView** – shows usage stats and subscription status, sheet with closure-based dismissal. All-caps, bold, left-aligned text, consistent button sizing and icon alignment.
 - **QuotaExceededSheet** – modal sheet for when daily limits are reached.
 - **PaywallView** – subscription upgrade interface with monthly/yearly options, sheet with closure-based dismissal.
-- **PixieBurstTransitionView** – magical particle animation for splash-to-main transitions.
+- **PixieBurstTransitionView** – magical particle animation for splash-to-main transitions. The splash-to-main transition uses a snapshot of the splash screen for a seamless, robust page curl animation.
 - **SongPreviewButton** – unobtrusive button next to timecodes for playing Apple Music previews.
 - **AudioPreviewPlayer** – simple play/stop controls for 30-second song previews with auto-play, pause/resume, and auto-loop.
 - **FloatingActionButton** – shared component for all floating action buttons (profile, upgrade, favorite), used in a centralized overlay layer at the app root. Ensures all FABs are visually and behaviorally consistent, fixed to screen corners, and maintain a 44pt+ tap target for accessibility.
@@ -202,4 +202,10 @@ Remote-config keys will allow tuning quota and pricing without app updates. Addi
 - **Release Year Display:** Release year is always shown without a comma.
 - **MusicKit Integration:** Apple Music previews with 30-second previews, on-demand permission requests, and simple play/stop controls.
 - **AudioPreviewPlayer Enhancements:** Auto-play on button press, pause/resume functionality, and auto-loop feature.
+- **Favorites System:** Free users are limited to 5 favorites; subscribers have unlimited. Attempting to add a 6th favorite as a free user disables the star button and prompts the paywall.
+- **SearchView:** The search bar uses a warm off-white fill when idle, animates to deep burgundy with warm off-white text/placeholder when focused.
+- **FavoritesView:** Modal sheet with deep burgundy background and subtle warm off-white row backgrounds for each song.
+- **SplashView/PageCurlTransitionView:** The splash-to-main transition uses a snapshot of the splash screen for a seamless, robust page curl animation.
+- **ProfileView:** All-caps, bold, left-aligned text, consistent button sizing and icon alignment.
+- **General UI Polish:** Card-style modal sheets, consistent FAB overlay, improved accessibility and visual clarity throughout the app.
 

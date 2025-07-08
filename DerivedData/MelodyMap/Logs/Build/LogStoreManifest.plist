@@ -174,6 +174,48 @@
 			<key>uniqueIdentifier</key>
 			<string>04843FF5-A809-45CE-930A-2FBC5B362746</string>
 		</dict>
+		<key>060BCD51-F889-45B5-A232-6816BFFF6C6D</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>060BCD51-F889-45B5-A232-6816BFFF6C6D.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773697145.65198398</real>
+			<key>timeStoppedRecording</key>
+			<real>773697145.71552598</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>060BCD51-F889-45B5-A232-6816BFFF6C6D</string>
+		</dict>
 		<key>0A20F773-FC47-43C8-A22C-372A1BEA26E0</key>
 		<dict>
 			<key>className</key>
@@ -257,6 +299,90 @@
 			<string>Clean MelodyMap</string>
 			<key>uniqueIdentifier</key>
 			<string>13C7149D-A085-44AD-80B7-58AF742F223D</string>
+		</dict>
+		<key>169A832E-419D-400B-8147-4B10016882D1</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>169A832E-419D-400B-8147-4B10016882D1.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773696926.557585</real>
+			<key>timeStoppedRecording</key>
+			<real>773696929.89784706</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>169A832E-419D-400B-8147-4B10016882D1</string>
+		</dict>
+		<key>19371BAC-BCD3-4D34-9789-B800CD932F89</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>19371BAC-BCD3-4D34-9789-B800CD932F89.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>1</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773648888.19079697</real>
+			<key>timeStoppedRecording</key>
+			<real>773648909.69854796</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>19371BAC-BCD3-4D34-9789-B800CD932F89</string>
 		</dict>
 		<key>19653A33-340F-454E-8C85-633D78CBC348</key>
 		<dict>
@@ -342,6 +468,48 @@
 			<key>uniqueIdentifier</key>
 			<string>1BDB012B-3FCA-4C79-85B6-24DBB3F5598B</string>
 		</dict>
+		<key>1F752A67-587D-4D68-941D-6C48E8F81502</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>1F752A67-587D-4D68-941D-6C48E8F81502.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773693846.495363</real>
+			<key>timeStoppedRecording</key>
+			<real>773693846.57421994</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>1F752A67-587D-4D68-941D-6C48E8F81502</string>
+		</dict>
 		<key>26B2B1E6-F429-4C42-8827-12A500DE8801</key>
 		<dict>
 			<key>className</key>
@@ -383,6 +551,90 @@
 			<string>Clean MelodyMap</string>
 			<key>uniqueIdentifier</key>
 			<string>26B2B1E6-F429-4C42-8827-12A500DE8801</string>
+		</dict>
+		<key>2850B496-227D-432E-BD21-BF19F1C15534</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>2850B496-227D-432E-BD21-BF19F1C15534.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773695854.84633303</real>
+			<key>timeStoppedRecording</key>
+			<real>773695855.96454597</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>2850B496-227D-432E-BD21-BF19F1C15534</string>
+		</dict>
+		<key>2A7425A2-0D65-4CDF-A14D-5B4CFF8296BF</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>2A7425A2-0D65-4CDF-A14D-5B4CFF8296BF.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Clean MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773696878.59597898</real>
+			<key>timeStoppedRecording</key>
+			<real>773696878.65673804</real>
+			<key>title</key>
+			<string>Clean MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>2A7425A2-0D65-4CDF-A14D-5B4CFF8296BF</string>
 		</dict>
 		<key>30D648B6-90B7-4C31-A18C-D1854C2C13ED</key>
 		<dict>
@@ -426,6 +678,48 @@
 			<key>uniqueIdentifier</key>
 			<string>30D648B6-90B7-4C31-A18C-D1854C2C13ED</string>
 		</dict>
+		<key>32FFA838-47A0-4D42-808E-21A36B5F0ECB</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>32FFA838-47A0-4D42-808E-21A36B5F0ECB.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>1</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773694123.38916898</real>
+			<key>timeStoppedRecording</key>
+			<real>773694123.90346396</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>32FFA838-47A0-4D42-808E-21A36B5F0ECB</string>
+		</dict>
 		<key>341A6905-31CF-419F-9CAC-C0638337FCE6</key>
 		<dict>
 			<key>className</key>
@@ -468,6 +762,48 @@
 			<key>uniqueIdentifier</key>
 			<string>341A6905-31CF-419F-9CAC-C0638337FCE6</string>
 		</dict>
+		<key>3BBDE8BB-3CEB-4053-B9F3-353B414E9251</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>3BBDE8BB-3CEB-4053-B9F3-353B414E9251.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773649035.251912</real>
+			<key>timeStoppedRecording</key>
+			<real>773649035.37328303</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>3BBDE8BB-3CEB-4053-B9F3-353B414E9251</string>
+		</dict>
 		<key>3EB67CD5-40F8-4BAE-9A08-85EBF3C6E344</key>
 		<dict>
 			<key>className</key>
@@ -509,6 +845,48 @@
 			<string>Build MelodyMap</string>
 			<key>uniqueIdentifier</key>
 			<string>3EB67CD5-40F8-4BAE-9A08-85EBF3C6E344</string>
+		</dict>
+		<key>417B61F4-6CE8-4572-AD0F-955216CFBA37</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>417B61F4-6CE8-4572-AD0F-955216CFBA37.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Clean MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773648918.343907</real>
+			<key>timeStoppedRecording</key>
+			<real>773648918.44427395</real>
+			<key>title</key>
+			<string>Clean MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>417B61F4-6CE8-4572-AD0F-955216CFBA37</string>
 		</dict>
 		<key>43AE2754-0F5B-4B56-8DBF-629C7A59DE4E</key>
 		<dict>
@@ -594,6 +972,216 @@
 			<key>uniqueIdentifier</key>
 			<string>45CEA52D-B593-492F-B602-A0003A02780A</string>
 		</dict>
+		<key>4609AE90-1D91-4E8D-A2DE-FFED84E66541</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>4609AE90-1D91-4E8D-A2DE-FFED84E66541.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773647462.57577002</real>
+			<key>timeStoppedRecording</key>
+			<real>773647464.57061005</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>4609AE90-1D91-4E8D-A2DE-FFED84E66541</string>
+		</dict>
+		<key>46FAE688-C7D9-44E4-8F90-EAA5A4DA037B</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>46FAE688-C7D9-44E4-8F90-EAA5A4DA037B.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773693832.764063</real>
+			<key>timeStoppedRecording</key>
+			<real>773693834.897084</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>46FAE688-C7D9-44E4-8F90-EAA5A4DA037B</string>
+		</dict>
+		<key>471B95B3-E3AF-42C6-A5ED-428C63D8E245</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>471B95B3-E3AF-42C6-A5ED-428C63D8E245.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>2</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773649427.14257705</real>
+			<key>timeStoppedRecording</key>
+			<real>773649427.25848198</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>471B95B3-E3AF-42C6-A5ED-428C63D8E245</string>
+		</dict>
+		<key>477F2E3B-A8EE-4EAE-9A19-C98148012E06</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>477F2E3B-A8EE-4EAE-9A19-C98148012E06.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773695857.53222895</real>
+			<key>timeStoppedRecording</key>
+			<real>773695857.59182298</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>477F2E3B-A8EE-4EAE-9A19-C98148012E06</string>
+		</dict>
+		<key>4E54894B-58C0-4493-97FC-092DBA3A1E82</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>4E54894B-58C0-4493-97FC-092DBA3A1E82.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773649027.71575701</real>
+			<key>timeStoppedRecording</key>
+			<real>773649030.63521397</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>4E54894B-58C0-4493-97FC-092DBA3A1E82</string>
+		</dict>
 		<key>52D578C5-2233-45C6-B9CD-9CB25489A548</key>
 		<dict>
 			<key>className</key>
@@ -677,6 +1265,48 @@
 			<string>Build MelodyMap</string>
 			<key>uniqueIdentifier</key>
 			<string>539DB27D-E889-44FB-9FD6-31C04A25ECAE</string>
+		</dict>
+		<key>59F60183-CC36-460A-9FBA-FAA6A14D4F8E</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>59F60183-CC36-460A-9FBA-FAA6A14D4F8E.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773649694.70459902</real>
+			<key>timeStoppedRecording</key>
+			<real>773649694.82451904</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>59F60183-CC36-460A-9FBA-FAA6A14D4F8E</string>
 		</dict>
 		<key>5B30BB74-909B-40DA-B5FF-8EDDB88D1D98</key>
 		<dict>
@@ -803,6 +1433,48 @@
 			<string>Build MelodyMap</string>
 			<key>uniqueIdentifier</key>
 			<string>5EF579EB-F2D1-436E-B449-2C29451A3AB9</string>
+		</dict>
+		<key>628EF2B7-0F56-4DA5-842C-F6530CCBE28E</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>628EF2B7-0F56-4DA5-842C-F6530CCBE28E.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>1</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773696840.52415299</real>
+			<key>timeStoppedRecording</key>
+			<real>773696841.85826504</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>628EF2B7-0F56-4DA5-842C-F6530CCBE28E</string>
 		</dict>
 		<key>6423B30A-80A7-4D2E-887E-18A052A9D908</key>
 		<dict>
@@ -1308,6 +1980,48 @@
 			<key>uniqueIdentifier</key>
 			<string>6C7FD5E6-FAFB-4821-BA9C-7E356503E0ED</string>
 		</dict>
+		<key>6D8A90BD-CAB8-4346-A14D-29179DABAFB2</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>6D8A90BD-CAB8-4346-A14D-29179DABAFB2.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>E</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>1</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773648921.57789302</real>
+			<key>timeStoppedRecording</key>
+			<real>773648945.29128504</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>6D8A90BD-CAB8-4346-A14D-29179DABAFB2</string>
+		</dict>
 		<key>7376D320-46EE-4CE7-84A0-70F358F3BCBF</key>
 		<dict>
 			<key>className</key>
@@ -1391,6 +2105,48 @@
 			<string>Build MelodyMap</string>
 			<key>uniqueIdentifier</key>
 			<string>73AADF28-1690-46A9-A668-94F23EC32FC0</string>
+		</dict>
+		<key>77831906-989D-45BF-A06A-AC816BA3B5B8</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>77831906-989D-45BF-A06A-AC816BA3B5B8.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773647755.70743704</real>
+			<key>timeStoppedRecording</key>
+			<real>773647755.81991994</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>77831906-989D-45BF-A06A-AC816BA3B5B8</string>
 		</dict>
 		<key>77A3B820-8B30-44C2-98C6-0552F8EF3DED</key>
 		<dict>
@@ -1602,6 +2358,48 @@
 			<key>uniqueIdentifier</key>
 			<string>7A89A6E2-6E1B-440A-93FD-AFBA77F9B650</string>
 		</dict>
+		<key>7CE4653A-A744-4571-98B2-95550C97B491</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>7CE4653A-A744-4571-98B2-95550C97B491.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773647467.87204301</real>
+			<key>timeStoppedRecording</key>
+			<real>773647467.96832097</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>7CE4653A-A744-4571-98B2-95550C97B491</string>
+		</dict>
 		<key>83C89979-3575-461B-98BA-B069E8A1445A</key>
 		<dict>
 			<key>className</key>
@@ -1812,6 +2610,90 @@
 			<key>uniqueIdentifier</key>
 			<string>9048593B-50E9-47CF-BB9E-C3CED74BECC7</string>
 		</dict>
+		<key>937DE086-616E-4A92-B2FB-99AAC6603B10</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>937DE086-616E-4A92-B2FB-99AAC6603B10.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773696931.59641695</real>
+			<key>timeStoppedRecording</key>
+			<real>773696931.78898001</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>937DE086-616E-4A92-B2FB-99AAC6603B10</string>
+		</dict>
+		<key>95C1F332-DA5A-4D4D-BE06-11FC60A6F78E</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>95C1F332-DA5A-4D4D-BE06-11FC60A6F78E.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773647745.65678203</real>
+			<key>timeStoppedRecording</key>
+			<real>773647747.18029499</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>95C1F332-DA5A-4D4D-BE06-11FC60A6F78E</string>
+		</dict>
 		<key>999601D5-77E9-47DE-A4F6-01BF9BF51ED4</key>
 		<dict>
 			<key>className</key>
@@ -1853,6 +2735,48 @@
 			<string>Build MelodyMap</string>
 			<key>uniqueIdentifier</key>
 			<string>999601D5-77E9-47DE-A4F6-01BF9BF51ED4</string>
+		</dict>
+		<key>99BEF625-8255-488D-B97C-EE38088187DE</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>99BEF625-8255-488D-B97C-EE38088187DE.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773648250.99191499</real>
+			<key>timeStoppedRecording</key>
+			<real>773648253.53956199</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>99BEF625-8255-488D-B97C-EE38088187DE</string>
 		</dict>
 		<key>9B69376F-A9A4-4035-8E42-968A9D8190D9</key>
 		<dict>
@@ -2106,6 +3030,48 @@
 			<key>uniqueIdentifier</key>
 			<string>AAEB625D-44FC-4B13-8156-5000E29A8497</string>
 		</dict>
+		<key>ABD76CB0-7CF4-4BD0-BF7A-4B1ECF88AA99</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>ABD76CB0-7CF4-4BD0-BF7A-4B1ECF88AA99.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773697140.15919495</real>
+			<key>timeStoppedRecording</key>
+			<real>773697141.05439305</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>ABD76CB0-7CF4-4BD0-BF7A-4B1ECF88AA99</string>
+		</dict>
 		<key>ABDB86D5-CE85-4BA3-A246-AA64D5013598</key>
 		<dict>
 			<key>className</key>
@@ -2274,6 +3240,48 @@
 			<key>uniqueIdentifier</key>
 			<string>B07F2B35-9E3A-4627-A841-48DAB763FCDB</string>
 		</dict>
+		<key>B1C04028-FF77-4EB1-847C-A66C192EB7D7</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>B1C04028-FF77-4EB1-847C-A66C192EB7D7.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>2</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773649429.843274</real>
+			<key>timeStoppedRecording</key>
+			<real>773649429.96303594</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>B1C04028-FF77-4EB1-847C-A66C192EB7D7</string>
+		</dict>
 		<key>B8A8BE32-056F-40EE-BF37-DD70A5D4578E</key>
 		<dict>
 			<key>className</key>
@@ -2357,6 +3365,48 @@
 			<string>Build MelodyMap</string>
 			<key>uniqueIdentifier</key>
 			<string>B944DC2D-EADE-47D9-BFCA-235B4A1D8531</string>
+		</dict>
+		<key>BB356550-D902-4D8D-8DE9-32B0F38485FB</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>BB356550-D902-4D8D-8DE9-32B0F38485FB.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773648256.132393</real>
+			<key>timeStoppedRecording</key>
+			<real>773648256.22408795</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>BB356550-D902-4D8D-8DE9-32B0F38485FB</string>
 		</dict>
 		<key>C35711A3-29FE-4EDB-942E-7E96C4BFD98D</key>
 		<dict>
@@ -2484,6 +3534,48 @@
 			<key>uniqueIdentifier</key>
 			<string>C92ADDA0-E292-42EA-9791-2CEF90B3D7F3</string>
 		</dict>
+		<key>D192BFDA-13A6-4834-BAB2-A5EECE116D41</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>D192BFDA-13A6-4834-BAB2-A5EECE116D41.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773694153.84715998</real>
+			<key>timeStoppedRecording</key>
+			<real>773694155.13391995</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>D192BFDA-13A6-4834-BAB2-A5EECE116D41</string>
+		</dict>
 		<key>D6091BA3-021F-4497-B6EE-639F4BB50723</key>
 		<dict>
 			<key>className</key>
@@ -2525,6 +3617,48 @@
 			<string>Build MelodyMap</string>
 			<key>uniqueIdentifier</key>
 			<string>D6091BA3-021F-4497-B6EE-639F4BB50723</string>
+		</dict>
+		<key>DC737B2C-9EA8-44CB-B7B4-74A54B03605D</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>DC737B2C-9EA8-44CB-B7B4-74A54B03605D.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Clean MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773649582.05127001</real>
+			<key>timeStoppedRecording</key>
+			<real>773649582.15389705</real>
+			<key>title</key>
+			<string>Clean MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>DC737B2C-9EA8-44CB-B7B4-74A54B03605D</string>
 		</dict>
 		<key>E1950871-780A-40E4-9E96-A929E6E242EF</key>
 		<dict>
@@ -2609,6 +3743,48 @@
 			<string>Build MelodyMap</string>
 			<key>uniqueIdentifier</key>
 			<string>E4A7D9C8-CAE0-4D55-97DC-3E92C3D72324</string>
+		</dict>
+		<key>EE4C95C0-71F9-4D33-BC71-4A98C9BCDD5D</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>EE4C95C0-71F9-4D33-BC71-4A98C9BCDD5D.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>2</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773649407.95426905</real>
+			<key>timeStoppedRecording</key>
+			<real>773649411.014853</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>EE4C95C0-71F9-4D33-BC71-4A98C9BCDD5D</string>
 		</dict>
 		<key>EEAEA025-09AD-409A-9CD4-7FD188F12122</key>
 		<dict>
@@ -2820,6 +3996,48 @@
 			<key>uniqueIdentifier</key>
 			<string>F14EED9E-37EB-4BCB-8CF6-F3D3664FAEAA</string>
 		</dict>
+		<key>F1C7DB86-CFED-4765-8016-D7A8D9B47AC8</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>F1C7DB86-CFED-4765-8016-D7A8D9B47AC8.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773649685.22636294</real>
+			<key>timeStoppedRecording</key>
+			<real>773649691.10929</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>F1C7DB86-CFED-4765-8016-D7A8D9B47AC8</string>
+		</dict>
 		<key>F200046B-7557-4DD6-B420-7C3F008285BD</key>
 		<dict>
 			<key>className</key>
@@ -2903,6 +4121,48 @@
 			<string>Clean MelodyMap</string>
 			<key>uniqueIdentifier</key>
 			<string>F4C250E1-CAD9-4CCE-951B-8E1C19E78169</string>
+		</dict>
+		<key>FDAA3A14-2685-43F0-A8B5-3179EC0B36E8</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>FDAA3A14-2685-43F0-A8B5-3179EC0B36E8.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773694161.48494995</real>
+			<key>timeStoppedRecording</key>
+			<real>773694161.55130005</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>FDAA3A14-2685-43F0-A8B5-3179EC0B36E8</string>
 		</dict>
 	</dict>
 </dict>

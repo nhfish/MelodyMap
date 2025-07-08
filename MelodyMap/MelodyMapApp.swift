@@ -14,6 +14,7 @@ struct MelodyMapApp: App {
     @State private var showPageCurlTransition = false
     @State private var pageCurlTransitionDone = false
     @State private var showingFavorites = false
+    @State private var splashSnapshot: UIImage? = nil
 
     var body: some Scene {
         WindowGroup {
@@ -133,10 +134,11 @@ struct MelodyMapApp: App {
                     }
                 }
                 // Page curl transition overlay
-                if showPageCurlTransition && !pageCurlTransitionDone {
-                    PageCurlTransitionView(onComplete: {
+                if showPageCurlTransition && !pageCurlTransitionDone, let splashSnapshot = splashSnapshot {
+                    PageCurlTransitionView(snapshotImage: Image(uiImage: splashSnapshot), onComplete: {
                         withAnimation(.easeInOut(duration: 0.3)) {
                             pageCurlTransitionDone = true
+                            showPageCurlTransition = false
                         }
                     })
                     .zIndex(10)
@@ -149,15 +151,19 @@ struct MelodyMapApp: App {
             .onChange(of: appState.showSplash) { newValue in
                 print("🎬 MelodyMapApp: showSplash changed to \(newValue)")
                 if !newValue {
-                    // Splash just finished, trigger page curl transition
+                    // Splash just finished, capture snapshot and trigger page curl transition
+                    let window = UIApplication.shared.connectedScenes
+                        .compactMap { $0 as? UIWindowScene }
+                        .flatMap { $0.windows }
+                        .first { $0.isKeyWindow }
+                    let hosting = UIHostingController(rootView: SplashSnapshotView())
+                    hosting.view.frame = window?.bounds ?? .zero
+                    if let view = hosting.view {
+                        splashSnapshot = view.snapshot()
+                    }
                     showPageCurlTransition = true
                     pageCurlTransitionDone = false
-                    // Hide transition after animation
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        withAnimation(.easeInOut(duration: 0.3)) {
-                            showPageCurlTransition = false
-                        }
-                    }
+                    // Hide transition after animation (handled by onComplete in PageCurlTransitionView)
                 }
             }
         }
