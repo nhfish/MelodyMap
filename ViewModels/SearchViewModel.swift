@@ -62,7 +62,10 @@ final class SearchViewModel: ObservableObject {
         
         let scored: [(IndexedSong, Int)] = indexedSongs.compactMap { indexed in
             var best = 0
-            for field in [indexed.songTitle, indexed.movieTitle] + indexed.keywords {
+            // Search in song title, movie title, keywords, and singers
+            let searchFields = [indexed.songTitle, indexed.movieTitle] + indexed.keywords + indexed.singers
+            
+            for field in searchFields {
                 if field.contains(trimmed) {
                     best = max(best, 100)
                     print("✅ Exact match found in '\(field)' for '\(trimmed)'")

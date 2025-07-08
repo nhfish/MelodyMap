@@ -160,7 +160,7 @@ final class ErrorHandlingService: ObservableObject {
             default:
                 return .networkError(underlying: error)
             }
-        case let decodingError as DecodingError:
+        case _ as DecodingError:
             return .decodingError(underlying: error)
         case let melodyMapError as MelodyMapError:
             return melodyMapError

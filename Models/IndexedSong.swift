@@ -9,6 +9,7 @@ struct IndexedSong: Equatable {
     let songTitle: String
     let movieTitle: String
     let keywords: [String]
+    let singers: [String]
 
     init(song: Song, movie: Movie) {
         self.song = song
@@ -16,6 +17,7 @@ struct IndexedSong: Equatable {
         self.songTitle = song.title.lowercased()
         self.movieTitle = movie.title.lowercased()
         self.keywords = song.keywords.map { $0.lowercased() }
+        self.singers = song.singers.map { $0.lowercased() }
     }
 }
 

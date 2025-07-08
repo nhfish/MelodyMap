@@ -35,7 +35,7 @@ struct PaywallView: View {
                         Image(systemName: "xmark.circle.fill")
                             .resizable()
                             .frame(width: 28, height: 28)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.appAccent)
                             .padding(8)
                     }
                     .accessibilityLabel("Close Paywall")
@@ -52,21 +52,22 @@ struct PaywallView: View {
                         // PixieParticle animation would go here
                         Image(systemName: "sparkles")
                             .font(.system(size: 60))
-                            .foregroundColor(.blue)
+                            .foregroundColor(.appGreen)
                         #else
                         Image(systemName: "crown.fill")
                             .font(.system(size: 60))
-                            .foregroundColor(.orange)
+                            .foregroundColor(.appGreen)
                         #endif
                         
                         Text("Unlock Unlimited Access")
                             .font(.title)
                             .fontWeight(.bold)
+                            .foregroundColor(.appBackground)
                             .multilineTextAlignment(.center)
                         
                         Text("Enjoy unlimited song views and premium features")
                             .font(.body)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.appBackground)
                             .multilineTextAlignment(.center)
                     }
                     .padding(.top, 20)
@@ -76,6 +77,7 @@ struct PaywallView: View {
                         Text("What you'll get:")
                             .font(.headline)
                             .fontWeight(.semibold)
+                            .foregroundColor(.appBackground)
                         
                         VStack(alignment: .leading, spacing: 12) {
                             BenefitRow(icon: "infinity", text: "Unlimited daily song views")
@@ -89,7 +91,7 @@ struct PaywallView: View {
                     
                     // Subscription period toggle
                     VStack(spacing: 16) {
-                        HStack(spacing: 0) {
+                        HStack(spacing: 12) {
                             ForEach(SubscriptionPeriod.allCases, id: \.self) { period in
                                 Button(action: {
                                     selectedPeriod = period
@@ -98,30 +100,31 @@ struct PaywallView: View {
                                         Text(period.rawValue)
                                             .font(.headline)
                                             .fontWeight(selectedPeriod == period ? .bold : .medium)
+                                            .foregroundColor(.appBackground)
                                         
                                         Text(period.price)
                                             .font(.title2)
                                             .fontWeight(.bold)
+                                            .foregroundColor(.appBackground)
                                         
                                         if let savings = period.savings {
                                             Text(savings)
                                                 .font(.caption)
-                                                .foregroundColor(.green)
+                                                .foregroundColor(.appGreen)
                                                 .fontWeight(.semibold)
                                         }
                                     }
-                                    .frame(maxWidth: .infinity)
+                                    .frame(maxWidth: .infinity, minHeight: 80)
                                     .padding(.vertical, 16)
                                     .background(
                                         RoundedRectangle(cornerRadius: 12)
-                                            .fill(selectedPeriod == period ? Color.blue.opacity(0.1) : Color.gray.opacity(0.1))
+                                            .fill(selectedPeriod == period ? Color.appGreen.opacity(0.2) : Color.appAccent.opacity(0.1))
                                             .overlay(
                                                 RoundedRectangle(cornerRadius: 12)
-                                                    .stroke(selectedPeriod == period ? Color.blue : Color.clear, lineWidth: 2)
+                                                    .stroke(selectedPeriod == period ? Color.appGreen : Color.clear, lineWidth: 2)
                                             )
                                     )
                                 }
-                                .foregroundColor(selectedPeriod == period ? .blue : .primary)
                             }
                         }
                         .padding(.horizontal)
@@ -154,15 +157,15 @@ struct PaywallView: View {
                             }
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
+                            .background(Color.appGreen)
+                            .foregroundColor(.appBackground)
                             .cornerRadius(12)
                         }
                         .padding(.horizontal)
                         
                         Text("Cancel anytime. Terms apply.")
                             .font(.caption)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.appBackground.opacity(0.7))
                     }
                     
                     // Restore purchases
@@ -174,12 +177,12 @@ struct PaywallView: View {
                         #endif
                     }
                     .font(.subheadline)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.appGreen)
                     .padding(.bottom, 20)
                 }
             }
         }
-        .background(Color(.systemBackground).ignoresSafeArea())
+        .background(Color.appText.ignoresSafeArea())
         .alert("Purchases Disabled", isPresented: $showingAlert) {
             Button("OK") { }
         } message: {
@@ -196,11 +199,12 @@ struct BenefitRow: View {
         HStack(spacing: 12) {
             Image(systemName: icon)
                 .font(.title3)
-                .foregroundColor(.blue)
+                .foregroundColor(.appAccent)
                 .frame(width: 24)
             
             Text(text)
                 .font(.body)
+                .foregroundColor(.appBackground)
             
             Spacer()
         }

@@ -11,8 +11,8 @@ import Combine
 @main
 struct MelodyMapApp: App {
     @StateObject private var appState = AppState(contentService: .shared)
-    @State private var showPixieBurst = false
-    @State private var pixieBurstDone = false
+    @State private var showPageCurlTransition = false
+    @State private var pageCurlTransitionDone = false
     @State private var showingFavorites = false
 
     var body: some Scene {
@@ -20,8 +20,8 @@ struct MelodyMapApp: App {
             let favorites = FavoritesService.shared
             let content = ContentService.shared
             ZStack {
-                // White background to prevent dark mode
-                Color.white
+                // App background color
+                Color.appBackground
                     .ignoresSafeArea()
                 
                 if appState.showSplash {
@@ -33,133 +33,110 @@ struct MelodyMapApp: App {
                         }
                 } else {
                     // Main UI
-                    NavigationView {
-                        ZStack {
-                            if appState.showingTimeline {
-                                TimelineView(viewModel: appState.timelineViewModel)
-                                    .environmentObject(appState)
-                                    .navigationBarHidden(true)
-                                    .transition(.asymmetric(
-                                        insertion: .move(edge: .trailing).combined(with: .opacity),
-                                        removal: .move(edge: .leading).combined(with: .opacity)
-                                    ))
-                                    .zIndex(1)
-                                    .onAppear {
-                                        print("🎬 MelodyMapApp: Showing TimelineView")
-                                    }
-                            } else {
-                                SearchView(onNavigateToTimeline: { indexedSong in
-                                    // Find the movie index for navigation from ContentService
-                                    let movies = content.movies.sorted { $0.sortOrder < $1.sortOrder }
-                                    if let movieIndex = movies.firstIndex(where: { $0.id == indexedSong.movie.id }) {
-                                        withAnimation(.easeInOut(duration: 0.6)) {
-                                            appState.navigateToTimeline(movieIndex: movieIndex, song: indexedSong.song)
-                                        }
-                                    }
-                                })
-                                .navigationBarHidden(true)
-                                .transition(.asymmetric(
-                                    insertion: .move(edge: .leading).combined(with: .opacity),
-                                    removal: .move(edge: .trailing).combined(with: .opacity)
-                                ))
-                                .zIndex(1)
-                                .onAppear {
-                                    print("🎬 MelodyMapApp: Showing SearchView")
+                    ZStack {
+                        NavigationView {
+                            SearchView(onNavigateToTimeline: { indexedSong in
+                                // Find the movie index for navigation from ContentService
+                                let movies = content.movies.sorted { $0.sortOrder < $1.sortOrder }
+                                if let movieIndex = movies.firstIndex(where: { $0.id == indexedSong.movie.id }) {
+                                    appState.navigateToTimeline(movieIndex: movieIndex, song: indexedSong.song)
                                 }
+                            })
+                            .navigationBarHidden(true)
+                            .environmentObject(appState)
+                            .onAppear {
+                                print("🎬 MelodyMapApp: Showing SearchView")
                             }
+                        }
+                        .navigationViewStyle(StackNavigationViewStyle())
+                        .sheet(isPresented: $appState.showPaywall) {
+                            PaywallView(onClose: { appState.showPaywall = false })
+                        }
+                        .sheet(isPresented: $showingFavorites) {
+                            FavoritesView(onDone: { showingFavorites = false })
+                                .environmentObject(appState)
+                                .environmentObject(favorites)
+                        }
+                        .sheet(isPresented: $appState.showingProfile) {
+                            ProfileView(onClose: { appState.showingProfile = false })
+                                .environmentObject(UsageTrackerService.shared)
+                                .environmentObject(AdService.shared)
+                                .environmentObject(favorites)
+                        }
+                        .sheet(isPresented: $appState.showingTimelineSheet) {
+                            TimelineView(viewModel: appState.timelineViewModel, onClose: { appState.dismissTimelineSheet() })
+                                .environmentObject(appState)
+                                .environmentObject(UsageTrackerService.shared)
+                                .environmentObject(AdService.shared)
+                                .environmentObject(favorites)
+                                .environmentObject(ContentService.shared)
+                                .environmentObject(MusicKitService.shared)
+                        }
+                        .environmentObject(UsageTrackerService.shared)
+                        .environmentObject(AdService.shared)
+                        .environmentObject(favorites)
+                        .environmentObject(ContentService.shared)
+                        .environmentObject(MusicKitService.shared)
 
-                            // Unified Floating Action Buttons (FABs) Overlay
-                            ZStack {
-                                // Top right: Profile or X button (never both)
-                                HStack {
-                                    Spacer()
-                                    if !appState.showingProfile && !appState.showingTimeline {
-                                        DailyUsesCounterButton {
-                                            appState.showingProfile = true
-                                        }
-                                        .environmentObject(UsageTrackerService.shared)
-                                    } else if appState.showingTimeline {
-                                        FloatingActionButton(
-                                            systemName: "xmark.circle.fill",
-                                            color: .secondary,
-                                            action: {
-                                                withAnimation(.easeInOut(duration: 0.6)) {
-                                                    appState.showingTimeline = false
-                                                }
-                                            },
-                                            accessibilityLabel: "Close Timeline",
-                                            size: 36
-                                        )
-                                    }
+                        // Unified Floating Action Buttons (FABs) Overlay
+                        ZStack {
+                            // Top right: Profile button
+                            HStack {
+                                Spacer()
+                                DailyUsesCounterButton {
+                                    appState.showingProfile = true
                                 }
-                                .padding(.trailing, 24)
-                                .padding(.top, 24)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                                .environmentObject(UsageTrackerService.shared)
+                            }
+                            .padding(.trailing, 24)
+                            .padding(.top, 48)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
 
-                                // Bottom left: Upgrade FAB
-                                HStack {
+                            // Bottom left: Upgrade FAB
+                            HStack {
+                                FloatingActionButton(
+                                    systemName: "plus.circle.fill",
+                                    color: .appAccent,
+                                    action: { appState.showPaywall = true },
+                                    accessibilityLabel: "Upgrade",
+                                    size: 36
+                                )
+                                .padding([.leading, .bottom], 24)
+                                Spacer()
+                            }
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+                            .opacity(appState.isKeyboardVisible ? 0 : 1)
+
+                            // Bottom right: Favorites FAB
+                            HStack {
+                                Spacer()
+                                if !favorites.favoritedSongIDs.isEmpty {
                                     FloatingActionButton(
-                                        systemName: "plus.circle.fill",
-                                        color: .yellow,
-                                        action: { appState.showPaywall = true },
-                                        accessibilityLabel: "Upgrade",
+                                        systemName: "star.circle.fill",
+                                        color: .appAccent,
+                                        action: { showingFavorites = true },
+                                        accessibilityLabel: "Show Favorites",
                                         size: 36
                                     )
-                                    .padding([.leading, .bottom], 24)
-                                    Spacer()
+                                    .padding([.trailing, .bottom], 24)
                                 }
-                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
-
-                                // Bottom right: Favorites FAB
-                                HStack {
-                                    Spacer()
-                                    if !favorites.favoritedSongIDs.isEmpty {
-                                        FloatingActionButton(
-                                            systemName: "star.circle.fill",
-                                            color: .yellow,
-                                            action: { showingFavorites = true },
-                                            accessibilityLabel: "Show Favorites",
-                                            size: 36
-                                        )
-                                        .padding([.trailing, .bottom], 24)
-                                    }
-                                }
-                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
                             }
-                            .ignoresSafeArea(.container, edges: .top)
-                            .zIndex(1000)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+                            .opacity(appState.isKeyboardVisible ? 0 : 1)
                         }
+                        .ignoresSafeArea(.container, edges: .top)
+                        .zIndex(1000)
                     }
-                    .navigationViewStyle(StackNavigationViewStyle())
-                    .sheet(isPresented: $appState.showPaywall) {
-                        PaywallView(onClose: { appState.showPaywall = false })
-                    }
-                    .sheet(isPresented: $showingFavorites) {
-                        FavoritesView(onDone: { showingFavorites = false })
-                            .environmentObject(appState)
-                            .environmentObject(favorites)
-                    }
-                    .sheet(isPresented: $appState.showingProfile) {
-                        ProfileView(onClose: { appState.showingProfile = false })
-                            .environmentObject(UsageTrackerService.shared)
-                            .environmentObject(AdService.shared)
-                            .environmentObject(favorites)
-                    }
-                    .environmentObject(UsageTrackerService.shared)
-                    .environmentObject(AdService.shared)
-                    .environmentObject(favorites)
-                    .environmentObject(ContentService.shared)
-                    .environmentObject(MusicKitService.shared)
-                    .opacity(showPixieBurst ? 0 : 1)
+                    .opacity(showPageCurlTransition ? 0 : 1)
                     .onAppear {
                         print("🎬 MelodyMapApp: Showing main UI")
                     }
                 }
-                // Pixie burst overlay
-                if showPixieBurst && !pixieBurstDone {
-                    PixieBurstTransitionView(onComplete: {
+                // Page curl transition overlay
+                if showPageCurlTransition && !pageCurlTransitionDone {
+                    PageCurlTransitionView(onComplete: {
                         withAnimation(.easeInOut(duration: 0.3)) {
-                            pixieBurstDone = true
+                            pageCurlTransitionDone = true
                         }
                     })
                     .zIndex(10)
@@ -172,13 +149,13 @@ struct MelodyMapApp: App {
             .onChange(of: appState.showSplash) { newValue in
                 print("🎬 MelodyMapApp: showSplash changed to \(newValue)")
                 if !newValue {
-                    // Splash just finished, trigger pixie burst
-                    showPixieBurst = true
-                    pixieBurstDone = false
-                    // Hide burst after animation
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                    // Splash just finished, trigger page curl transition
+                    showPageCurlTransition = true
+                    pageCurlTransitionDone = false
+                    // Hide transition after animation
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                         withAnimation(.easeInOut(duration: 0.3)) {
-                            showPixieBurst = false
+                            showPageCurlTransition = false
                         }
                     }
                 }
@@ -195,9 +172,10 @@ class AppState: ObservableObject {
     @Published var showPaywall = false
     @Published var showingProfile = false
     @Published var dataReady = false
+    @Published var isKeyboardVisible = false
     
     // Navigation state for Search -> Timeline transition
-    @Published var showingTimeline = false
+    @Published var showingTimelineSheet = false
     @Published var selectedMovieIndex = 0
     @Published var preSelectedSong: Song? = nil
     @Published var timelineViewModel = TimelineViewModel()
@@ -222,6 +200,9 @@ class AppState: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+        
+        // Setup keyboard notifications
+        setupKeyboardNotifications()
     }
 
     func loadData() {
@@ -263,7 +244,48 @@ class AppState: ObservableObject {
         preSelectedSong = song
         timelineViewModel.currentMovieIndex = movieIndex
         timelineViewModel.preSelectedSong = song
-        showingTimeline = true
+        
+        // Force FABs to show when transitioning to timeline (keyboard will be dismissed)
+        withAnimation(.easeInOut(duration: 0.3)) {
+            isKeyboardVisible = false
+        }
+        
+        showingTimelineSheet = true
+    }
+    
+    private func setupKeyboardNotifications() {
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillShowNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    self?.isKeyboardVisible = true
+                }
+            }
+        }
+        
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    self?.isKeyboardVisible = false
+                }
+            }
+        }
+    }
+    
+    func dismissTimelineSheet() {
+        showingTimelineSheet = false
+        // Don't force keyboard state here - let the natural keyboard notifications handle it
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

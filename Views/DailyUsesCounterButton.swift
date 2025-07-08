@@ -10,12 +10,13 @@ struct DailyUsesCounterButton: View {
                 Image(systemName: "person.crop.circle")
                     .resizable()
                     .frame(width: 28, height: 28)
+                    .foregroundColor(.appBackground)
                 Text("\(usage.remaining)")
                     .font(.headline)
-                    .foregroundColor(.primary)
+                    .foregroundColor(.appBackground)
             }
             .padding(8)
-            .background(Color.white.opacity(0.9))
+            .background(Color.appAccent)
             .clipShape(Capsule())
           
         }

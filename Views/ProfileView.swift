@@ -17,7 +17,7 @@ struct ProfileView: View {
                         Image(systemName: "xmark.circle.fill")
                             .resizable()
                             .frame(width: 28, height: 28)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.appAccent)
                             .padding(8)
                     }
                     .accessibilityLabel("Close Profile")
@@ -32,47 +32,50 @@ struct ProfileView: View {
                 VStack(spacing: 8) {
                     Image(systemName: "person.circle.fill")
                         .font(.system(size: 60))
-                        .foregroundColor(.blue)
+                        .foregroundColor(.appBackground)
                     
                     Text("Profile")
                         .font(.title2)
                         .fontWeight(.bold)
+                        .foregroundColor(.appBackground)
                 }
                 .padding(.top, 20)
                 
                 // Subscription status
-                VStack(alignment: .leading, spacing: 12) {
+                VStack(spacing: 12) {
                     Text("Subscription")
                         .font(.headline)
                         .fontWeight(.semibold)
+                        .foregroundColor(.appBackground)
                     
                     HStack {
                         Image(systemName: viewModel.isSubscribed ? "checkmark.circle.fill" : "circle")
-                            .foregroundColor(viewModel.isSubscribed ? .green : .gray)
+                            .foregroundColor(.appBackground)
                         Text(viewModel.isSubscribed ? "Subscribed" : "Free User")
                             .font(.body)
-                        Spacer()
+                            .foregroundColor(.appBackground)
                     }
-                    .padding(.horizontal)
+                    .padding(.horizontal, 20)
                     .padding(.vertical, 12)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
+                    .background(Color.appAccent)
+                    .cornerRadius(12)
                 }
                 .padding(.horizontal)
                 
                 // Daily uses
-                VStack(alignment: .leading, spacing: 12) {
+                VStack(spacing: 12) {
                     Text("Daily Uses")
                         .font(.headline)
                         .fontWeight(.semibold)
+                        .foregroundColor(.appBackground)
                     
                     VStack(spacing: 8) {
                         HStack {
                             Image(systemName: "clock.fill")
-                                .foregroundColor(.blue)
+                                .foregroundColor(.appBackground)
                             Text("Remaining: \(tracker.remaining)")
                                 .font(.body)
-                            Spacer()
+                                .foregroundColor(.appBackground)
                         }
                         
                         Button(action: {
@@ -87,18 +90,18 @@ struct ProfileView: View {
                         }) {
                             HStack {
                                 Image(systemName: "play.circle.fill")
-                                    .foregroundColor(.green)
+                                    .foregroundColor(.appBackground)
                                 Text("Watch Ad to Extend")
                                     .font(.body)
                                     .fontWeight(.medium)
-                                Spacer()
+                                    .foregroundColor(.appBackground)
                             }
                         }
                         .disabled(loadingAd)
-                        .padding(.horizontal)
+                        .padding(.horizontal, 20)
                         .padding(.vertical, 12)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(8)
+                        .background(Color.appAccent)
+                        .cornerRadius(12)
                     }
                 }
                 .padding(.horizontal)
@@ -106,7 +109,7 @@ struct ProfileView: View {
                 Spacer()
             }
         }
-        .background(Color(.systemBackground).ignoresSafeArea())
+        .background(Color.appText.ignoresSafeArea())
     }
 }
 

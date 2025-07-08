@@ -12,7 +12,7 @@ struct AudioPreviewPlayer: View {
         Button(action: togglePlayback) {
             Image(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill")
                 .font(.system(size: 20))
-                .foregroundColor(.blue)
+                .foregroundColor(.appAccent)
         }
         .onAppear {
             // Auto-play when the player appears

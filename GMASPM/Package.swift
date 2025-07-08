@@ -10,7 +10,7 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "GoogleMobileAds",
-            path: "../GoogleMobileAdsSdkiOS-12.6.0/GoogleMobileAds.xcframework"
+            path: "GoogleMobileAds.xcframework"
         )
     ]
 )

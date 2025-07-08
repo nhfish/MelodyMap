@@ -4,6 +4,7 @@ struct SearchView: View {
     @StateObject private var vm: SearchViewModel
     @EnvironmentObject private var usage: UsageTrackerService
     @EnvironmentObject private var adService: AdService
+    @EnvironmentObject private var appState: AppState
     var onNavigateToTimeline: ((IndexedSong) -> Void)? = nil
 
     @State private var showQuotaSheet = false
@@ -20,9 +21,26 @@ struct SearchView: View {
             VStack(spacing: 0) {
                 Spacer()
                     .frame(height: geo.size.height / 3)
-                TextField("Search", text: $vm.query)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.horizontal)
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(isSearchFocused ? .appAccent : .appText.opacity(0.6))
+                        .padding(.leading, 16)
+                    TextField("Search", text: $vm.query)
+                        .textFieldStyle(PlainTextFieldStyle())
+                        .foregroundColor(.appText)
+                }
+                .padding(.vertical, 12)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.white.opacity(0.8))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(isSearchFocused ? Color.appAccent : Color.appAccent.opacity(0.3), lineWidth: isSearchFocused ? 2 : 1)
+                        )
+                )
+                .scaleEffect(isSearchFocused ? 1.02 : 1.0)
+                .animation(.easeInOut(duration: 0.2), value: isSearchFocused)
+                .padding(.horizontal)
                     .focused($isSearchFocused)
                     .onChange(of: vm.query) { _ in vm.search() }
                     .toolbar {
@@ -31,8 +49,12 @@ struct SearchView: View {
                             Button("Done") {
                                 isSearchFocused = false
                             }
-                            .foregroundColor(.blue)
+                            .foregroundColor(.yellow) // Match your FAB color
                         }
+                    }
+                    .onAppear {
+                        // Set keyboard appearance to match app theme
+                        UITextField.appearance().keyboardAppearance = .dark
                     }
 
                 if vm.indexedSongs.isEmpty {
@@ -41,7 +63,7 @@ struct SearchView: View {
                         ProgressView()
                             .padding()
                         Text("Loading songs...")
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.appText.opacity(0.7))
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else if vm.results.isEmpty && !vm.query.isEmpty {
@@ -49,14 +71,14 @@ struct SearchView: View {
                     VStack {
                         Image(systemName: "magnifyingglass")
                             .font(.system(size: 40))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.appText.opacity(0.6))
                             .padding()
                         Text("No songs found")
                             .font(.headline)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.appText)
                         Text("Try searching for a different song or movie")
                             .font(.caption)
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.appText.opacity(0.7))
                             .multilineTextAlignment(.center)
                             .padding(.horizontal)
                     }
@@ -73,10 +95,20 @@ struct SearchView: View {
                                         VStack(alignment: .leading, spacing: 2) {
                                             Text(indexed.song.title)
                                                 .bold()
-                                                .foregroundColor(.primary)
-                                            Text(indexed.movie.title)
-                                                .font(.caption)
-                                                .foregroundColor(.secondary)
+                                                .foregroundColor(.appText)
+                                            HStack {
+                                                Text(indexed.movie.title)
+                                                    .font(.caption)
+                                                    .foregroundColor(.appText.opacity(0.7))
+                                                if !indexed.song.singers.isEmpty {
+                                                    Text("•")
+                                                        .font(.caption)
+                                                        .foregroundColor(.appText.opacity(0.7))
+                                                    Text(indexed.song.singers.joined(separator: ", "))
+                                                        .font(.caption)
+                                                        .foregroundColor(.appText.opacity(0.7))
+                                                }
+                                            }
                                         }
                                         .padding(.vertical, 8)
                                         .padding(.horizontal)
@@ -107,9 +139,16 @@ struct SearchView: View {
                 isSearchFocused = false
             }
         }
-        .background(Color(.systemBackground))
+        .background(Color.appBackground)
         .onAppear {
             print("🎬 SearchView: onAppear called")
+        }
+        .onChange(of: appState.showingTimelineSheet) { showing in
+            if !showing {
+                // Reset search when timeline sheet is closed
+                vm.query = ""
+                vm.results = []
+            }
         }
         .onReceive(vm.$shouldShowQuotaSheet) { value in
             print("🎬 SearchView: shouldShowQuotaSheet changed to \(value)")
@@ -140,5 +179,6 @@ struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView()
             .environmentObject(UsageTrackerService.shared)
+            .environmentObject(AppState())
     }
 }

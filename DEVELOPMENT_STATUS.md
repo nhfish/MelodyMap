@@ -120,6 +120,21 @@ This document tracks the progress of implementing high-impact improvements to th
 - FABs never shift due to content resizing or scrolling
 - Improved accessibility and code maintainability
 
+### 7. TimelineView Card-Style Refactoring
+- **Status**: ✅ COMPLETED
+- **Files Updated**:
+  - `Views/TimelineView.swift` - Converted to card-style sheet with close button
+  - `Views/MoviePageView.swift` - Simplified gesture handling and removed full-screen behavior
+  - `MelodyMap/MelodyMapApp.swift` - Updated navigation to use sheet presentation
+
+**Features Implemented**:
+- TimelineView now presents as a card-style sheet with close button in top-right corner
+- Consistent UI pattern with ProfileView, FavoritesView, and PaywallView
+- Simplified navigation architecture with sheet-based presentation
+- Removed timeline drag gesture conflicts and complex transition animations
+- Improved user experience with standard modal behavior (tap outside to dismiss)
+- Simplified AppState management with `showingTimelineSheet` instead of complex transition logic
+
 ## 📊 Test Coverage Summary
 
 ### Unit Tests Created: 9 Test Files
@@ -187,6 +202,8 @@ This document tracks the progress of implementing high-impact improvements to th
 - **Offline Support**: Cache-based functionality when network unavailable
 - **Accessibility**: Basic accessibility compliance testing
 - **Centralized FAB Overlay**: All floating action buttons are now managed in a single overlay layer for consistency, accessibility, and visual polish
+- **Sheet-Based Navigation**: Consistent modal presentation for timeline, profile, and paywall views with standard close buttons and dismissal behavior
+- **Simplified Gesture Handling**: Removed complex drag gesture conflicts and improved timeline navigation
 
 ### Development Experience
 - **Automated Testing**: CI/CD pipeline with comprehensive test suites

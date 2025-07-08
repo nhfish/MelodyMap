@@ -33,7 +33,7 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 ## Features
 🎵 **Smart Song Search** — instantly find any song with a single search bar
 
-🎬 **Movie Timeline View** — see where each song appears in the movie with an intuitive timeline. **Navigation is now strictly within a single movie; users cannot swipe or curl to other movies from the timeline.**
+🎬 **Movie Timeline View** — see where each song appears in the movie with an intuitive timeline. **TimelineView now presents as a card-style sheet with close button for consistent UI.**
 
 📋 **Manually Curated Content** — all songs are added and tagged by hand to ensure quality
 
@@ -45,18 +45,23 @@ Built with scalability in mind, Melody Map starts with a clean search-driven exp
 
 ✨ **Pixie Burst Animation** — magical transition effects when moving from splash to main app
 
+🎵 **Apple Music Previews** — 30-second song previews with auto-play, pause/resume, and auto-loop functionality
+
+- **Sheet-Based Navigation:** All modal views (timeline, profile, paywall) now use consistent sheet presentation with close buttons
+- **Simplified Gesture Handling:** Removed timeline drag gesture conflicts and improved user interactions
 - **Timeline Navigation:** Arrow navigation between songs now consumes a daily use and will show the QuotaExceededSheet if out of quota.
 - **Unified Quota Handling:** The QuotaExceededSheet is now used for all quota-exceeded actions, including arrow navigation, and no longer shows today's usage or a progress bar.
 - **Profile Button Consistency:** The profile button is now visually aligned in both TimelineView and SearchView, matching the navigation bar style.
 - **Timecode Formatting:** Song timecodes are always displayed as HH:MM:SS.
 - **Release Year Display:** Release year is always shown without a comma.
-- **Centralized Floating Action Buttons:** All floating action buttons (close, upgrade, favorite) are now managed in a single overlay layer, visually consistent, and fixed to the screen corners for a seamless and accessible experience.
+- **Centralized Floating Action Buttons:** All floating action buttons (profile, upgrade, favorite) are now managed in a single overlay layer, visually consistent, and fixed to the screen corners for a seamless and accessible experience.
 
 ## Floating Action Button (FAB) Overlay System
 Melody Map uses a centralized Floating Action Button overlay for all key actions:
-- **Close (X) Button:** Always fixed to the top-right corner when in TimelineView.
+- **Profile Button:** Always fixed to the top-right corner when not in a modal view.
 - **Upgrade (+) Button:** Always fixed to the bottom-left corner (if not subscribed).
 - **Favorites (★) Button:** Always fixed to the bottom-right corner (if favorites exist).
+- **Close (X) Button:** Now appears in the top-right corner of modal sheets (timeline, profile, paywall) for consistent UI.
 - All FABs use a shared style for icon size, color, and drop shadow, ensuring visual and behavioral consistency.
 - FABs are never affected by content resizing or scrolling, and always maintain a 44pt+ tap target for accessibility.
 
@@ -104,8 +109,8 @@ The app implements a daily usage quota system:
 The app now uses a centralized navigation system:
 - **AppState:** Manages splash/data readiness and navigation state
 - **SearchView:** Primary home screen with search functionality
-- **TimelineView:** Accessed via search results with smooth transitions
-- **Overlay System:** Profile and paywall appear as overlays with closure-based dismissal
+- **TimelineView:** Presented as a card-style sheet via search results with close button
+- **Sheet System:** All modal views (timeline, profile, paywall) use consistent sheet presentation with closure-based dismissal
 - **Pixie Burst:** Magical transition animation when moving from splash to main app
 - **Centralized FAB Overlay:** All floating action buttons are managed in a single overlay layer, ensuring they remain fixed and visually consistent
 
@@ -165,14 +170,17 @@ StoreKit integration is temporarily disabled during development. The system uses
 
 ## Project Status
 ✅ **New Navigation Architecture** — AppState-driven navigation with SearchView as home screen
+✅ **TimelineView Refactoring** — Converted to card-style sheet presentation with close button
+✅ **Sheet-Based Navigation** — All modal views now use consistent sheet presentation
 ✅ **Pixie Burst Animation** — magical transition when moving from splash to main app
 ✅ **Splash Screen Gating** — waits for both minimum time (2.5s) and data readiness
 ✅ **Daily Uses Counter** — persistent tracking with proper initialization and UserDefaults
 ✅ **UsageTrackerService** — properly initializes daily quota and tracks usage
-✅ **Search → Timeline Navigation** — smooth transitions with proper movie indexing
+✅ **Search → Timeline Navigation** — sheet presentation with proper movie indexing
 ✅ **Overlay System** — Profile and paywall use closure-based dismissal
 ✅ **iOS 15 compatibility** (NavigationView); ready for NavigationStack on iOS 16+
 ✅ **Centralized FAB Overlay** — all floating action buttons are now managed in a single overlay layer for consistency and accessibility
+✅ **Apple Music Integration** — 30-second previews with auto-play, pause/resume, and auto-loop
 🛠️ UI polish and refinement in progress
 
 ## Project Structure

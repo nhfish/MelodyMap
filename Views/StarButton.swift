@@ -11,7 +11,7 @@ struct StarButton: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 24, height: 24)
-                .foregroundColor(.yellow)
+                .foregroundColor(.appAccent)
         }
         .buttonStyle(PlainButtonStyle())
         .accessibilityLabel(isStarred ? "Remove from Favorites" : "Add to Favorites")

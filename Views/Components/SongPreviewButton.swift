@@ -21,7 +21,7 @@ struct SongPreviewButton: View {
             } else {
                 Image(systemName: "play.circle")
                     .font(.system(size: 20))
-                    .foregroundColor(.blue.opacity(0.7))
+                    .foregroundColor(.appAccent.opacity(0.7))
             }
         }
         .disabled(isLoading)

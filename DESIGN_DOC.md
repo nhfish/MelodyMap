@@ -7,11 +7,11 @@ Melody Map is an iOS-first app built with Swift and SwiftUI. It helps parents an
 
 ## Architecture (Updated)
 - **AppState**: Manages splash/data readiness and navigation state. Splash screen is gated on both minimum time (2.5s) and data readiness (movies/songs loaded).
-- **Navigation**: AppState-driven navigation with SearchView as home screen, TimelineView accessed via search results
-- **Centralized FAB Overlay**: All floating action buttons (close, upgrade, favorite) are now managed in a single overlay layer at the app root, ensuring they remain fixed to the screen corners and visually consistent across all views. The shared `FloatingActionButton` component is used for all FABs.
+- **Navigation**: AppState-driven navigation with SearchView as home screen, TimelineView presented as a sheet via search results
+- **Centralized FAB Overlay**: All floating action buttons (profile, upgrade, favorite) are managed in a single overlay layer at the app root, ensuring they remain fixed to the screen corners and visually consistent across all views. The shared `FloatingActionButton` component is used for all FABs.
 - **SearchViewModel**: Exposes a static loadForAppState for splash gating.
 - **UsageTrackerService**: Injected at the root of the app with proper initialization (3 views/day).
-- **Views**: SearchView is the primary home screen, with overlays for upgrade/profile. Profile and paywall overlays use closure-based dismissal.
+- **Views**: SearchView is the primary home screen, with sheet presentations for timeline, profile, and paywall. All modal views use closure-based dismissal.
 - **Pixie Burst**: Magical transition animation when moving from splash to main app.
 - **Navigation**: Uses NavigationView for iOS 15 compatibility; ready to migrate to NavigationStack for iOS 16+.
 
@@ -29,16 +29,17 @@ Melody Map is an iOS-first app built with Swift and SwiftUI. It helps parents an
 ### Views
 - **SplashView** – Disney-style splash screen with pixie trail animation and minimum display time.
 - **SearchView** – global search with fuzzy/phonetic matching, primary home screen.
-- **TimelineView** – a `UIPageViewController` showing movie pages with snap points for songs, accessed via search results.
+- **TimelineView** – card-style sheet with close button, containing MoviePageView with timeline navigation and song details.
+- **MoviePageView** – timeline view with snap points for songs, movie poster, and song details with expandable sections.
 - **SongDetailView** – collapsible panel with streaming and purchase links.
 - **FavoritesView** – a modal sheet that displays a list of all songs the user has favorited.
-- **ProfileView** – shows usage stats and subscription status, overlay with closure-based dismissal.
+- **ProfileView** – shows usage stats and subscription status, sheet with closure-based dismissal.
 - **QuotaExceededSheet** – modal sheet for when daily limits are reached.
-- **PaywallView** – subscription upgrade interface with monthly/yearly options, overlay with closure-based dismissal.
+- **PaywallView** – subscription upgrade interface with monthly/yearly options, sheet with closure-based dismissal.
 - **PixieBurstTransitionView** – magical particle animation for splash-to-main transitions.
 - **SongPreviewButton** – unobtrusive button next to timecodes for playing Apple Music previews.
-- **AudioPreviewPlayer** – simple play/stop controls for 30-second song previews.
-- **FloatingActionButton** – shared component for all floating action buttons (close, upgrade, favorite), used in a centralized overlay layer at the app root. Ensures all FABs are visually and behaviorally consistent, fixed to screen corners, and maintain a 44pt+ tap target for accessibility.
+- **AudioPreviewPlayer** – simple play/stop controls for 30-second song previews with auto-play, pause/resume, and auto-loop.
+- **FloatingActionButton** – shared component for all floating action buttons (profile, upgrade, favorite), used in a centralized overlay layer at the app root. Ensures all FABs are visually and behaviorally consistent, fixed to screen corners, and maintain a 44pt+ tap target for accessibility.
 
 ## Data Flow (Updated)
 1. AppState calls SearchViewModel.loadForAppState to load movies and songs for splash gating.
@@ -46,8 +47,8 @@ Melody Map is an iOS-first app built with Swift and SwiftUI. It helps parents an
 3. Pixie burst animation triggers when transitioning from splash to main app.
 4. UsageTrackerService is injected at the root for quota tracking (3 views/day).
 5. SearchView serves as home screen with search functionality.
-6. TimelineView is accessed via search results with smooth transitions.
-7. Profile and paywall overlays use closure-based dismissal.
+6. TimelineView is presented as a sheet via search results with proper movie indexing.
+7. All modal views (timeline, profile, paywall) use sheet presentation with closure-based dismissal.
 8. MusicKitService handles Apple Music preview requests on-demand.
 9. **Centralized FAB Overlay**: All floating action buttons are managed in a single overlay layer, ensuring they remain fixed and visually consistent regardless of content changes or scrolling.
 
@@ -181,11 +182,13 @@ Remote-config keys will allow tuning quota and pricing without app updates. Addi
 
 ## Key Changes (Latest)
 - **Navigation Architecture:** AppState-driven navigation with SearchView as home screen
+- **TimelineView Refactoring:** Converted from full-screen transitions to card-style sheet presentation with close button
+- **Sheet-Based Navigation:** All modal views (timeline, profile, paywall) now use consistent sheet presentation
+- **Simplified Gesture Handling:** Removed timeline drag gesture conflicts and simplified MoviePageView interactions
 - **Pixie Burst Animation:** Magical transition when moving from splash to main app
 - **Splash Screen Gating:** Waits for both minimum time (2.5s) and data readiness
 - **Daily Uses Counter:** Persistent tracking with proper initialization and UserDefaults
-- **UsageTrackerService:** Properly initializes daily quota (3 views/day) and tracks usage
-- **Search → Timeline Navigation:** Smooth transitions with proper movie indexing
+- **Search → Timeline Navigation:** Sheet presentation with proper movie indexing
 - **Overlay System:** Profile and paywall use closure-based dismissal
 - **iOS 15:** Uses NavigationView; ready to migrate to NavigationStack for iOS 16+
 - **Timeline Navigation:** Users can now only navigate between songs within a single movie in the timeline view. Swiping or curling to other movies is disabled.
@@ -198,7 +201,5 @@ Remote-config keys will allow tuning quota and pricing without app updates. Addi
 - **Timecode Formatting:** Song timecodes are always displayed as HH:MM:SS.
 - **Release Year Display:** Release year is always shown without a comma.
 - **MusicKit Integration:** Apple Music previews with 30-second previews, on-demand permission requests, and simple play/stop controls.
-- **Preview Button UI:** Unobtrusive preview buttons next to timecodes in timeline view.
-- **Audio Preview Player:** Simple audio playback component with proper memory management.
-- **Centralized FAB Overlay:** All floating action buttons are now managed in a single overlay layer for consistency, accessibility, and visual polish.
+- **AudioPreviewPlayer Enhancements:** Auto-play on button press, pause/resume functionality, and auto-loop feature.
 

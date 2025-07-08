@@ -26,7 +26,7 @@ struct FavoritesView: View {
                     Image(systemName: "xmark.circle.fill")
                         .resizable()
                         .frame(width: 28, height: 28)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.appAccent)
                         .padding(8)
                 }
                 .accessibilityLabel("Close Favorites")
@@ -38,13 +38,14 @@ struct FavoritesView: View {
                 VStack {
                     Image(systemName: "star.slash")
                         .font(.system(size: 50))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.appBackground.opacity(0.7))
                     Text("No Favorites Yet")
                         .font(.title2)
+                        .foregroundColor(.appBackground)
                         .padding(.top)
                     Text("Tap the star next to any song to save it here.")
                         .font(.body)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.appBackground.opacity(0.8))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                 }
@@ -53,9 +54,9 @@ struct FavoritesView: View {
                     ForEach(favoritedSongs) { song in
                         HStack {
                             VStack(alignment: .leading) {
-                                Text(song.title).font(.headline)
+                                Text(song.title).font(.headline).foregroundColor(.appBackground)
                                 if let movie = content.movies.first(where: { $0.id == song.movieId }) {
-                                    Text(movie.title).font(.subheadline).foregroundColor(.secondary)
+                                    Text(movie.title).font(.subheadline).foregroundColor(.appBackground.opacity(0.7))
                                 }
                             }
                             Spacer()
@@ -78,6 +79,7 @@ struct FavoritesView: View {
                 .animation(.default, value: favoritedSongs)
             }
         }
+        .background(Color.appText.ignoresSafeArea())
         .sheet(isPresented: $showQuotaSheet) {
             QuotaExceededSheet(onWatchAd: {
                 // For now, just dismiss. A more robust implementation could retry the navigation.

@@ -6,9 +6,28 @@ struct TimelineView: View {
     @EnvironmentObject private var appState: AppState
     @EnvironmentObject private var content: ContentService
     
+    var onClose: (() -> Void)? = nil
+    
     var body: some View {
-        ZStack {
-            // Main content - extends to edges
+        VStack(spacing: 0) {
+            // Close button at top right
+            HStack {
+                Spacer()
+                if let onClose = onClose {
+                    Button(action: onClose) {
+                        Image(systemName: "xmark.circle.fill")
+                            .resizable()
+                            .frame(width: 28, height: 28)
+                            .foregroundColor(.appAccent)
+                            .padding(8)
+                    }
+                    .accessibilityLabel("Close Timeline")
+                }
+            }
+            .padding(.horizontal)
+            .padding(.top, 2)
+            
+            // Main content
             if !content.movies.isEmpty {
                 let movie = content.movies[appState.selectedMovieIndex]
                 MoviePageView(
@@ -19,9 +38,9 @@ struct TimelineView: View {
                         viewModel.presentSongDetail(for: song)
                     }
                 )
-                .ignoresSafeArea(.container, edges: .top) // Allow content to extend to top
             }
         }
+        .background(Color.appBackground.ignoresSafeArea())
         .onAppear {
             // Sync the view model with app state
             viewModel.currentMovieIndex = appState.selectedMovieIndex

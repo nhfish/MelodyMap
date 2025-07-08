@@ -19,9 +19,9 @@ struct MoviePageView: View {
 
     var body: some View {
         ScrollViewReader { proxy in
-            VStack(spacing: 30) {
+            VStack(spacing: 10) {
                 ZStack {
-                    Spacer().frame(height: 50)
+                    Spacer().frame(height: 10)
                 }
                 .allowsHitTesting(false)
                 AsyncImage(url: URL(string: movie.imageURL)) { image in
@@ -44,13 +44,13 @@ struct MoviePageView: View {
                         ZStack(alignment: .topLeading) {
                             Rectangle()
                                 .frame(height: 2)
-                                .foregroundColor(.secondary)
+                                .foregroundColor(.appText.opacity(0.3))
                             ForEach(Array(songsForMovie.enumerated()), id: \.element.id) { index, song in
                                 let percent = song.effectivePercent
                                 let xPosition = geo.size.width * CGFloat(percent) / 100.0
                                 Circle()
                                     .frame(width: 12, height: 12)
-                                    .foregroundColor(song.id == songsForMovie[selectedIndex].id ? .blue : .primary)
+                                    .foregroundColor(song.id == songsForMovie[selectedIndex].id ? .appAccent : .appText.opacity(0.6))
                                     .position(x: xPosition, y: 1)
                                     .onTapGesture {
                                         selectedIndex = index
@@ -80,6 +80,7 @@ struct MoviePageView: View {
                             }) {
                                 Image(systemName: "chevron.left")
                                     .frame(width: 44, height: 44)
+                                    .foregroundColor(.appAccent)
                             }
                             .disabled(selectedIndex <= 0)
                             Spacer()
@@ -98,6 +99,7 @@ struct MoviePageView: View {
                             }) {
                                 Image(systemName: "chevron.right")
                                     .frame(width: 44, height: 44)
+                                    .foregroundColor(.appAccent)
                             }
                             .disabled(selectedIndex + 1 >= songsForMovie.count)
                         }
@@ -106,13 +108,6 @@ struct MoviePageView: View {
                     .gesture(
                         DragGesture()
                             .onEnded { value in
-                                // Don't handle drag if it's in the top area (where close button is)
-                                // Increased the threshold to better avoid the close button
-                                if value.startLocation.y < 120 {
-                                    print("🎯 MoviePageView: Ignoring drag in close button area (y: \(value.startLocation.y))")
-                                    return
-                                }
-                                
                                 let ratio = min(max(0, value.location.x / geo.size.width), 1)
                                 let nearestIndex = songsForMovie.enumerated().min { lhs, rhs in
                                     let l = abs(ratio - CGFloat(lhs.element.effectivePercent) / 100.0)
@@ -134,10 +129,12 @@ struct MoviePageView: View {
                     HStack(spacing: 10) {
                         Text(formatTimecode(currentSong.startTime))
                             .font(.caption)
+                            .foregroundColor(.appText)
                             .onAppear {
                                 print("🕐 Timecode for '\(currentSong.title)': original='\(currentSong.startTime ?? "nil")', formatted='\(formatTimecode(currentSong.startTime))'")
                             }
                         SongPreviewButton(song: currentSong, movieTitle: movie.title)
+                            .id(currentSong.id) // Force reset when song changes
                         let isStarredBinding = Binding(
                             get: { favorites.isFavorite(songID: currentSong.id) },
                             set: { _ in favorites.toggleFavorite(songID: currentSong.id) }
@@ -149,16 +146,21 @@ struct MoviePageView: View {
                     HStack {
                         Text(currentSong.title)
                             .bold()
+                            .foregroundColor(.appText)
                     }
                     Text("\(movie.title) · \(String(movie.releaseYear))")
+                        .foregroundColor(.appText)
                     Text("Runtime: \(currentSong.movieRuntimeMinutes) minutes")
+                        .foregroundColor(.appText)
                     Text("Characters: " + currentSong.singers.joined(separator: ", "))
+                        .foregroundColor(.appText)
                     // Chevron for expanding/collapsing details
                     HStack {
                         Spacer()
                         Button(action: { withAnimation { isExpanded.toggle() } }) {
                             Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
                                 .font(.system(size: 20, weight: .bold))
+                                .foregroundColor(.appAccent)
                                 .padding(.top, 4)
                         }
                         .accessibilityLabel(isExpanded ? "Hide Song Details" : "Show Song Details")
@@ -177,7 +179,7 @@ struct MoviePageView: View {
                                         Image(systemName: "music.note")
                                             .resizable()
                                             .frame(width: 28, height: 28)
-                                            .foregroundColor(.pink)
+                                            .foregroundColor(.appAccent)
                                             .accessibilityLabel("Apple Music")
                                     }
                                 } else {
@@ -193,11 +195,11 @@ struct MoviePageView: View {
                                 let appleURL = (currentSong.streamingLinks + currentSong.purchaseLinks).first(where: { $0.localizedCaseInsensitiveContains("itunes") || $0.localizedCaseInsensitiveContains("apple.com/movies") })
                                 if let url = appleURL {
                                     Link(destination: URL(string: url)!) {
-                                        Image(systemName: "applelogo")
-                                            .resizable()
-                                            .frame(width: 28, height: 28)
-                                            .foregroundColor(.primary)
-                                            .accessibilityLabel("Apple Movie Store")
+                                                                            Image(systemName: "applelogo")
+                                        .resizable()
+                                        .frame(width: 28, height: 28)
+                                        .foregroundColor(.appAccent)
+                                        .accessibilityLabel("Apple Movie Store")
                                     }
                                 } else {
                                     Image(systemName: "applelogo")
@@ -212,11 +214,11 @@ struct MoviePageView: View {
                                 let disneyURL = (currentSong.streamingLinks + currentSong.purchaseLinks).first(where: { $0.localizedCaseInsensitiveContains("disney") })
                                 if let url = disneyURL {
                                     Link(destination: URL(string: url)!) {
-                                        Image(systemName: "play.rectangle.fill")
-                                            .resizable()
-                                            .frame(width: 28, height: 28)
-                                            .foregroundColor(.blue)
-                                            .accessibilityLabel("Disney Plus")
+                                                                            Image(systemName: "play.rectangle.fill")
+                                        .resizable()
+                                        .frame(width: 28, height: 28)
+                                        .foregroundColor(.appAccent)
+                                        .accessibilityLabel("Disney Plus")
                                     }
                                 } else {
                                     Image(systemName: "play.rectangle.fill")
@@ -231,11 +233,11 @@ struct MoviePageView: View {
                                 let amazonURL = (currentSong.streamingLinks + currentSong.purchaseLinks).first(where: { $0.localizedCaseInsensitiveContains("amazon") })
                                 if let url = amazonURL {
                                     Link(destination: URL(string: url)!) {
-                                        Image(systemName: "cart.fill")
-                                            .resizable()
-                                            .frame(width: 28, height: 28)
-                                            .foregroundColor(.orange)
-                                            .accessibilityLabel("Amazon Video")
+                                                                            Image(systemName: "cart.fill")
+                                        .resizable()
+                                        .frame(width: 28, height: 28)
+                                        .foregroundColor(.appAccent)
+                                        .accessibilityLabel("Amazon Video")
                                     }
                                 } else {
                                     Image(systemName: "cart.fill")
@@ -248,7 +250,7 @@ struct MoviePageView: View {
                             }
                             
                             if let blurb = currentSong.blurb, !blurb.isEmpty {
-                                Text("\n" + blurb).font(.body)
+                                Text("\n" + blurb).font(.body).foregroundColor(.appText)
                             }
                         }
                         .transition(.opacity.combined(with: .move(edge: .top)))
