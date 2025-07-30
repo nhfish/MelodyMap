@@ -2400,6 +2400,48 @@
 			<key>uniqueIdentifier</key>
 			<string>7CE4653A-A744-4571-98B2-95550C97B491</string>
 		</dict>
+		<key>808E2A25-6F22-42F6-B8AB-CD12C4147900</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>808E2A25-6F22-42F6-B8AB-CD12C4147900.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773697880.51840699</real>
+			<key>timeStoppedRecording</key>
+			<real>773697881.79784596</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>808E2A25-6F22-42F6-B8AB-CD12C4147900</string>
+		</dict>
 		<key>83C89979-3575-461B-98BA-B069E8A1445A</key>
 		<dict>
 			<key>className</key>
@@ -3617,6 +3659,48 @@
 			<string>Build MelodyMap</string>
 			<key>uniqueIdentifier</key>
 			<string>D6091BA3-021F-4497-B6EE-639F4BB50723</string>
+		</dict>
+		<key>DBAB286B-2B76-488C-8AF3-EB1743625E85</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>DBAB286B-2B76-488C-8AF3-EB1743625E85.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>MelodyMap project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>MelodyMap</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build MelodyMap</string>
+			<key>timeStartedRecording</key>
+			<real>773697885.42492294</real>
+			<key>timeStoppedRecording</key>
+			<real>773697885.49774599</real>
+			<key>title</key>
+			<string>Build MelodyMap</string>
+			<key>uniqueIdentifier</key>
+			<string>DBAB286B-2B76-488C-8AF3-EB1743625E85</string>
 		</dict>
 		<key>DC737B2C-9EA8-44CB-B7B4-74A54B03605D</key>
 		<dict>
